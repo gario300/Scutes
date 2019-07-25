@@ -2,6 +2,7 @@
 const User = use('App/Models/User')
 const Hash = use('Hash')
 const Post = use('App/Models/Post')
+const Cloudinary = use('Cloudinary')
 
 class UserController {
 
@@ -198,6 +199,15 @@ async timeline ({ auth, response }) {
         data: posts
     })
 }
+
+//foto de perfil
+async updateProfilePic({ request, response }) {
+    let profilePic = request.file('avatar', { types: ['image'], size: '2mb' })
+    let cloudinaryMeta = await Cloudinary.uploader.upload(profilePic.tmpPath)
+    request.user.profilePic = cloudinaryMeta.secure_url
+    await request.user.save()
+    return response.redirect('back')
+  }
 
 
 
