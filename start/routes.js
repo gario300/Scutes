@@ -19,11 +19,16 @@ const Route = use('Route')
   Route.get('/', async()=>{
 	  //Database first test
 	  const Database = use('Database');
-	  const x= await Database.select('*').from('users');
+	  const x = await Database.select('*').from('users');
 	  return x;
   });
   
-  Route.post('/signup', 'UserController.signup');
+  //Route.post('/signup', 'UserController.signup');
+  Route.post('/signup', (request, auth, response )=>{
+        const userData = request.only(['name', 'username', 'email', 'password']);
+        console.log(userData);
+        return response.status(400);
+  });
   Route.post('/login', 'UserController.login');
 
   Route.group(() => {
