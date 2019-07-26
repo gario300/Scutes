@@ -19,7 +19,7 @@ const Route = use('Route')
   Route.get('/', async()=>{
 	  //Database first test
 	  const Database = use('Database');
-	  const x = await Database.select('*').from('users');
+	  const x= await Database.select('*').from('users');
 	  return x;
   });
   

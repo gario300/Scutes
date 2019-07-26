@@ -8,10 +8,10 @@ class UserController {
 
     ///Sign up
     async signup ({ request, auth, response }) {
-        // get user data from signup form
-        console.log("Signin up boii");
+		// get user data from signup form
 		const userData = request.only(['name', 'username', 'email', 'password']);
 		console.log(userData);
+
 		try {
 			// save user to database
 			const user = await User.create(userData)
@@ -205,6 +205,10 @@ async timeline ({ auth, response }) {
 
 //foto de perfil
 async updateProfilePic({ request, response }) {
+    let profilePic = request.file('avatar', { types: ['image'], size: '2mb' })
+    let cloudinaryMeta = await Cloudinary.uploader.upload(profilePic.tmpPath)
+    request.user.profilePic = cloudinaryMeta.secure_url
+    await request.user.save()
     console.log("Getting pic");
     const userData = request.only(['avatar', 'id']);
     //console.log(userData);
@@ -215,8 +219,6 @@ async updateProfilePic({ request, response }) {
     await Cloudinary.v2.uploader.upload(profilePic, 
       function(error, result) {
         cloudinaryMeta=result;
-        /*console.log("Cloudinary result:");
-        console.log(result, error); */
     });
     //console.log(cloudinaryMeta);
     let picUrl = cloudinaryMeta['secure_url'];
@@ -228,11 +230,7 @@ async updateProfilePic({ request, response }) {
     .update('avatar', picUrl);
     //await request.user.save()
     console.log("Done!");
-    //return response.redirect('back');
-    return response.json({
-        status: 'success',
-        data: null
-    })
+	return response.redirect('back');
   }
 
 }
