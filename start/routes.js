@@ -23,12 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
-  //Route.post('/signup', 'UserController.signup');
-  Route.post('/signup', (request, auth, response )=>{
-        const userData = request.only(['name', 'username', 'email', 'password']);
-        console.log(userData);
-        return response.status(400);
-  });
+  Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
 
   Route.group(() => {
