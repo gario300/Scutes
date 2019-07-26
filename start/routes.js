@@ -30,7 +30,7 @@ const Route = use('Route')
     Route.get('/me', 'UserController.me')
     Route.put('/update_profile', 'UserController.updateProfile');
     Route.put('/change_password', 'UserController.changePassword');
-    Route.post('/updateavatar', 'UserController.updateProfilePic');
+    Route.post('/updateProfilePic', 'UserController.updateProfilePic');
 
     //Usuario
     Route.get(':username', 'UserController.showProfile');
