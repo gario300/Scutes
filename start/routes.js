@@ -37,7 +37,7 @@ const Route = use('Route')
     
 })
     .prefix('account')
-    .middleware(['auth:jwt'])
+    .middleware(['auth'])
 
     Route.group(() => {
       Route.get('/users_to_follow', 'UserController.usersToFollow');
@@ -46,7 +46,7 @@ const Route = use('Route')
       Route.get('/timeline', 'UserController.timeline')
   })
       .prefix('users')
-      .middleware(['auth:jwt'])
+      .middleware(['auth'])
 
       //posts
       Route.post('/post', 'PostController.post').middleware(['auth:jwt'])
@@ -60,7 +60,7 @@ const Route = use('Route')
         Route.delete('/destroy/:id', 'FavoriteController.unFavorite');
     })
         .prefix('favorites')
-        .middleware(['auth:jwt'])
+        .middleware(['auth'])
 
         //Eliminar Post
       
