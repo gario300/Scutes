@@ -223,7 +223,6 @@ class UserController {
 
         //await request.user.save()
         console.log("Done!");
-        return response.redirect('back');
     } 
 
 }
