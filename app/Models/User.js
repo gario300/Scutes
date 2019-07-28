@@ -33,6 +33,9 @@ class User extends Model {
     favorites () {
         return this.hasMany('App/Models/Favorite')
     }
+    static get hidden () {
+        return ['password']
+      }
 }
 
 module.exports = User

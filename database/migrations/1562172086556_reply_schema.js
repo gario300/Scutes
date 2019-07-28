@@ -8,7 +8,7 @@ class ReplySchema extends Schema {
     this.create('replies', (table) => {
       table.increments()
         table.integer('user_id').unsigned().notNullable()
-        table.integer('tweet_id').unsigned().notNullable()
+        table.integer('post_id').unsigned().notNullable()
         table.string('reply',300).notNullable()
       table.timestamps()
     })

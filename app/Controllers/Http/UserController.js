@@ -60,13 +60,13 @@ class UserController {
             .where('id', auth.current.user.id)
             .with('posts', builder => {
                 builder.with('user')
-                builder.with('favorite')
-                builder.with('replie')
+                builder.with('favorites')
+                builder.with('replies')
             })
             .with('following')
             .with('followers')
             .with('favorites')
-            .with('favorites.posts', builder => {
+            .with('favorites.post', builder => {
                 builder.with('users')
                 builder.with('favorites')
                 builder.with('replies')
@@ -223,7 +223,29 @@ class UserController {
 
         //await request.user.save()
         console.log("Done!");
-    } 
+    }
+    
+    async timeline ({ auth, response }) {
+    const user = await User.find(auth.current.user.id)
+
+    // get an array of IDs of the user's followers
+    const followersIds = await user.following().ids()
+
+    // add the user's ID also to the array
+    followersIds.push(user.id)
+
+    const posts = await Post.query()
+        .whereIn('user_id', followersIds)
+        .with('user')
+        .with('favorites')
+        .with('replies')
+        .fetch()
+
+    return response.json({
+        status: 'success',
+        data: posts
+    })
+}
 
 }
 

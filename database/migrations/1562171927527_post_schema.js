@@ -7,9 +7,9 @@ class PostSchema extends Schema {
   up () {
     this.create('posts', (table) => {
       table.increments()
-        table.integer('user_id').unsigned().notNullable()
+        table.integer('user_id').unsigned()
         table.string('post', 300).notNullable()
-        table.string('postImage', 200)
+        table.string('image', 200).nullable()
       table.timestamps()
     })
   }

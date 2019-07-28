@@ -1,36 +1,51 @@
 'use strict'
 const Post = use('App/Models/Post')
 const Reply = use('App/Models/Reply')
+const Cloudinary = use('Cloudinary')
 
 class PostController {
     async post ({ request, auth, response }) {
         // get currently authenticated user
-        const user = auth.current.user
+        const postData = request.only(['user_id','post','image']);
+        //console.log(userData);
+        
+        if (postData.image !== null ){
+            let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
+        console.log("Uploading pic");
+
+        const resultado =  await Cloudinary.v2.uploader.upload(postPic);
+        console.log(resultado.type);
+        
+        const post = new Post();
+        post.user_id = postData.user_id;
+        post.post = postData.post;
+        post.image = resultado.secure_url;
+        await post.save();
+        return response.status(201).json(post);
+
+        } else {
+        const post = new Post();
+        post.user_id = postData.user_id;
+        post.post = postData.post;
+        post.image = null;
+        await post.save();
+        return response.status(201).json(post);
+        }
+        
+        
+        //await request.user.save()
+       // fetch tweet's relations
+       
     
-        // Save tweet to database
-        const post = await  Post.create({
-            user_id: user.id,
-            post: request.input('post'),
-            postImage: postImage
-            
-        })
-    
-        // fetch tweet's relations
-        await tweet.loadMany(['user', 'favorites', 'replies'])
-    
-        return response.json({
-            status: 'success',
-            message: 'Posteado!',
-            data: post
-        })
-    }
+        
+}
     async show ({ params, response }) {
         try {
             const post = await Post.query()
                 .where('id', params.id)
                 .with('user')
-                .with('replies')
-                .with('replies.user')
+                .with('replie')
+                .with('replie.user')
                 .with('favorites')
                 .firstOrFail()
     

@@ -49,9 +49,9 @@ const Route = use('Route')
       .middleware(['auth'])
 
       //posts
-      Route.post('/post', 'PostController.post').middleware(['auth:jwt'])
-      Route.get('/posts/:id', 'TweetController.show')
-      Route.post('/tweets/reply/:id', 'TweetController.reply').middleware(['auth:jwt']);
+      Route.post('/post', 'PostController.post').middleware(['auth']);
+      Route.get('/posts/:id', 'PostController.show').middleware(['auth']);
+      Route.post('/tweets/reply/:id', 'TweetController.reply').middleware(['auth']);
 
 
       //favoritos
