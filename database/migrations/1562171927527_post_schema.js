@@ -9,7 +9,8 @@ class PostSchema extends Schema {
       table.increments()
         table.integer('user_id').unsigned()
         table.string('post', 300).notNullable()
-        table.string('image', 200).nullable()
+        table.string('image', 300).nullable()
+        table.string('imagepublicid',300).nullable()
       table.timestamps()
     })
   }

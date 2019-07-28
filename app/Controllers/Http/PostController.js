@@ -14,12 +14,13 @@ class PostController {
         console.log("Uploading pic");
 
         const resultado =  await Cloudinary.v2.uploader.upload(postPic);
-        console.log(resultado.type);
+        
         
         const post = new Post();
         post.user_id = postData.user_id;
         post.post = postData.post;
         post.image = resultado.secure_url;
+        post.imagepublicid = resultado.public_id;
         await post.save();
         return response.status(201).json(post);
 
@@ -94,8 +95,17 @@ class PostController {
             .where('user_id', user.id)
             .where('id', params.id)
             .firstOrFail()
+
+        const image = post.imagepublicid
+
+            if(post.image !== null) {
+                Cloudinary.v2.uploader.destroy(image)
+                    
+            }
     
-        await tweet.delete()
+        await post.delete()
+
+        
     
         return response.json({
             status: 'success',

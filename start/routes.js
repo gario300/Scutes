@@ -64,4 +64,4 @@ const Route = use('Route')
 
         //Eliminar Post
       
-        Route.delete('/posts/destroy/:id', 'PostController.destroy').middleware(['auth:jwt'])
+        Route.delete('/posts/destroy/:id', 'PostController.destroy').middleware(['auth'])
