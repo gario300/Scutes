@@ -46,7 +46,7 @@ const Route = use('Route')
       Route.get('/timeline', 'UserController.timeline')
   })
       .prefix('users')
-      .middleware(['auth'])
+      .middleware(['auth']);
 
       //posts
       Route.post('/post', 'PostController.post').middleware(['auth']);

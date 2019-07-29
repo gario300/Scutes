@@ -5,6 +5,7 @@ const Cloudinary = use('Cloudinary')
 
 class PostController {
     async post ({ request, auth, response }) {
+        const user = auth.current.user
         // get currently authenticated user
         const postData = request.only(['user_id','post','image']);
         //console.log(userData);
@@ -12,7 +13,8 @@ class PostController {
         if (postData.image !== null ){
             let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
         console.log("Uploading pic");
-
+            
+        
         const resultado =  await Cloudinary.v2.uploader.upload(postPic);
         
         
@@ -20,9 +22,13 @@ class PostController {
         post.user_id = postData.user_id;
         post.post = postData.post;
         post.image = resultado.secure_url;
-        post.imagepublicid = resultado.public_id;
+        post.imagepublicid = resultado.public_id;     
         await post.save();
+        await post.loadMany(['user', 'favorites', 'replies'])
+        
         return response.status(201).json(post);
+        
+             
 
         } else {
         const post = new Post();
@@ -30,6 +36,7 @@ class PostController {
         post.post = postData.post;
         post.image = null;
         await post.save();
+        await post.loadMany(['user', 'favorites', 'replies']) 
         return response.status(201).json(post);
         }
         
@@ -45,14 +52,14 @@ class PostController {
             const post = await Post.query()
                 .where('id', params.id)
                 .with('user')
-                .with('replie')
-                .with('replie.user')
+                .with('replies')
+                .with('replies.user')
                 .with('favorites')
                 .firstOrFail()
     
             return response.json({
                 status: 'success',
-                data: tweet
+                data: post
             })
         } catch (error) {
             return response.status(404).json({
@@ -69,7 +76,10 @@ class PostController {
     
         // get tweet with the specified ID
         const post = await Post.find(params.id)
-    
+        const postid = await Post.findBy(post)
+        
+        
+        
         // persist to database
         const reply = await Reply.create({
             user_id: user.id,

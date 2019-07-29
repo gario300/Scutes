@@ -67,7 +67,7 @@ class UserController {
             .with('followers')
             .with('favorites')
             .with('favorites.post', builder => {
-                builder.with('users')
+                builder.with('user')
                 builder.with('favorites')
                 builder.with('replies')
             })
@@ -183,25 +183,25 @@ class UserController {
     }
     async timeline ({ auth, response }) {
         const user = await User.find(auth.current.user.id)
-
+    
         // get an array of IDs of the user's followers
         const followersIds = await user.following().ids()
-
+    
         // add the user's ID also to the array
         followersIds.push(user.id)
-
+    
         const posts = await Post.query()
-            .whereIn('user_id', followersIds)
-            .with('user')
-            .with('favorites')
-            .with('replies')
-            .fetch()
-
+          .whereIn('user_id', followersIds)
+          .with('user')
+          .with('favorites')
+          .with('replies')
+          .fetch()
+    
         return response.json({
-            status: 'success',
-            data: posts
+          status: 'success',
+          data: posts
         })
-    }
+      }
 
     //foto de perfil
     async updateProfilePic({ request, response }) {
@@ -225,7 +225,8 @@ class UserController {
         console.log("Done!");
     }
     
-    async timeline ({ auth, response }) {
+
+async timeline ({ auth, response }) {
     const user = await User.find(auth.current.user.id)
 
     // get an array of IDs of the user's followers
@@ -246,7 +247,6 @@ class UserController {
         data: posts
     })
 }
-
 }
 
 module.exports = UserController
