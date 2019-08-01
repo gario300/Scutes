@@ -13,9 +13,6 @@ class Post extends Model {
     favorites() {
         return this.hasMany('App/Models/Favorite')
     }
-    post () {
-        return this.belongsTo('App/Models/Post')
-    }
     
 }
 

@@ -7,7 +7,7 @@ const Model = use('Model')
 class User extends Model {
     static boot () {
         super.boot()
-        this.addHook('beforeSave', 'User.hashPassword')
+        this.addHook('beforeCreate', 'User.hashPassword')
       }
       
     posts () {
@@ -35,6 +35,9 @@ class User extends Model {
     }
     static get hidden () {
         return ['password']
+      }
+      tokens () {
+        return this.hasMany('App/Models/Token')
       }
 }
 

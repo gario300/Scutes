@@ -10,7 +10,7 @@ class PostController {
         const postData = request.only(['user_id','post','image']);
         //console.log(userData);
         
-        if (postData.image !== null ){
+        if (postData.image !== null && postData.post !== null ){
             let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
         console.log("Uploading pic");
             
