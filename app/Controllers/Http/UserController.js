@@ -226,6 +226,21 @@ class UserController {
         //await request.user.save()
         console.log("Done!");
     }
+    //foto de portada
+    async updateportada ({ request, auth, response }){
+        // get currently authenticated user
+        const dataportada = request.only(['portada']);
+        //console.log(userData);
+        let portada = dataportada['portada'];//request.file('avatar', { types: ['image'], size: '2mb' })
+        console.log("Uploading pic");
+        const resultado =  await Cloudinary.v2.uploader.upload(portada);
+        
+        const user = auth.current.user
+        user.portada = resultado.secure_url
+        await user.save()
+    }
+    
+    
     
 
 

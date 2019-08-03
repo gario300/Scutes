@@ -31,6 +31,7 @@ const Route = use('Route')
     Route.put('/update_profile', 'UserController.updateProfile');
     Route.put('/change_password', 'UserController.changePassword');
     Route.post('/updateProfilePic', 'UserController.updateProfilePic');
+    Route.put('/updateportada', 'UserController.updateportada');
 
     //Usuario
     Route.get(':username', 'UserController.showProfile');
@@ -51,7 +52,7 @@ const Route = use('Route')
       //posts
       Route.post('/post', 'PostController.post').middleware(['auth']);
       Route.get('/posts/:id', 'PostController.show').middleware(['auth']);
-      Route.post('/tweets/reply/:id', 'TweetController.reply').middleware(['auth']);
+      Route.post('/posts/reply/:id', 'PostController.reply').middleware(['auth']);
 
 
       //favoritos

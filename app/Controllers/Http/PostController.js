@@ -76,7 +76,6 @@ class PostController {
     
         // get tweet with the specified ID
         const post = await Post.find(params.id)
-        const postid = await Post.findBy(post)
         
         
         
