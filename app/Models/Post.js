@@ -13,6 +13,9 @@ class Post extends Model {
     favorites() {
         return this.hasMany('App/Models/Favorite')
     }
+    goals () {
+        return this.hasMany('App/Models/Goal')
+    }
     
 }
 

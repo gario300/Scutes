@@ -9,6 +9,11 @@ class User extends Model {
         super.boot()
         this.addHook('beforeCreate', 'User.hashPassword')
       }
+
+    
+      static get hidden () {
+        return ['password']
+      }
       
     posts () {
         return this.hasMany('App/Models/Post')
@@ -33,12 +38,13 @@ class User extends Model {
     favorites () {
         return this.hasMany('App/Models/Favorite')
     }
-    static get hidden () {
-        return ['password']
-      }
       tokens () {
         return this.hasMany('App/Models/Token')
       }
+      goals () {
+        return this.belongsToMany('App/Models/Goal', 'user_id', 'goal_id')
+        .pivotTable('intergoals')
+    }
 }
 
 module.exports = User

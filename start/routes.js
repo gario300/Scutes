@@ -25,6 +25,8 @@ const Route = use('Route')
   
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
+  Route.post('/postgoal', 'Goalcontroller.newgoal')
+  Route.get('/goal/:user_id', 'Goalcontroller.showgoal')
 
   Route.group(() => {
     Route.get('/me', 'UserController.me')
@@ -42,7 +44,7 @@ const Route = use('Route')
 
     Route.group(() => {
       Route.get('/users_to_follow', 'UserController.usersToFollow');
-      Route.post ( '/follow/:id' , 'UserController.follow' );
+      Route.post ( '/follow' , 'UserController.follow' );
       Route.delete('/unfollow/:id', 'UserController.unFollow');
       Route.get('/timeline', 'UserController.timeline')
   })

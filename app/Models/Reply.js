@@ -10,6 +10,9 @@ class Reply extends Model {
     post() {
         return this.belongsTo('App/Models/Post')
     }
+    goals () {
+        return this.hasMany('App/Models/Goal')
+    }
 }
 
 module.exports = Reply
