@@ -34,7 +34,6 @@ class PostController {
         const post = new Post();
         post.user_id = postData.user_id;
         post.post = postData.post;
-        post.image = NULL;
         await post.save();
         await post.loadMany(['user', 'favorites', 'replies']) 
         return response.status(201).json(post);
