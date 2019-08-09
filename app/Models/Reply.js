@@ -5,10 +5,10 @@ const Model = use('Model')
 
 class Reply extends Model {
     user () {
-        return this.belongsTo('App/Models/User', 'user_id'.pivotTable('users'))
+        return this.belongsTo('App/Models/User')
     }
     post() {
-        return this.belongsTo('App/Models/Post', 'post_id'.pivotTable('posts'))
+        return this.belongsTo('App/Models/Post')
     }
     goals () {
         return this.hasMany('App/Models/Goal')
