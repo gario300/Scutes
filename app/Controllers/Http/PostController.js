@@ -7,7 +7,7 @@ class PostController {
     async post ({ request, auth, response }) {
         const user = auth.current.user
         // get currently authenticated user
-        const postData = request.only(['user_id','post','image']);
+        const postData = request.only(['user_id','post','image','post_id']);
         //console.log(userData);
         
         if (postData.image !== null && postData.post !== null ){
