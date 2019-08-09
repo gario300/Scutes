@@ -8,7 +8,7 @@ class Post extends Model {
         return this.belongsTo('App/Models/User')
     }
     replies() {
-        return this.hasMany('App/Models/Reply', 'post_id'.pivotTable('posts'))
+        return this.hasMany('App/Models/Reply', 'post_id')
     }
     favorites() {
         return this.hasMany('App/Models/Favorite')
