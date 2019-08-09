@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Reply extends Model {
     user () {
-        return this.belongsTo('App/Models/User')
+        return this.belongsTo('App/Models/User', 'user_id'.pivotTable('users'))
     }
     post() {
         return this.belongsTo('App/Models/Post', 'post_id'.pivotTable('posts'))
