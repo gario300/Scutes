@@ -32,7 +32,7 @@ class PostController {
 
         } else {
         const post = new Post();
-        post.user_id = postData.user_id;
+        post.user_id = user.id;
         post.post = postData.post;
         await post.save();
         await post.loadMany(['user', 'favorites', 'replies']) 
