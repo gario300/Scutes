@@ -46,6 +46,7 @@ class UserController {
                 data: token
             })
         } catch (error) {
+            console.log(error)
             response.status(400).json({
                 status: 'error',
                 message: 'Contraseña o E-mail incorrecto'
