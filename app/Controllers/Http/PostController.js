@@ -7,7 +7,7 @@ class PostController {
     async post ({ request, auth, response }) {
         const user = auth.current.user
         // get currently authenticated user
-        const postData = request.only(['user_id','post','image']);
+        const postData = request.only(['post','image']);
         //console.log(userData);
         
         if (postData.image !== null && postData.post !== null ){
@@ -19,7 +19,7 @@ class PostController {
         
         
         const post = new Post();
-        post.user_id = postData.user_id;
+        post.user_id = user.id;
         post.post = postData.post;
         post.image = resultado.secure_url;
         post.imagepublicid = resultado.public_id;     
