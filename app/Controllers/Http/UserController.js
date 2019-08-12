@@ -4,8 +4,6 @@ const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
 const Database = use('Database')
-const Intergoal = use('App/Model/Intergoal')
-const Goal = use ('App/Model/Goal')
 
 class UserController {
 
@@ -247,6 +245,17 @@ class UserController {
         await user.save()
     }
 
+    async asignarlogro  ({auth, response}){
+        const user = auth.current.user
+        await user.goal().attach(1)
+
+        return response.json({
+            status: 'success',
+            data: null
+        })
+        
+
+    }
     
     
     
