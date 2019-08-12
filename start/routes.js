@@ -26,7 +26,7 @@ const Route = use('Route')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
-  Route.get('/goal/:user_id', 'GoalController.showgoal')
+
 
   Route.group(() => {
     Route.get('/me', 'UserController.me')

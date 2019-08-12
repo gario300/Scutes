@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class IntergoalSchema extends Schema {
   up () {
-    this.create('intergoals', (table) => {
+    this.create('logros', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.integer('goal_id').unsigned().references('id').inTable('goals')
@@ -14,7 +14,7 @@ class IntergoalSchema extends Schema {
   }
 
   down () {
-    this.drop('intergoals')
+    this.drop('logros')
   }
 }
 
