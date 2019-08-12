@@ -247,7 +247,7 @@ class UserController {
 
     async asignarlogro  ({auth, response}){
         const user = auth.current.user
-        await user.goal().attach(1)
+        await user.goals().attach(1)
 
         return response.json({
             status: 'success',
