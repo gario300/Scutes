@@ -252,7 +252,7 @@ class UserController {
         const user = auth.current.user
         const logro = await Goal.findOrFail(logroid)
 
-        const logro = new Intergoa()
+        const logro = new Intergoal()
         logro.user_id = user.id
         logro.goal_id = logroid
         await post.save();
