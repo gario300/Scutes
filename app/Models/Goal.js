@@ -5,8 +5,7 @@ const Model = use('Model')
 
 class Goal extends Model {    
         users () {
-            return this.belongsToMany('App/Models/Goal', 'user_id', 'goal_id')
-            .pivotTable('intergoals')
+            return this.belongsToMany('App/Models/Goal')
         }
         
 

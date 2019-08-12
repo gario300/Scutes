@@ -4,6 +4,8 @@ const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
 const Database = use('Database')
+const Intergoal = use('App/Model/Intergoal')
+const Goal = use ('App/Model/Goal')
 
 class UserController {
 
@@ -74,6 +76,8 @@ class UserController {
                 builder.with('replies')
             })
             .firstOrFail()
+
+            
 
         return response.json({
             status: 'success',
@@ -241,6 +245,19 @@ class UserController {
         const user = auth.current.user
         user.portada = resultado.secure_url
         await user.save()
+    }
+
+    async asignarlogro  ({auth, response}){
+        const logroid = 1
+        const user = auth.current.user
+        const logro = await Goal.findOrFail(logroid)
+
+        const logro = new Intergoa()
+        logro.user_id = user.id
+        logro.goal_id = logroid
+        await post.save();
+        return response.status(201).json(logro);
+
     }
     
     
