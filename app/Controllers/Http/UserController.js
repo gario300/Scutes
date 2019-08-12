@@ -247,18 +247,6 @@ class UserController {
         await user.save()
     }
 
-    async asignarlogro  ({auth, response}){
-        const logroid = 1
-        const user = auth.current.user
-        const logro = await Goal.findOrFail(logroid)
-
-        const logro = new Intergoal()
-        logro.user_id = user.id
-        logro.goal_id = logroid
-        await post.save();
-        return response.status(201).json(logro);
-
-    }
     
     
     

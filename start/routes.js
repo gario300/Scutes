@@ -34,7 +34,6 @@ const Route = use('Route')
     Route.put('/change_password', 'UserController.changePassword');
     Route.post('/updateProfilePic', 'UserController.updateProfilePic');
     Route.put('/updateportada', 'UserController.updateportada');
-    Route.post('/primerlogro', 'UserController.asignarlogro')
     //Usuario
     Route.get(':username', 'UserController.showProfile');
     
