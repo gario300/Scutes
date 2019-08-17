@@ -2,7 +2,7 @@
 const Post = use('App/Models/Post')
 const Reply = use('App/Models/Reply')
 const Cloudinary = use('Cloudinary')
-const Event = use ('Event')
+const Notification = use ('App/Models/Notification')
 
 class PostController {
     async post ({ request, auth, response }) {
@@ -85,9 +85,12 @@ class PostController {
             post_id: post.id,
             reply: request.input('reply')
         })
+
     
         // fetch user that made the reply
         await reply.load('user')
+        
+        
     
         return response.json({
             status: 'success',
@@ -95,11 +98,27 @@ class PostController {
             data: reply
         })
 
-        Event.fire('new::reply' ,{
+        const noti = await Notification.create({
+            user_id = post.user_id,
+            sender_id = user.id,
+            reply_id = reply.id
+        })
+
+        await noti.load('user')
+        
+        return response.json({
+            status: 'success',
+            message: 'Notificación enviada',
+            data: noti
+        })
+        
+
+
+        /*Event.fire('new::reply' ,{
             user_id:post.user.id,
             sender_id:user.id,
             reply_id: reply.id
-        })
+        })*/
     }
     async destroy ({ request, auth, params, response }) {
         // get currently authenticated user
