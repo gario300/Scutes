@@ -65,6 +65,13 @@ const Route = use('Route')
         .prefix('favorites')
         .middleware(['auth'])
 
+      //Notificaciones
+      Route.group(() => {
+        Route.post('/newnoti/:id', 'NotificationController.newnotification');
+    })
+        .prefix('notif')
+        .middleware(['auth']);
+
         //Eliminar Post
       
         Route.delete('/posts/destroy/:id', 'PostController.destroy').middleware(['auth'])
