@@ -47,8 +47,7 @@ class User extends Model {
         .pivotTable('intergoals')
     }
     notifications(){
-      return this.this.belongsToMany('App/Models/Notification', 'user_id', 'user_id')
-      .pivotTable('notifications')
+      return this.hasMany('App/Models/Notification')
     }  
 }
 

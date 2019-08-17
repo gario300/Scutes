@@ -4,9 +4,10 @@
 const Model = use('Model')
 
 class Notification extends Model {
-    User(){
-        return this.belongsToMany('App/Models/User')
-      }  
+      user () {
+        return this.belongsTo('App/Models/User')
+    }
+      
 }
 
 module.exports = Notification
