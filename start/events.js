@@ -1,6 +1,6 @@
 const Event = use('Event')
 
-Event.on('new::reply', () => {
-  console.log('hola mundo')
+Event.on('new::reply',async (reply) => {
+  await console.log('holamundo')
     
   })
