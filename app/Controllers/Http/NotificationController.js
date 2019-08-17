@@ -13,7 +13,7 @@ class NotificationController {
         
         const noti = new Notification();
         noti.user_id = user.id; 
-        noti.receptor_id = post.user.id
+        noti.receptor_id = post.user_id
         noti.post_id = post.id;
         await noti.save();
 
