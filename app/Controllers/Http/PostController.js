@@ -2,6 +2,7 @@
 const Post = use('App/Models/Post')
 const Reply = use('App/Models/Reply')
 const Cloudinary = use('Cloudinary')
+const Event = use ('Event')
 
 class PostController {
     async post ({ request, auth, response }) {
