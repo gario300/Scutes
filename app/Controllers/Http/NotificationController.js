@@ -8,11 +8,11 @@ class NotificationController {
         const user = auth.current.user;
         const post = await Post.query()
                     .where('id', params.id)
+                    .with('user')
                     .firstOrFail(); 
-        const receptor = request.only(['user_id']);
         
         const noti = new Notification();
-        noti.user_id = receptor.user_id
+        noti.user_id =  post.user.user_id
         noti.sender_id = user.id; 
         noti.post_id = post.id;
         await noti.save();
