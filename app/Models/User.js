@@ -16,7 +16,8 @@ class User extends Model {
       }
 
     notifications(){
-      return this.hasMany('App/Models/Notification')
+      return this.this.belongsToMany('App/Models/Notification', 'seender_id', 'receptor_id')
+      .pivotTable('notifications')
     }  
       
     posts () {
