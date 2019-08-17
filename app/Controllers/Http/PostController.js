@@ -93,6 +93,8 @@ class PostController {
             message: 'Respuesta publicada',
             data: reply
         })
+
+      
     }
     async destroy ({ request, auth, params, response }) {
         // get currently authenticated user

@@ -21,7 +21,6 @@ class UserController {
 			const token = await auth.generate(user)
             console.log("Success");
             
-            Event.fire('new::user', user)
             
 			return response.json({
 				status: 'success',
