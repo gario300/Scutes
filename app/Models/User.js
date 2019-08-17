@@ -15,10 +15,6 @@ class User extends Model {
         return ['password']
       }
 
-    notifications(){
-      return this.this.belongsToMany('App/Models/Notification', 'seender_id', 'receptor_id')
-      .pivotTable('notifications')
-    }  
       
     posts () {
         return this.hasMany('App/Models/Post')
@@ -50,6 +46,10 @@ class User extends Model {
         return this.belongsToMany('App/Models/Goal', 'user_id', 'goal_id')
         .pivotTable('intergoals')
     }
+    notifications(){
+      return this.this.belongsToMany('App/Models/Notification', 'user_id', 'user_id')
+      .pivotTable('notifications')
+    }  
 }
 
 module.exports = User
