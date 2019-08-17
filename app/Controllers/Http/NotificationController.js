@@ -5,10 +5,11 @@ const Post = use('App/Models/Post')
 class NotificationController {
     async newnotification ({ request, auth, params}) {
 
-        const user = auth.current.user
+        const user = auth.current.user;
         const post = await Post.query()
                     .where('id', params.id)
                     .with('user')
+                    .firstOrFail();
         
         
         const noti = new Notification();
