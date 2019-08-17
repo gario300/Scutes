@@ -4,6 +4,7 @@ const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
 const Database = use('Database')
+const Event = use ('Event')
 
 class UserController {
 
@@ -18,7 +19,10 @@ class UserController {
 			// generate JWT token for user
 			console.log("Creating token");
 			const token = await auth.generate(user)
-			console.log("Success");
+            console.log("Success");
+            
+            Event.fire('new::user', user)
+            
 			return response.json({
 				status: 'success',
 				data: token

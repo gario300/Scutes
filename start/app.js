@@ -16,7 +16,8 @@ const providers = [
   '@adonisjs/bodyparser/providers/BodyParserProvider',
   '@adonisjs/cors/providers/CorsProvider',
   '@adonisjs/lucid/providers/LucidProvider',
-  'adonis-4-cloudinary/provider/Cloudinary'
+  'adonis-4-cloudinary/provider/Cloudinary',
+  'adonis-notifications/providers/NotificationsProvider'
 ]
 
 /*
@@ -29,7 +30,8 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
+  '@adonisjs/lucid/providers/MigrationsProvider',
+  'adonis-notifications/providers/CommandsProvider'
 ]
 
 /*
