@@ -1,5 +1,6 @@
 const Event = use('Event')
 
-Event.once('new::user', () => {
+Event.on('new::reply', () => {
+  console.log('hola mundo')
     
   })

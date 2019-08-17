@@ -94,7 +94,11 @@ class PostController {
             data: reply
         })
 
-      
+        Event.fire('new::reply' ,{
+            user_id:post.user.id,
+            sender_id:user.id,
+            reply_id: reply.id
+        })
     }
     async destroy ({ request, auth, params, response }) {
         // get currently authenticated user
