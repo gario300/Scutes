@@ -3,12 +3,12 @@ const Notification = use('App/Models/Notification')
 
 const User = exports = module.exports = {}
 
-User.newreply = async () => {
+User.newreply = async (data) => {
         
         const noti = new Notification();
-              noti.user_id = user_id;
-              noti.sender_id = sender_id;
-              noti.reply_id = reply_id;    
+              noti.user_id = data.user_id;
+              noti.sender_id = data.sender_id;
+              noti.reply_id = data.reply_id;    
               await noti.save();
  
     
