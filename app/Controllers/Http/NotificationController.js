@@ -16,7 +16,7 @@ class NotificationController {
         noti.receptor_id = post.user_id
         noti.post_id = post.id;
         await noti.save();
-        await noti.loadMany(['user','posts'])
+        await noti.loadbelongsTo(['user','posts'])
 
     }
     
