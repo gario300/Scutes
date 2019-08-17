@@ -67,7 +67,10 @@ class UserController {
                 builder.with('favorites')
                 builder.with('replies')
             })
-            .with('notifications')
+            .with('notifications'builder => {
+                builder.with('user')
+                builder.with('post')
+            })
             .with('goals')
             .with('following')
             .with('followers')
