@@ -16,7 +16,9 @@ class Post extends Model {
     goals () {
         return this.hasMany('App/Models/Goal')
     }
-    
+    notifications(){
+        return this.hasMany('App/Models/Notification')
+    }
     
 }
 
