@@ -90,14 +90,6 @@ class PostController {
         // fetch user that made the reply
         await reply.load('user')
         
-        
-    
-        return response.json({
-            status: 'success',
-            message: 'Respuesta publicada',
-            data: reply
-        })
-
         const noti = await Notification.create({
             user_id = post.user_id,
             sender_id = user.id,
@@ -106,11 +98,16 @@ class PostController {
 
         await noti.load('user')
         
+        
+    
         return response.json({
             status: 'success',
-            message: 'Notificación enviada',
-            data: noti
+            message: 'Respuesta publicada',
+            data: reply
         })
+
+        
+        
         
 
 
