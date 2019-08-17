@@ -5,13 +5,6 @@ const Model = use('Model')
 
 
 class User extends Model {
-    static get traits () {
-        return [
-          '@provider:Morphable',
-          '@provider:HasDatabaseNotifications',
-          '@provider:Notifiable'
-        ]
-      }
     static boot () {
         super.boot()
         this.addHook('beforeCreate', 'User.hashPassword')
@@ -21,6 +14,10 @@ class User extends Model {
       static get hidden () {
         return ['password']
       }
+
+    notifications(){
+      return this.hasMany('App/Models/Notification')
+    }  
       
     posts () {
         return this.hasMany('App/Models/Post')

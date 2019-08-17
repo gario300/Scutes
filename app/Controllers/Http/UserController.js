@@ -68,6 +68,7 @@ class UserController {
                 builder.with('favorites')
                 builder.with('replies')
             })
+            .with('notifications')
             .with('goals')
             .with('following')
             .with('followers')
