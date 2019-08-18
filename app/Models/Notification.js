@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Notification extends Model {
       user () {
-        return this.hasbelongsTo('App/Models/User')
+        return this.belongsTo('App/Models/User')
     }
     post(){
         return this.belongsTo('App/Models/Post')
