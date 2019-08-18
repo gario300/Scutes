@@ -31,6 +31,7 @@ class NotificationController {
                 .with('user')
                 .with('post')
                 .firstOrFail()
+                .fetch()
     
             return response.json({
                 status: 'success',

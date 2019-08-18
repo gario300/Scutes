@@ -90,11 +90,7 @@ class PostController {
         // fetch user that made the reply
         await reply.load('user')
         
-        Event.fire('new::reply' ,{
-            user_id:post.user.id,
-            sender_id:user.id,
-            reply_id: reply.id
-        })
+       
         
     
         return response.json({
