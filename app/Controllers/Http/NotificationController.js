@@ -37,10 +37,7 @@ class NotificationController {
             })
     
     }catch (error) {
-        return response.status(404).json({
-            status: 'error',
-            message: 'No encontrado'
-        })
+        return console.log('error')
     }
 }
     
