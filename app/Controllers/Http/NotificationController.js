@@ -4,6 +4,7 @@ const Post = use('App/Models/Post')
 
 class NotificationController {
     async newnotification ({ request, auth, params}) {
+        const notiData = request.only(['notification_type']);
 
         const user = auth.current.user;
         const post = await Post.query()
@@ -15,8 +16,9 @@ class NotificationController {
         noti.user_id = user.id; 
         noti.receptor_id = post.user_id
         noti.post_id = post.id;
+        noti.notification_type = notiData.notification_type
         await noti.save();
-        await noti.loadMany(['user','post'])
+        await noti.loadMany(['users','post'])
 
     }
     
