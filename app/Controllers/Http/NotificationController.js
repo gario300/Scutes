@@ -26,7 +26,9 @@ class NotificationController {
         
         const user = auth.current.user
         try {
-            const notifications = await Notification.findByOrFail('receptor_id', user.id)
+            const notifications = await Notification.findByOrFail('receptor_id', user.id )
+                .with('user')
+                .with('post')
                 .orderBy('created_at', 'DESC')
                 .fetch()
     
