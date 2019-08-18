@@ -4,9 +4,12 @@
 const Model = use('Model')
 
 class Notification extends Model {
-      users () {
-        return this.hasMany('App/Models/User')
+      user () {
+        return this.belongsTo('App/Models/User')
     }
+    receptor(){
+        return this.belongsTo('App/Models/Receptor')
+      }
     post(){
         return this.belongsTo('App/Models/Post')
     }
