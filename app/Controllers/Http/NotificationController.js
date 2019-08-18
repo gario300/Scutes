@@ -27,9 +27,6 @@ class NotificationController {
         const user = auth.current.user
         try {
             const noti = await Notification.findByOrFail('receptor_id', user.id )
-                .with('user')
-                .with('post')
-                .orderBy('created_at', 'DESC')
     
             return response.json({
                 status: 'success',
