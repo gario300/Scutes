@@ -30,7 +30,6 @@ class NotificationController {
                 .with('user')
                 .with('post')
                 .orderBy('created_at', 'DESC')
-                .fetch()
     
             return response.json({
                 status: 'success',
