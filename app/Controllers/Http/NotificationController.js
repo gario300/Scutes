@@ -25,8 +25,9 @@ class NotificationController {
     async shownotification ({auth , response}){
         
         const user = auth.current.user
+        const receptor = user.id
         try {
-            const notifications = await Notification.findByOrFail('receptor_id', user.id)
+            const notifications = await Notification.findByOrFail('receptor_id',receptor)
                 .with('user')
                 .with('post')
                 .orderBy('created_at', 'DESC')
