@@ -21,6 +21,24 @@ class NotificationController {
         await noti.loadMany(['user','post'])
 
     }
+
+    async shownotification ({auth , response}){
+        
+        const user = auth.current.user
+        try {
+            const noti = await Post.query()
+                .where('receptor_id', user.id)
+                .with('user')
+                .with('post')
+                .firstOrFail()
+    
+            return response.json({
+                status: 'success',
+                data: noti
+            })
+    
+    }
+}
     
 
     
