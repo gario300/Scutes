@@ -26,7 +26,7 @@ class NotificationController {
         
         const user = auth.current.user
         try {
-            const noti = await Post.query()
+            const noti = await Notification.query()
                 .where('receptor_id', user.id)
                 .with('user')
                 .with('post')
@@ -37,6 +37,11 @@ class NotificationController {
                 data: noti
             })
     
+    }catch (error) {
+        return response.status(404).json({
+            status: 'error',
+            message: 'No encontrado'
+        })
     }
 }
     
