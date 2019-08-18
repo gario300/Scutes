@@ -30,7 +30,6 @@ class NotificationController {
                 .where('receptor_id', user.id)
                 .with('user')
                 .with('post')
-                .findByOrFail()
     
             return response.json({
                 status: 'success',
