@@ -49,9 +49,6 @@ class User extends Model {
     notifications(){
       return this.hasMany('App/Models/Notification')
     }  
-    receptor(){
-      return this.hasOne('App/Models/Receptor')
-    }
 }
 
 module.exports = User

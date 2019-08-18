@@ -8,7 +8,7 @@ class NotificationSchema extends Schema {
     this.create('notifications', (table) => {
       table.increments()
       table.integer('user_id').nullable().unsigned().references('id').inTable('users')
-      table.integer('receptor_id').nullable().unsigned().references('id').inTable('receptors')
+      table.integer('receptor').nullable().unsigned().references('id').inTable('users')
       table.integer('post_id').nullable().unsigned().references('id').inTable('posts')
       table.integer('notification_type')
       table.boolean('is_readed').defaultTo(false)
