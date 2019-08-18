@@ -28,8 +28,6 @@ class NotificationController {
         const receptor = user.id
         try {
             const notifications = await Notification.findByOrFail('receptor_id',receptor)
-                .with('user')
-                .with('post')
                 .orderBy('created_at', 'DESC')
                 .fetch()
     
