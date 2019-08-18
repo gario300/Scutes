@@ -26,15 +26,16 @@ class NotificationController {
         
         const user = auth.current.user
         try {
-            const noti = await Notification.query()
+            const notifications = await Notification.query()
                 .where('receptor_id', user.id)
                 .with('user')
                 .with('post')
+                .orderBy('created_at', 'DESC')
                 .firstOrFail()
     
             return response.json({
                 status: 'success',
-                data: noti
+                data: notifications
             })
     
     }catch (error) {
