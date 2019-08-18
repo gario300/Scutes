@@ -26,7 +26,11 @@ class NotificationController {
         
         const user = auth.current.user
         try {
-            const noti = await Notification.findByOrFail('receptor_id', user.id )
+            const noti = await Notification.query()
+                .where('receptor_id', user.id)
+                .with('user')
+                .with('post')
+                .findOrFail()
     
             return response.json({
                 status: 'success',
