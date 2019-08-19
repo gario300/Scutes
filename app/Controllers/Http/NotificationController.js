@@ -1,12 +1,14 @@
 'use strict'
 const Notification = use('App/Models/Notification')
 const Post = use('App/Models/Post')
+const User = use ('App/Models/User')
 
 class NotificationController {
     async newnotification ({ request, auth, params}) {
         const data = request.only(['notification_type']);
 
         const user = auth.current.user;
+        
         const post = await Post.query()
                     .where('id', params.id)
                     .with('user')
@@ -15,6 +17,20 @@ class NotificationController {
         const noti = new Notification();
         noti.user_id = user.id; 
         noti.receptor_id = post.user_id
+        noti.post_id = post.id;
+        noti.notification_type = data.notification_type;
+        await noti.save();
+        await noti.loadMany(['user','post'])
+
+    }
+    async notifollow({ request, auth}) {
+        const data = request.only(['notification_type','receptor_id']);
+
+        const user = auth.current.user;
+        
+        const noti = new Notification();
+        noti.user_id = user.id; 
+        noti.receptor_id = data.receptor_id
         noti.post_id = post.id;
         noti.notification_type = data.notification_type;
         await noti.save();
