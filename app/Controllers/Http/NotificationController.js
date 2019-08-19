@@ -71,7 +71,6 @@ async putnoti ({ auth, response}) {
                 .update({ is_readed: true })
         
     
-    await noti.save()
     
     return response.status(200).json(noti)
     
