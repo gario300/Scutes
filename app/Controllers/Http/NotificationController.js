@@ -61,6 +61,22 @@ async shownotificationreader ({auth , response}){
     return console.log(error)
 }
 }
+
+async putnoti ({ request, auth, response}) {
+    const data = request.only(['is_readed']);
+
+    const user = auth.current.user;
+    const noti = await Post.query()
+                .where('is_readed', false)  
+                .where('receptor_id', user.id)
+                .fetch()
+        
+    noti.is_readed = data.is_readed
+    await noti.save()
+    return response.status(200).json(noti)
+    
+
+}
     
 
     
