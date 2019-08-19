@@ -31,7 +31,6 @@ class NotificationController {
         const noti = new Notification();
         noti.user_id = user.id; 
         noti.receptor_id = data.receptor_id
-        noti.post_id = post.id;
         noti.notification_type = data.notification_type;
         await noti.save();
         await noti.loadMany(['user','post'])
