@@ -11,8 +11,7 @@ class GoalController {
         const goal = new Goal();
         goal.title = goaldata.title;
         goal.placa = goaldata.placa;
-        goal.description = goaldata.description;
-        goal.recompensa = goaldata.recompensa;         
+        goal.description = goaldata.description;       
         await goal.save();
         
         return response.status(201).json(goal);
