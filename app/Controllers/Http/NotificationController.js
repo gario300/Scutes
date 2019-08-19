@@ -42,6 +42,41 @@ class NotificationController {
         return console.log(error)
     }
 }
+
+async shownotificationreader ({auth , response}){
+        
+    const user = auth.current.user
+    try {
+        const noti = await Notification.query()
+            .where('receptor_id', user.id)
+            .where('is_reader', false)
+            .fetch()
+
+        return response.json({
+            status: 'success',
+            data: noti
+        })
+
+}catch (error) {
+    return console.log(error)
+}
+}
+
+viewnotification({request, auth , response}){
+    
+    const view = request.only(['is_readed'])
+    
+    const user = auth.current.user
+    
+    const noti = await Notification.findByOrFail('receptor_id', user.id ) 
+    noti.is_readed = view.is_readed
+    await noti.save()
+
+    return response.status(200).json(noti)
+
+
+
+}
     
 
     

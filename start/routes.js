@@ -69,6 +69,7 @@ const Route = use('Route')
       Route.group(() => {
         Route.post('/newnoti/:id', 'NotificationController.newnotification');
         Route.get('/getnoti', 'NotificationController.shownotification')
+        Route.get('/getnotiview', 'NotificationController.shownotificationreader')
     })
         .prefix('notif')
         .middleware(['auth']);
