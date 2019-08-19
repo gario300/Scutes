@@ -13,6 +13,7 @@ class UserSchema extends Schema {
         table.string('email', 254).notNullable().unique()
         table.string('password', 60).notNullable()
         table.string('location').nullable()
+        table.integer('puntos').defaultTo(0)
         table.string('portada', 300).notNullable().defaultTo('https://res.cloudinary.com/scute/image/upload/v1562085145/banner2-min_1_z9vzlb.png')
         table.boolean('Partner').notNullable().defaultTo(false)
         table.boolean('Mod').notNullable().defaultTo(false)

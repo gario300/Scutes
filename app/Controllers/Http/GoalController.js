@@ -1,5 +1,6 @@
 'use strict'
 const Goal = use('App/Models/Goal')
+const User = use ('App/Models/User')
 
 class GoalController {
 

@@ -8,8 +8,10 @@ class GoalsSchema extends Schema {
     this.create('goals', (table) => {
       table.increments()
       table.string('title',100).notNullable()
+      table.string('placa').notNullable()
       table.string('description',300).notNullable()
       table.integer('recompensa').notNullable()
+      table.boolean('is_readed').defaultTo(false)
       table.timestamps()
     })
   }
