@@ -66,7 +66,10 @@ async putnoti ({ request, auth, response}) {
     const data = request.only(['is_readed']);
 
     const user = await auth.current.user;
-    const noti = await Notification.findBy('receptor_id', user.id)
+    const noti = await Notification.query()
+            .where('receptor_id', user.id)
+            .where('is_readed', false)
+            .fetch()
         
     noti.is_readed = data.is_readed
     
