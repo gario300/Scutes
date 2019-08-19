@@ -61,22 +61,6 @@ async shownotificationreader ({auth , response}){
     return console.log(error)
 }
 }
-
-viewnotification({request, auth , response}){
-    
-    const view = request.only(['is_readed'])
-    
-    const user = auth.current.user
-    
-    const noti = await Notification.findByOrFail('receptor_id', user.id ) 
-    noti.is_readed = view.is_readed
-    await noti.save()
-
-    return response.status(200).json(noti)
-
-
-
-}
     
 
     
