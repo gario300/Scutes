@@ -67,12 +67,13 @@ async putnoti ({ request, auth, response}) {
 
     const user = auth.current.user;
     const noti = await Post.query()
-                .where('is_readed', false)  
                 .where('receptor_id', user.id)
+                .where('is_readed', false)  
                 .fetch()
         
     noti.is_readed = data.is_readed
     await noti.save()
+    
     return response.status(200).json(noti)
     
 
