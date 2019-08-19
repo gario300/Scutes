@@ -6,10 +6,11 @@ class GoalController {
 
     async newgoal({ request, response }){
         
-        const goaldata = request.only(['title','description','recompensa']);
+        const goaldata = request.only(['title','placa','description','recompensa']);
         
         const goal = new Goal();
         goal.title = goaldata.title;
+        goal.placa = goaldata.placa;
         goal.description = goaldata.description;
         goal.recompensa = goaldata.recompensa;         
         await goal.save();
