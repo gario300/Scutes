@@ -49,7 +49,7 @@ async shownotificationreader ({auth , response}){
     try {
         const noti = await Notification.query()
             .where('receptor_id', user.id)
-            .where('is_reader', false)
+            .where('is_readed', false)
             .fetch()
 
         return response.json({
