@@ -27,11 +27,9 @@ class NotificationController {
         const user = auth.current.user
         try {
             const noti = await Notification.query()
-                .where('receptor_id', user.id)
-                .with('user')
-                .with('post')
-                .orderBy('created_at', 'DESC')
-                .fetch()
+                        .where('receptor_id', user.id)
+                        .where('is_readed', false)
+                        .update({ is_readed: true })
     
             return response.json({
                 status: 'success',
@@ -66,10 +64,8 @@ async putnoti ({ request, auth, response}) {
     const data = request.only(['is_readed']);
 
     const user = await auth.current.user;
-    const noti = await Notification.query()
-                .where('receptor_id', user.id)
-                .where('is_readed', false)
-                .find()
+    const userid = user.id
+    const noti = await Notification.
         
     noti.is_readed = data.is_readed
     
