@@ -13,7 +13,7 @@ class UserSchema extends Schema {
         table.string('avatarpublicid').notNullable()
         table.text('bio', 100).nullable()
         table.string('location').nullable()
-        table.date('edad').nullable()
+        table.date('edad',6).nullable()
         table.string('email', 254).notNullable().unique()
         table.string('password', 60).notNullable()
         table.integer('puntos').defaultTo(0)

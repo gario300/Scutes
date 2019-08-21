@@ -235,7 +235,23 @@ class UserController {
             status: 'success',
             data: user
         }) 
-    } 
+    }
+    
+    async updateProfile({auth, request, response}){
+        const user = auth.current.user
+        const userData = request.only(['bio','edad','location']);
+
+        user.bio = userData.bio
+        user.edad = userData.edad
+        user.location =  userData.location
+        await user.save()
+        
+        return response.json({
+            status: 'success',
+            data: user
+        }) 
+
+    }
 
 
     //foto de portada
