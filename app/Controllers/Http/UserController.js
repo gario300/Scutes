@@ -224,7 +224,7 @@ class UserController {
         Cloudinary.v2.uploader.destroy(image)
 
         }
-        avatar = userData['avatar'];
+        const avatar = userData['avatar'];
         const resultado = await Cloudinary.v2.uploader.upload(avatar);
 
         user.avatar = resultado.secure_url
