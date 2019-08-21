@@ -228,7 +228,7 @@ class UserController {
         const resultado = await Cloudinary.v2.uploader.upload(avatar);
 
         user.avatar = resultado.secure_url
-        user.avatar = resultado.public_id
+        user.avatarpublicid = resultado.public_id
         await user.save()
 
         return response.json({
