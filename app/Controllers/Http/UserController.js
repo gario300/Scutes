@@ -214,26 +214,30 @@ class UserController {
       }
 
     //foto de perfil
-    async updateProfilePic({ request, response }) {
-        console.log("Getting pic");
-        const userData = request.only(['avatar', 'id']);
-        //console.log(userData);
-        let profilePic = userData["avatar"];//request.file('avatar', { types: ['image'], size: '2mb' })
-        let userId=userData['id'];
-        console.log("Uploading pic");
-        var cloudinaryMeta;
-        await Cloudinary.v2.uploader.upload(profilePic, 
-        function(error, result) {
-            cloudinaryMeta=result;
-        });
-        //console.log(cloudinaryMeta);
-        let picUrl = cloudinaryMeta['secure_url'];
-        console.log("Saving url " + picUrl + " to user with id: " + userId);
-        await Database.raw(`UPDATE users SET avatar='${picUrl}' WHERE id=${parseInt(userId)};`);
+    async updateProfilePic({ request, auth, response }) {
+        const user = auth.current.user
+        const userData = request.only(['avatar']);
+        
+        if(user.avatar !== 'https://res.cloudinary.com/scute/image/upload/v1566358443/recursos/default_hduxaa.png'){
+        
+        const image = user.avatarpublicid
+        Cloudinary.v2.uploader.destroy(image)
 
-        //await request.user.save()
-        console.log("Done!");
-    }
+        }
+        avatar = userData['avatar'];
+        const resultado = await Cloudinary.v2.uploader.upload(avatar);
+
+        user.avatar = resultado.secure_url
+        user.avatar = resultado.public_id
+        await user.save()
+
+        return response.json({
+            status: 'success',
+            data: user
+        }) 
+    } 
+
+
     //foto de portada
     async updateportada ({ request, auth, response }){
         // get currently authenticated user
