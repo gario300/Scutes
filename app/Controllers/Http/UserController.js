@@ -20,6 +20,7 @@ class UserController {
             user.username = userData.username.replace(/ /g, "_")
             user.email = userData.email
             user.password = userData.password
+            await user.save();
 			// generate JWT token for user
 			console.log("Creating token");
 			const token = await auth.generate(user)
