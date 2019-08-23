@@ -14,10 +14,12 @@ class UserController {
 		const userData = request.only(['name', 'username', 'email', 'password']);
 		//console.log(userData);
 		try {
-            // save user to databas
-			const user = await User.create(userData =>{
-                userData.username.replace(/ /g, "_")
-            })
+            // save user to database
+            const user = await new User()
+            user.name = userData.name
+            user.username = userData.username.replace(/ /g, "_")
+            user.email = userData.email
+            user.password = userData.password
 			// generate JWT token for user
 			console.log("Creating token");
 			const token = await auth.generate(user)
