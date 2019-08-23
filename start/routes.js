@@ -23,6 +23,8 @@ const Route = use('Route')
 	  return x;
   });
   
+  Route.put('/update_profile', 'UserController.updateProfile');
+  
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
@@ -30,7 +32,6 @@ const Route = use('Route')
 
   Route.group(() => {
     Route.get('/me', 'UserController.me')
-    Route.put('/update_profile', 'UserController.updateProfile');
     Route.put('/change_password', 'UserController.changePassword');
     Route.put('/updateProfilePic', 'UserController.updateProfilePic');
     Route.put('/updateportada', 'UserController.updateportada');
