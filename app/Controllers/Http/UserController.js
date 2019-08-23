@@ -247,9 +247,11 @@ class UserController {
     
     async updateProfile({auth, request, response}){
         const user = auth.current.user
-        const userData = request.only(['username']);
+        const userData = request.only(['bio','edad','location']);
 
-        user.username = userData.username
+        user.bio = userData.bio
+        user.edad = userData.edad
+        user.location =  userData.location
         await user.save()
         
         return response.json({
