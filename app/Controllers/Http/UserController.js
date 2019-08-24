@@ -129,7 +129,10 @@ class UserController {
                     builder.with('replies')
                 })
                 .with('goals')
-                .with('following')
+                .with('following', builder => {
+                    builder.with('followers')
+                    builder.with('following')
+                })
                 .with('followers', builder => {
                     builder.with('followers')
                     builder.with('following')
