@@ -149,7 +149,7 @@ class PostController {
             return response.json({
                 status: 'success',
                 data: posts
-          }
+          })
     }
 
     
