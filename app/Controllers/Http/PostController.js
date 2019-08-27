@@ -139,7 +139,6 @@ class PostController {
         
         const post = await Post.query()
           .where('contadorf','>',1)  
-          .whereNot('image', null)
           .with('user')
           .with('favorites')
           .with('replies')
