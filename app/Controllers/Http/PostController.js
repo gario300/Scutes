@@ -138,18 +138,17 @@ class PostController {
     async favorites (response){
         
         const posts = await Post.query()
+          .where('favorites.length', '>', 3)
           .with('user')
           .with('favorites')
           .with('replies')
           .orderBy('created_at', 'DESC')
           .fetch()
 
-          if (posts.favorites.length == 3){
+
             return response.json({
                 status: 'success',
                 data: posts
-              
-              })
           }
     }
 
