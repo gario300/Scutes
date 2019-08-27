@@ -8,13 +8,14 @@ class FavoriteController {
         // get currently authenticated user
         const user = auth.current.user
     
+        const PostId = await request.input('post_id')
+        const post = await Post.findByOrFail('id', request.input('post_id'))
     
         const favorite = await Favorite.findOrCreate(
             { user_id: user.id, post_id: PostId },
             { user_id: user.id, post_id: PostId }
         )
         
-        const PostId = await request.input('post_id')
         await post.contadorf ++
         await post.save()
     
@@ -22,7 +23,6 @@ class FavoriteController {
             status: 'success',
             data: favorite
         })
-        
     }
 
     async unFavorite ({ params, auth, response }) {
@@ -36,9 +36,9 @@ class FavoriteController {
             .where('post_id', params.id)
             .delete()
 
-        
-        const post = await Post.findByOrFail('id', params.id)  
-        post.contadorf --
+            
+        const post = Post.findByOrFail('id', params.id)  
+         post.contadorf --
         await post.save()
         
 
