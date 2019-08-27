@@ -37,7 +37,7 @@ class FavoriteController {
             .delete()
 
             
-        const post = Post.findByOrFail('id', params.id)  
+        const post = await Post.findByOrFail('id', params.id)  
         post.contadorf --
         await post.save()
         
