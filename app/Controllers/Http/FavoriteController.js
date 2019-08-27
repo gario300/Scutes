@@ -1,5 +1,6 @@
 'use strict'
 const Favorite = use('App/Models/Favorite')
+const Post = use('App/Models/Post')
 
 class FavoriteController {
     
@@ -8,11 +9,14 @@ class FavoriteController {
         const user = auth.current.user
     
         const PostId = request.input('post_id')
+        const post = await Post.findByOrFail('id', request.input('post_id'))
     
         const favorite = await Favorite.findOrCreate(
             { user_id: user.id, post_id: PostId },
             { user_id: user.id, post_id: PostId }
         )
+        post.contadorf ++
+        await post.save()
     
         return response.json({
             status: 'success',

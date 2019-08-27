@@ -11,6 +11,8 @@ class PostSchema extends Schema {
         table.string('post', 300).notNullable()
         table.string('image', 300).nullable()
         table.string('imagepublicid',300).nullable()
+        table.integer('contadorf').unsigned().defaultTo(0)
+        table.integer('contadorr').unsigned().defaultTo(0)
       table.timestamps()
     })
   }
