@@ -135,7 +135,7 @@ class PostController {
     }
 
 
-    async favorites (auth, response){
+    async favorites ({auth, response}){
         
         try{
         const posts = await Post.query()
