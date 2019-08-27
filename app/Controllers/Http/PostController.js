@@ -141,12 +141,12 @@ class PostController {
           .with('user')
           .with('favorites')
           .with('replies')
+          .withCount('favorites')
           .fetch()
 
-          if(post.favorites.length > 3){
-              const filtro = post
-          }
-
+        if (post.favorites.length > 3){
+            const filtro = post
+        }
 
             return response.json({
                 status: 'success',
