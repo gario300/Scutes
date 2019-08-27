@@ -137,6 +137,7 @@ class PostController {
 
     async favorites (response){
         
+        try{
         const post = await Post.query()
           .where('contadorf','>',1)  
           .with('user')
@@ -149,6 +150,9 @@ class PostController {
                 status: 'success',
                 data: post
           })
+        }catch (error) {
+            return console.log(error)
+        }
     }
 
     
