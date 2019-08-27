@@ -142,7 +142,7 @@ class PostController {
           .with('user')
           .with('favorites')
           .with('replies')
-          .orderBy('favorites', 'DESC')
+          .orderBy('posts.favorites', 'DESC')
           .fetch()
 
 
