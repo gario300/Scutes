@@ -8,7 +8,7 @@ class FavoriteController {
         // get currently authenticated user
         const user = auth.current.user
     
-        const PostId = request.input('post_id')
+        const PostId = await request.input('post_id')
         const post = await Post.findByOrFail('id', request.input('post_id'))
     
         const favorite = await Favorite.findOrCreate(
