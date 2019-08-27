@@ -30,14 +30,16 @@ class FavoriteController {
         const user = auth.current.user
     
         // fetch favorite
-        const post = await Post.findByOrFail('id', params.id)  
-        await post.contadorf --
-        await post.save()
 
         await Favorite.query()
             .where('user_id', user.id)
             .where('post_id', params.id)
             .delete()
+
+            
+        const post = Post.findByOrFail('id', params.id)  
+        post.contadorf --
+        await post.save()
         
 
             return response.json({
