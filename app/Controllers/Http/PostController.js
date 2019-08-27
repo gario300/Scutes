@@ -55,7 +55,7 @@ class PostController {
                 .with('replies')
                 .with('replies.user')
                 .with('favorites')
-                .fetch()
+                .firstOrFail()
     
             return response.json({
                 status: 'success',
