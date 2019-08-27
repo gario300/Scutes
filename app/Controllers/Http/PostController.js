@@ -139,7 +139,6 @@ class PostController {
         
         try{
         const post = await Post.query()
-          .where('contadorf','>',1)  
           .with('user')
           .with('favorites')
           .with('replies')
