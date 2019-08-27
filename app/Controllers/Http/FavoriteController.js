@@ -36,7 +36,7 @@ class FavoriteController {
             .where('post_id', params.id)
             .delete()
         
-        const post = await Post.findByOrFail('id', params)  
+        const post = await Post.findByOrFail('id', params.id)  
         post.contadorf --
         await post.save()
 
