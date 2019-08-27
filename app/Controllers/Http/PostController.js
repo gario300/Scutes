@@ -138,7 +138,7 @@ class PostController {
     async favorites (response){
         
         const posts = await Post.query()
-          .where('favorites.length', '>', 3)
+          .where('favorites'.length, '>', 3)
           .with('user')
           .with('favorites')
           .with('replies')
