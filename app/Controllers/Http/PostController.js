@@ -139,7 +139,8 @@ class PostController {
         
         try{
         const posts = await Post.query()
-          .where('contadorf','>',1)  
+          .where('contadorf' , '>' , 1)  
+          .orderBy('created_at', 'DESC')
           .fetch()
         
 
