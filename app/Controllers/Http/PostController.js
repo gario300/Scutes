@@ -146,11 +146,10 @@ class PostController {
           .withCount('favorites')
           .fetch()
         
-          const filtro = post.favorites.length
 
             return response.json({
                 status: 'success',
-                data: filtro
+                data: post
           })
     }
 
