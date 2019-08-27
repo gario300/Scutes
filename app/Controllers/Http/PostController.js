@@ -135,22 +135,21 @@ class PostController {
     }
 
 
-    async favorites ({auth, response}){
+    async favorites ({response}){
         
-        try{
-        const posts = await Post.query()
-          .where('contadorf' , '>' , 1)  
-          .orderBy('created_at', 'DESC')
+        const post = await Post.query()
+          .where('contadorf','>',1)  
+          .whereNot('image', null)
+          .with('user')
+          .with('favorites')
+          .with('replies')
           .fetch()
         
 
             return response.json({
                 status: 'success',
-                data: posts
+                data: post
           })
-        }catch (error) {
-            return console.log(error)
-        }
     }
 
     
