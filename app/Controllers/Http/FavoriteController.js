@@ -15,7 +15,8 @@ class FavoriteController {
             { user_id: user.id, post_id: PostId },
             { user_id: user.id, post_id: PostId }
         )
-        post.contadorf ++
+        
+        await post.contadorf ++
         await post.save()
     
         return response.json({
