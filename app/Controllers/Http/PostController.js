@@ -138,6 +138,8 @@ class PostController {
     async favorites (response){
         
         const post = await Post.query()
+          .where('contadorf','>',1)  
+          .where('image','!==',null)
           .with('user')
           .with('favorites')
           .with('replies')
