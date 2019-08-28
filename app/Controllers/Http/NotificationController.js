@@ -43,7 +43,7 @@ class NotificationController {
         try {
             const noti = await Notification.query()
                 .where('receptor_id', user.id) 
-                .whereNot('user_id', '=', user.id)
+                .whereNot('user_id', user.id)
                 .with('user')
                 .with('post')
                 .orderBy('created_at', 'DESC')
@@ -65,6 +65,7 @@ async shownotificationreader ({auth , response}){
     try {
         const noti = await Notification.query()
             .where('receptor_id', user.id)
+            .whereNot('user_id', user.id)
             .where('is_readed', false)
             .fetch()
 
