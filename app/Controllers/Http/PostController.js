@@ -169,6 +169,7 @@ class PostController {
             .with('user')
             .with('favorites')
             .with('replies')
+            .orderBy('created_at', 'DESC')
             .fetch()
     
         return response.json({
