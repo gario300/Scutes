@@ -154,6 +154,28 @@ class PostController {
           })
     }
 
+    async usertimeline ({ auth, response }) {
+        const user = await User.find(auth.current.user.id)
+    
+        // get an array of IDs of the user's followers
+        const followersIds = await user.following().ids()
+    
+        // add the user's ID also to the array
+        followersIds.push(user.id)
+    
+        const tweets = await Post.query()
+            .whereIn('user_id', followersIds)
+            .with('user')
+            .with('favorites')
+            .with('replies')
+            .fetch()
+    
+        return response.json({
+            status: 'success',
+            data: tweets
+        })
+    }
+
     
 
 }
