@@ -144,6 +144,7 @@ class PostController {
           .with('favorites')
           .with('replies')
           .orderBy('contadorf', 'DESC')
+          .limit(1)
           .fetch()
         
 
