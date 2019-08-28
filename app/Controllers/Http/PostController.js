@@ -143,6 +143,7 @@ class PostController {
           .with('user')
           .with('favorites')
           .with('replies')
+          .orderBy('contadorf', 'DESC')
           .fetch()
         
 
