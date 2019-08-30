@@ -8,6 +8,7 @@ class FollowersSchema extends Schema {
     this.create('followers', (table) => {
       table.increments()
         table.integer('user_id').unsigned().notNullable()
+        .onDelete('CASCADE')
         table.integer('follower_id').unsigned().notNullable()
       table.timestamps()
     })

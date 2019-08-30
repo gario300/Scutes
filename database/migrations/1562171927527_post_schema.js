@@ -8,6 +8,7 @@ class PostSchema extends Schema {
     this.create('posts', (table) => {
       table.increments()
         table.integer('user_id').unsigned().notNullable()
+        .onDelete('CASCADE')
         table.string('post', 300).notNullable()
         table.string('image', 300).nullable()
         table.string('imagepublicid',300).nullable()

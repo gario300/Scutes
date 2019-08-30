@@ -143,6 +143,7 @@ class UserController {
                     builder.with('favorites')
                     builder.with('replies')
                 })
+                .whereNot('favorites.post', null)
                 .firstOrFail()
 
             return response.json({
