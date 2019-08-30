@@ -8,6 +8,7 @@ class FavoriteSchema extends Schema {
     this.create('favorites', (table) => {
       table.increments()
       table.integer('user_id').unsigned().notNullable()
+      .onDelete('CASCADE')
       table.integer('post_id').unsigned().notNullable()
       .onDelete('CASCADE')
       table.timestamps()

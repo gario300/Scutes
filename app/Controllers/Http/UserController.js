@@ -139,7 +139,6 @@ class UserController {
                 })
                 .with('favorites')
                 .with('favorites.post', builder => {
-                    builder.whereNot('post',null)
                     builder.with('user')
                     builder.with('favorites')
                     builder.with('replies')
