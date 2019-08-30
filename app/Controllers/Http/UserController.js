@@ -123,7 +123,6 @@ class UserController {
         try {
             const user = await User.query()
                 .where('username', params.username)
-                .whereNot('user.favorites.post', null)
                 .with('posts', builder => {
                     builder.with('user')
                     builder.with('favorites')
@@ -140,6 +139,7 @@ class UserController {
                 })
                 .with('favorites')
                 .with('favorites.post', builder => {
+                    builder.whereNot(null)
                     builder.with('user')
                     builder.with('favorites')
                     builder.with('replies')
