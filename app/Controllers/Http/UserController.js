@@ -281,19 +281,19 @@ class UserController {
 
  async userfind({request, response}){
      
-    const data = request.only(['buscador'])
+    const userdata = request.only(['buscador'])
      try{
      const userfind = await User.query() 
-     .where('username', data.buscador)
+     .where('username', userdata.buscador)
      .with('following')
      .with('followers')
      .limit(20)
+     .fetch()
      
      return response.json({
         status: 'success',
         data: userfind
     })
-    
 } catch (error) {
     console.log(error)
 }
