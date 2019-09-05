@@ -38,7 +38,7 @@ const Route = use('Route')
     //Usuario
     Route.get(':username', 'UserController.showProfile');
     //buscador
-    Route.get('/finder', 'UserController.userfind');
+    Route.get('/finder/:username', 'UserController.userfind');
 })
     .prefix('account')
     .middleware(['auth'])
