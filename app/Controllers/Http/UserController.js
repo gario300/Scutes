@@ -281,11 +281,10 @@ class UserController {
 
  async userfind({request, response}){
      
-    const userdata = request.only (['buscador'])
+    const userdata = request.only(['buscador'])
      try{
      const userfind = await User.query() 
      .where('username', userdata.buscador)
-     .with('posts')
      .with('following')
      .with('followers')
      .limit(20)
