@@ -288,6 +288,7 @@ class UserController {
      .with('posts')
      .with('following')
      .with('followers')
+     .limit(20)
      
      return response.json({
         status: 'success',
