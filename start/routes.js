@@ -37,6 +37,7 @@ const Route = use('Route')
     Route.post('/primerlogro', 'UserController.asignarlogro')
     //Usuario
     Route.get(':username', 'UserController.showProfile');
+    //buscador
     Route.get('finder', 'UserController.userfind')
 })
     .prefix('account')
