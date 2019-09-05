@@ -279,6 +279,27 @@ class UserController {
         await user.save()
     }
 
+ async userfind({request, response}){
+     
+    const userdata = request.only (['buscador'])
+     try{
+     const userfind = await User.query() 
+     .where('username', userdata.buscador)
+     .with('posts')
+     .with('following')
+     .with('followers')
+     
+     return response.json({
+        status: 'success',
+        data: userfind
+    })
+} catch (error) {
+    return response.status(404).json({
+        status: 'error',
+        message: 'Usuario no encontrado'
+    })
+}
+ }
     
     
     
