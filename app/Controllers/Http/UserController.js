@@ -294,7 +294,11 @@ class UserController {
         data: userfind
     })
 } catch (error) {
-    console.log(error)
+    
+    return response.status(404).json({
+        status: 'error',
+        message: 'Usuario no encontrado'
+    })
 }
  }
     
