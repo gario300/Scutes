@@ -8,12 +8,15 @@ class ConversationController {
         const seender = auth.current.user
         const data = request.only(['receptor_id']);
         
-
-        const conversation = new Conversation();
-        conversation.userone = seender.id;
-        conversation.usertwo = data.receptor_id;
-        await conversation.save();
-        await conversation.loadMany(['user'])
+        const conversation = await Conversation.findOrCreate(
+            { userone: seender.id, usertwo: data.receptor_id },
+            { userone: seender.id, usertwo: data.receptor_id }
+          )
+          
+          return response.json({
+            status: 'success',
+            data: conversation
+        })
         
     } 
 
