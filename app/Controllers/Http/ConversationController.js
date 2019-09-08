@@ -23,7 +23,7 @@ class ConversationController {
 
     async getconversation({auth, response}){
 
-        const user = auth.currentuser
+        const user = auth.current.user
         
         const conversations1  = await Conversation.query()  
         .where('userone', user.id)
