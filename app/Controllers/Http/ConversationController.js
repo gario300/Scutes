@@ -32,7 +32,8 @@ class ConversationController {
         .select('user1.username ', 'user1.avatar', 'user2.username', 'user2.avatar')
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id') 
-        .where('from_user_id', 'to_user_id', me.id)
+        .where('from_user_id', me.id)
+         .orWhereHas('to_user_id', me.id)
         .fetch()
         
 
