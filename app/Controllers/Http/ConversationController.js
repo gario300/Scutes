@@ -49,7 +49,19 @@ class ConversationController {
             data: conversations1
       })
     }
-
+    getconversationbyid({params, response}){
+      const conversation  = await Conversation.query()
+      .select('user1.username AS Emisor', 
+        'user2.username AS Receptor',
+        )
+        .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
+        .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
+        .where('id', params.id) 
+        return response.json({
+          status: 'success',
+          data: conversation
+        })
+    }
     
 }
 
