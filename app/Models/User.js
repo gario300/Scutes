@@ -48,7 +48,8 @@ class User extends Model {
     }
     notifications(){
       return this.hasMany('App/Models/Notification')
-    } 
+    }
+     
     conversation(){
       return this.belongsTo('App/Models/Conversation')
     }   
