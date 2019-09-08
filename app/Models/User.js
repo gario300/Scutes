@@ -50,9 +50,10 @@ class User extends Model {
       return this.hasMany('App/Models/Notification')
     }
      
-    conversations(){
-      return this.hasMany('App/Models/Conversation')
+    conversation(){
+      return this.belongsTo('App/Models/Conversation')
     }   
+
 }
 
 module.exports = User
