@@ -29,7 +29,7 @@ class ConversationController {
         const me = auth.current.user
         
         const conversations1  = await Conversation.query()
-        .select('user1.username AS Emisor', 'user2.username AS Receptor')
+        .select('user1.username ', 'user1.avatar', 'user2.username', 'user2.avatar')
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id') 
         .where('from_user_id', me.id)
