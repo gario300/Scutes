@@ -49,7 +49,8 @@ class ConversationController {
             data: conversations1
       })
     }
-    getconversationbyid({params, response}){
+    async getconversationbyid({params, response}){
+      
       const conversation  = await Conversation.query()
       .select('user1.username AS Emisor', 
         'user2.username AS Receptor',
