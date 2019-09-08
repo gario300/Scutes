@@ -39,6 +39,7 @@ const Route = use('Route')
     Route.get(':username', 'UserController.showProfile');
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
+    Route.post('/sendmensage', 'ConversationController.newconversation')
 })
     .prefix('account')
     .middleware(['auth'])
