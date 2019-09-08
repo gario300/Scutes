@@ -7,13 +7,13 @@ class ConversationController {
     
     async newconversation({auth, request, response}){
         const seender = auth.current.user
-        const data = request.only(['from_user_id']);
+        const data = request.only(['to_user_id']);
         
         const conversation = await Conversation.findOrCreate(
-            { from_user_id: data.from_user_id },
+            { to_user_id: data.to_user_id },
             
-            { fom_user_id: seender.id, 
-              from_user_id: data.receptor_id,
+            { from_user_id: seender.id, 
+              to_user_id: data.to_user_id,
             }
           )
           
