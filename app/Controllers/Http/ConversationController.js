@@ -31,8 +31,7 @@ class ConversationController {
         
         const conversations1  = await Conversation.query()  
         .where('user_id', user.id)
-        .where('receptor_id', user.id)
-        .with('user')
+        .with('users')
         .fetch()
 
 
