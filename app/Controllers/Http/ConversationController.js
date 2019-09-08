@@ -27,12 +27,12 @@ class ConversationController {
         
         const conversations1  = await Conversation.query()  
         .where('userone', user.id)
-        .with('user')
+        .with('users')
         .fetch()
         
         const conversations2 = await Conversation.query()
         .where('usertwo', user.id)
-        .with('user')
+        .with('users')
         .fetch()
 
         return response.json({
