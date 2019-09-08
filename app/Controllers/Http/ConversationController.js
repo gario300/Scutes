@@ -33,7 +33,12 @@ class ConversationController {
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id') 
         .where('from_user_id', me.id)
         .fetch()
-
+        
+        const conversations1  = await Conversation.query()
+        .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
+        .join('users as user2', 'conversations.to_user_id', '=', 'user2.id') 
+        .where('to_user_id', me.id)
+        .fetch()
 
         return response.json({
             status: 'success',
