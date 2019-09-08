@@ -7,8 +7,9 @@ class ConversationSchema extends Schema {
   up () {
     this.create('conversations', (table) => {
       table.increments()
-      table.integer('userone').references('id').inTable('users').unsigned().notNullable()
-      table.integer('usertwo').references('id').inTable('users').unsigned().notNullable()
+      table.integer('user_id').references('id').inTable('users').unsigned().notNullable()
+      table.integer('receptor_id').notNullable()
+      table.integer('receptor_username').notNullable()
       table.timestamps()
     })
   }

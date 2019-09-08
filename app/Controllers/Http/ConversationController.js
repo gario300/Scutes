@@ -7,11 +7,15 @@ class ConversationController {
     
     async newconversation({auth, request, response}){
         const seender = auth.current.user
-        const data = request.only(['receptor_id']);
+        const data = request.only(['receptor_id', 'receptor_username']);
         
         const conversation = await Conversation.findOrCreate(
-            { usertwo: data.receptor_id },
-            { userone: seender.id, usertwo: data.receptor_id }
+            { receptor_id: data.receptor_id },
+            
+            { user_id: seender.id, 
+              receptor_id: data.receptor_id,
+              receptor_username: data.receptor_username
+            }
           )
           
           return response.json({
@@ -26,19 +30,20 @@ class ConversationController {
         const user = auth.current.user
         
         const conversations1  = await Conversation.query()  
-        .where('userone', user.id)
-        .with('users')
+        .where('user_id', user.id)
+        .with('user')
         .fetch()
         
         const conversations2 = await Conversation.query()
-        .where('usertwo', user.id)
-        .with('users')
-        .with('conversation.users')
+        .where('receptor_id', user.id)
+        .with('user')
         .fetch()
+
+        const conversation3 = conversations1 + conversations2
 
         return response.json({
             status: 'success',
-            data: conversations1, conversations2
+            data: conversation3
       })
     }
 

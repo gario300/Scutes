@@ -51,7 +51,7 @@ class User extends Model {
     }
      
     conversation(){
-      return this.belongsTo('App/Models/Conversation')
+      return this.hasMany('App/Models/Conversation')
     }   
 }
 

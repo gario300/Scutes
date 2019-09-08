@@ -4,10 +4,12 @@
 const Model = use('Model')
 
 class Conversation extends Model {
-    users(){
-      return this.belongsToMany('App/Models/User', 'userone', 'usertwo')
-      .pivotTable('conversations')
-      } 
+    user(){
+      return this.belongsTo('App/Models/User')
+      }
+      seenders(){
+        return this.hasMany('App/Models/Seender')
+        }   
 }
 
 module.exports = Conversation
