@@ -39,11 +39,10 @@ class ConversationController {
         .with('user')
         .fetch()
 
-        const conversation3 = conversations1 + conversations2
 
         return response.json({
             status: 'success',
-            data: conversation3
+            data: conversations1 + conversations2
       })
     }
 
