@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Conversation extends Model {
     users(){
-      return this.belongsTo('App/Models/User')
+      return this.hasMany('App/Models/User')
       }
       seenders(){
         return this.hasMany('App/Models/Seender')

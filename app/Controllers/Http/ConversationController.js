@@ -27,12 +27,20 @@ class ConversationController {
         
         const conversations1  = await Conversation.query()  
         .where('userone', user.id)
+<<<<<<< HEAD
         .with('userone')
+=======
+        .with('users')
+>>>>>>> parent of bc2408b... mm
         .fetch()
         
         const conversations2 = await Conversation.query()
         .where('usertwo', user.id)
+<<<<<<< HEAD
         .with('usertwo')
+=======
+        .with('users')
+>>>>>>> parent of bc2408b... mm
         .fetch()
 
         return response.json({
