@@ -33,6 +33,7 @@ class ConversationController {
         const conversations2 = await Conversation.query()
         .where('usertwo', user.id)
         .with('users')
+        .with('conversation.users')
         .fetch()
 
         return response.json({
