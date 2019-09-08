@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Conversation extends Model {
-    users(){
+    user(){
       return this.belongsTo('App/Models/User')
       }
       seenders(){
