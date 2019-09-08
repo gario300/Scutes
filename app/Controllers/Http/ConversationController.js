@@ -30,7 +30,7 @@ class ConversationController {
         
         const conversations1  = await Conversation.query()  
         .where('from_user_id', user.id)
-        .with('user')
+        .with('users')
         .fetch()
 
 
