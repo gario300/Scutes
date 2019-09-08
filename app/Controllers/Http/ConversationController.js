@@ -9,7 +9,7 @@ class ConversationController {
         const data = request.only(['receptor_id']);
         
         const conversation = await Conversation.findOrCreate(
-            { userone: seender.id, usertwo: data.receptor_id },
+            { usertwo: data.receptor_id },
             { userone: seender.id, usertwo: data.receptor_id }
           )
           
