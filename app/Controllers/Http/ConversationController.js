@@ -4,6 +4,7 @@ const Conversation = use('App/Models/Conversation')
 const Sender = use('App/Models/Seender')
 
 class ConversationController {
+    
     async newconversation({auth, request, response}){
         const seender = auth.current.user
         const data = request.only(['receptor_id']);
@@ -19,6 +20,26 @@ class ConversationController {
         })
         
     } 
+
+    async getconversation({auth, response}){
+
+        const user = auth.currentuser
+        
+        const conversations1  = await Conversation.query()  
+        .where('userone', user.id)
+        .with('user')
+        .fetch()
+        
+        const conversations2 = await Conversation.query()
+        .where('usertwo', user.id)
+        .with('user')
+        .fetch()
+
+        return response.json({
+            status: 'success',
+            data: conversations1, conversations2
+      })
+    }
 
     
 }
