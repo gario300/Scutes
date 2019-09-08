@@ -42,7 +42,7 @@ class ConversationController {
 
         return response.json({
             status: 'success',
-            data: conversations1 + conversations2
+            data: conversations1 , conversations2
       })
     }
 
