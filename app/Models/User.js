@@ -50,7 +50,7 @@ class User extends Model {
       return this.hasMany('App/Models/Notification')
     } 
     conversations(){
-      return this.hasMany('App/Models/Conversations')
+      return this.hasMany('App/Models/Conversation')
     }   
 }
 
