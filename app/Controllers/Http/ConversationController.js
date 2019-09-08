@@ -29,7 +29,7 @@ class ConversationController {
         const user = auth.current.user
         
         const conversations1  = await Conversation.query()  
-        .where('to_user_id', user.id)
+        .where('from_user_id', user.id)
         .with('users')
         .fetch()
 
