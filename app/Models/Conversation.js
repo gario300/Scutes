@@ -5,7 +5,8 @@ const Model = use('Model')
 
 class Conversation extends Model {
     users(){
-      return this.hasMany('App/Models/User')
+      return this.hasMany('App/Models/User', 'from_user_id', 'to_user_id')
+      .pivotTable('conversation')
       }
       seenders(){
         return this.hasMany('App/Models/Seender')
