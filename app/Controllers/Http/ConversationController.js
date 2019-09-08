@@ -41,6 +41,7 @@ class ConversationController {
           this.orWhere('to_user_id', me.id )
         })
         .with('seenders')
+        .with('id')
         .fetch()
         
 
