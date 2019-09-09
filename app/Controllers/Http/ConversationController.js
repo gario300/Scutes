@@ -62,13 +62,19 @@ class ConversationController {
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
         .where('conversations.id', params.id)
-        .with('seenders')
         .fetch()
+
+        const seenders = await Sender.query()
+        .where('conversation_id', params.id)
+        .with('user')
+        .fetch()
+
         return response.json({
           status: 'success',
-          data: conversation
+          data: conversation, seenders
         })
     }
+
     async newmensaje({request, auth, response}){
 
       const  user = auth.current.user
