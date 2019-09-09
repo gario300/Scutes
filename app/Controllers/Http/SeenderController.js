@@ -27,7 +27,7 @@ class SeenderController {
           mensaje.conversation_id = data.conversation_id;
           mensaje.receptor_id = data.receptor_id
           mensaje.mensaje = data.mensaje;
-          mensaje.regalo = data.regalo    
+          mensaje.regalo = data.regalo  
           await mensaje.save();
   
           if(data.regalo !== 0 && user.puntos >= data.regalo){
@@ -47,6 +47,18 @@ class SeenderController {
   
   
       }
+
+      async show({auth,params}){
+
+        const seenders = await Sender.query()
+        .where('conversation_id', params.id)
+        .with('user')
+        .fetch()
+      
+        return response.json({
+            status: 'success',
+            data: seenders
+          })}
       
 }
 
