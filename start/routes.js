@@ -46,7 +46,7 @@ const Route = use('Route')
     Route.group(() =>{
       Route.post('/sendmensage', 'ConversationController.newconversation')
       Route.get('/conversations', 'ConversationController.getconversation')
-      Route.get(':id', 'Conversation.Controller.getconversationbyid')
+      Route.get(':id', 'ConversationController.getconversationbyid')
     })
     .prefix('mensajeria')
     .middleware(['auth']);
