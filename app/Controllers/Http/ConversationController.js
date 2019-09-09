@@ -114,6 +114,10 @@ class ConversationController {
 
     try{
       const seenders = await Sender.query()
+      .select(
+        'seenders.receptor_id',
+        'seenders.is_readed'
+        )
       .where('receptor_id', user.id)
       .where('is_readed', false)
       .fetch()
