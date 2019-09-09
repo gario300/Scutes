@@ -91,6 +91,10 @@ class ConversationController {
         await mensaje.save();
 
         if(data.regalo !== 0 && user.puntos >= data.regalo){
+          const emisor = await User.findBy('id', user.id)
+          emisor.puntos = emisor.puntos - data.regalo
+          await emisor.save()
+
           const receptor = await User.findBy('id', data.receptor_id)
           
           receptor.puntos = receptor.puntos + data.regalo
