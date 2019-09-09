@@ -293,11 +293,12 @@ class UserController {
         await user.save()
     }
 
- async userfind({params, response}){
-     
+ async userfind({params, response, auth}){
+     const user = auth.current.user
      try{
      const userfind = await User.query() 
      .where('username', params.username)
+     .whereNot('username', user)  
      .with('following')
      .with('followers')
      .limit(20)
