@@ -47,6 +47,7 @@ class ConversationController {
           builder.where('is_readed', false)
           builder.where('receptor_id', me.id)
         })
+        .orderBy('created_at', 'DESC')
         .fetch()
         
 
