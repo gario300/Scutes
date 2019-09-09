@@ -35,7 +35,8 @@ class ConversationController {
         'user2.avatar AS Receptoravatar',
         'user1.id AS Emisorid',
         'user2.id AS Receptorid',
-        'conversations.id'
+        'conversations.id',
+        'conversations.created_at'
         )
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
