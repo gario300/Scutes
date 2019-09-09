@@ -36,7 +36,6 @@ class ConversationController {
         'user1.id AS Emisorid',
         'user2.id AS Receptorid',
         'conversations.id',
-        'conversations.created_at'
         )
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
@@ -48,7 +47,6 @@ class ConversationController {
           builder.where('is_readed', false)
           builder.where('receptor_id', me.id)
         })
-        .orderBy('created_at', 'DESC')
         .fetch()
         
 
