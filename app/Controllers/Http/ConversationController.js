@@ -52,7 +52,8 @@ class ConversationController {
             data: conversations
       })
     }
-    async getconversationbyid({params, response}){
+    async getconversationbyid({params, response, auth}){
+      user = auth.current.user 
       
       const conversation  = await Conversation.query()
       .select('user1.username AS Emisor', 
