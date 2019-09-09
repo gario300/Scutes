@@ -43,7 +43,6 @@ class ConversationController {
           this.orWhere('from_user_id', me.id)
           this.orWhere('to_user_id', me.id )
         })
-        .with('seenders')
         .fetch()
         
 
