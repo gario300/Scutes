@@ -39,12 +39,15 @@ const Route = use('Route')
     Route.get(':username', 'UserController.showProfile');
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
+    Route.put('/especial', 'UserController.especial');
+    
 })
     .prefix('account')
     .middleware(['auth'])
 
     Route.group(() =>{
       Route.post('/sendmensage', 'ConversationController.newconversation')
+      Route.post('/newsend', 'ConversationController.newmensaje')
       Route.get('/conversations', 'ConversationController.getconversation')
       Route.get(':id', 'ConversationController.getconversationbyid')
     })

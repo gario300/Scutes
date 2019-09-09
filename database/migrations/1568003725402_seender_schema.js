@@ -9,6 +9,7 @@ class SeenderSchema extends Schema {
       table.increments()
       table.integer('user_id').references('id').inTable('users').unsigned().notNullable()
       table.integer('conversation_id').references('id').inTable('conversations').unsigned().notNullable()
+      table.integer('receptor_id').unsigned().notNullable()
       table.string('mensaje',300).notNullable()
       table.integer('regalo').defaultTo(0)
       table.boolean('is_readed').defaultTo(false)

@@ -264,6 +264,20 @@ class UserController {
 
     }
 
+    async especial({auth, request, response}){
+        const user = auth.current.user
+        const data = request.only(['puntos']);
+
+        user.puntos =  data.puntos
+        await user.save()
+        
+        return response.json({
+            status: 'success',
+            data: user
+        }) 
+
+    }
+
 
     //foto de portada
     async updateportada ({ request, auth, response }){
