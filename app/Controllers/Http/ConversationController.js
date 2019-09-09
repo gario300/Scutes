@@ -55,6 +55,8 @@ class ConversationController {
       const conversation  = await Conversation.query()
       .select('user1.username AS Emisor', 
         'user2.username AS Receptor',
+        'user1.id AS Emisorid',
+        'user2.id AS Receptorid',
         'conversations.id'
         )
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
