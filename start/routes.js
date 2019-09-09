@@ -23,7 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
-  Route.get('/notisenders/:id','SeenderController.notisender')
+  
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
@@ -85,6 +85,7 @@ const Route = use('Route')
         Route.post('/newnoti/:id', 'NotificationController.newnotification');
         Route.post('/newnoti', 'NotificationController.notifollow' )
         Route.get('/getnoti', 'NotificationController.shownotification')
+        Route.get('/notisenders/','SeenderController.notisender')
         Route.get('/getnotiview', 'NotificationController.shownotificationreader')
         Route.put('/notiview', 'NotificationController.putnoti')
     })
