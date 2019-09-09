@@ -61,6 +61,7 @@ class ConversationController {
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
         .where('id', params.id)
         .with('seenders')
+        .fetch()
         return response.json({
           status: 'success',
           data: conversation
