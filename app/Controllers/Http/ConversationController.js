@@ -37,7 +37,7 @@ class ConversationController {
         )
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
-        .join('conversations as conversation', 'conversation.id', '=', 'conversation.id')
+        .join('conversations as conversation', 'conversations.id', '=', 'conversation.id')
         .where(function () {
           this.orWhere('from_user_id', me.id)
           this.orWhere('to_user_id', me.id )
