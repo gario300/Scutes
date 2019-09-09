@@ -8,6 +8,7 @@ class SeenderController {
 
         const getseender = await Seender.query()
         .where('receptor_id', user.id)
+        .whereNot('user_id', user.id)
         .where('is_readed',false)
         .fetch()
   

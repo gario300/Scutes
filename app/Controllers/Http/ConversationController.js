@@ -43,7 +43,9 @@ class ConversationController {
           this.orWhere('from_user_id', me.id)
           this.orWhere('to_user_id', me.id )
         })
-        .with('seenders')
+        .with('seenders', builder => {
+          builder.where('is_readed', false)
+        })
         .fetch()
         
 
@@ -70,7 +72,7 @@ class ConversationController {
         return response.json({
           status: 'success',
           data: conversation
-          
+
         })
       
     }
