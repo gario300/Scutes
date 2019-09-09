@@ -109,16 +109,12 @@ class ConversationController {
 
     }
     async notisender({auth, response}){
-      const user = auth.current.user
+      const me = auth.current.user
 
 
     try{
       const seenders = await Sender.query()
-      .select(
-        'seenders.receptor_id',
-        'seenders.is_readed'
-        )
-      .where('receptor_id', user.id)
+      .where('receptor_id', me.id)
       .where('is_readed', false)
       .fetch()
 
