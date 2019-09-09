@@ -17,6 +17,7 @@ class SeenderController {
         })
   
       }
+      
 }
 
 module.exports = SeenderController

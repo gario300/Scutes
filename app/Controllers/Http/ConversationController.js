@@ -39,10 +39,6 @@ class ConversationController {
         )
         .join('users as user1', 'conversations.from_user_id', '=', 'user1.id')
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
-        .where(function () {
-          this.orWhere('from_user_id', me.id)
-          this.orWhere('to_user_id', me.id )
-        })
         .with('seenders')
         .fetch()
         
@@ -65,6 +61,7 @@ class ConversationController {
         .join('users as user2', 'conversations.to_user_id', '=', 'user2.id')
         .where('conversations.id', params.id)
         .fetch()
+
 
         return response.json({
           status: 'success',
