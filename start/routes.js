@@ -23,6 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
+  Route.get('/notisenders','SeenderController.notisender')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
@@ -50,7 +51,6 @@ const Route = use('Route')
       Route.post('/newsend', 'ConversationController.newmensaje')
       Route.get('/conversations', 'ConversationController.getconversation')
       Route.get(':id', 'ConversationController.getconversationbyid')
-      Route.get('/notisenders','SeenderController.notisender')
     })
     .prefix('mensajeria')
     .middleware(['auth']);
