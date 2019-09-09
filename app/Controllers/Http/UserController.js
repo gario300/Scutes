@@ -298,7 +298,7 @@ class UserController {
      try{
      const userfind = await User.query() 
      .where('username', params.username)
-     .whereNot('username', user)  
+     .whereNot('username', user.username)  
      .with('following')
      .with('followers')
      .limit(20)
