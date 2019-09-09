@@ -117,6 +117,7 @@ class ConversationController {
       .where('receptor_id', user.id)
       .where('is_readed', false)
       .whereNot('user_id', user.id)
+      .with('user')
       .fetch()
 
       return response.json({
