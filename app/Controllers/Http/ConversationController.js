@@ -108,24 +108,7 @@ class ConversationController {
 
 
     }
-    async notisender({auth, response}){
-      const me = auth.current.user
-
-
-    try{
-      const seenders = await Sender.query()
-      .where('receptor_id', me.id)
-      .fetch()
-
-      return response.json({
-        status: 'success',
-        data: seenders
-      })
-    }catch (error) {
-      console.log(error)
-    }
-
-    }
+    
     
 }
 
