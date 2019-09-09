@@ -49,7 +49,7 @@ class SeenderController {
   
       }
 
-      async show({auth,params, response}){
+      async show({params, response}){
 
         const seenders = await Seender.query()
         .where('conversation_id', params.id)
@@ -60,6 +60,20 @@ class SeenderController {
             status: 'success',
             data: seenders
           })}
+
+          async readed({auth, response, params}){
+            const data = request.only(['postid']);
+            const user = await auth.current.user;
+            const noti = await Seender.query()
+                        .where('post_id', data.postdid)
+                        .where('receptor_id', user.id)
+                        .where('is_readed', false)
+                        .update({ is_readed: true })
+                
+            
+            
+            return response.status(200).json(noti)
+          }
       
 }
 

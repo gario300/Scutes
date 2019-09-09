@@ -35,7 +35,7 @@ module.exports = {
       filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'development')}.sqlite`)
     },
     useNullAsDefault: true,
-    debug: Env.get('DB_DEBUG', true)
+    debug: Env.get('DB_DEBUG', false)
   },
 
   /*
@@ -57,7 +57,7 @@ module.exports = {
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'adonis')
     },
-    debug: Env.get('DB_DEBUG', true)
+    debug: Env.get('DB_DEBUG', false)
   },
 
   /*
@@ -79,7 +79,7 @@ module.exports = {
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'adonis')
     },
-    debug: Env.get('DB_DEBUG', true)
+    debug: Env.get('DB_DEBUG', false)
   },
   maria: {
 	  client: 'mysql2',
