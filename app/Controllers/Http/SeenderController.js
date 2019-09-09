@@ -65,7 +65,7 @@ class SeenderController {
             const data = request.only(['postid']);
             const user = await auth.current.user;
             const noti = await Seender.query()
-                        .where('post_id', data.postdid)
+                        .where('post_id', data.postid)
                         .where('receptor_id', user.id)
                         .where('is_readed', false)
                         .update({ is_readed: true })
