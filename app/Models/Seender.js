@@ -8,7 +8,7 @@ class Seender extends Model {
         return this.belongsTo('App/Models/Conversation')
         }
     user(){
-        return this.hasOne('App/Models/User')
+        return this.belongsTo('App/Models/User')
     }
 }
 

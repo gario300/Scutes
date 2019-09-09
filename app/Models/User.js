@@ -53,8 +53,8 @@ class User extends Model {
     conversation(){
       return this.belongsTo('App/Models/Conversation')
     }
-    seender(){
-      return this.hasOne('App/Models/User')
+    seenders(){
+      return this.hasMany('App/Models/User')
   }   
 
 }
