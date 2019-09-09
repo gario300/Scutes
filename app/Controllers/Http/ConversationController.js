@@ -71,10 +71,12 @@ class ConversationController {
         .with('user')
         .fetch()
 
+        if(user.id == conversation.Emisorid || conversation.receptor_id){
         return response.json({
           status: 'success',
           data: conversation, seenders
         })
+      }
     }
 
     async newmensaje({request, auth, response}){
@@ -101,6 +103,7 @@ class ConversationController {
           await receptor.save()
 
         }
+
         
         return response.status(201).json(mensaje);
 
