@@ -52,7 +52,7 @@ const Route = use('Route')
       Route.get('timline/:id','SeenderController.show')
       Route.get('/conversations', 'ConversationController.getconversation')
       Route.get(':id', 'ConversationController.getconversationbyid')
-      Route.put('/isreaded', 'SeenderController.readed')
+      Route.put('/isreaded/:id', 'SeenderController.readed')
     })
     .prefix('mensajeria')
     .middleware(['auth']);
