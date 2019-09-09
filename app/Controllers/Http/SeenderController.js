@@ -1,5 +1,5 @@
 'use strict'
-const Sender = use('App/Models/Seender')
+const Seender = use('App/Models/Seender')
 
 class SeenderController {
     async notisender({auth, response}){
@@ -7,7 +7,7 @@ class SeenderController {
   
   
       try{
-        const seenders = await Sender.query()
+        const seenders = await Seender.query()
         .where('receptor_id', user.id)
         .where('is_readed', false)
         .whereNot('user_id', user.id)
