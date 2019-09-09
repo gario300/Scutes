@@ -123,7 +123,7 @@ class ConversationController {
         data: seenders
       })
     }catch (error) {
-      return console.log(error)
+      console.log(error)
     }
 
     }
