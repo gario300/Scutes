@@ -3,7 +3,10 @@ const Seender = use('App/Models/Seender')
 
 class SeenderController {
     async notisender({auth, response}){
-        return await Seender.all()
+        
+        const seender = await Seender.query()
+        .where('reeptor_id', params.id)
+        .fetch()
   
 
   

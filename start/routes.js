@@ -23,7 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
-  Route.get('/notisenders','SeenderController.notisender')
+  Route.get('/notisenders/:id','SeenderController.notisender')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
