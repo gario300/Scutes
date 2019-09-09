@@ -53,7 +53,6 @@ class ConversationController {
       })
     }
     async getconversationbyid({params, response, auth}){
-      user = auth.current.user 
 
       const conversation  = await Conversation.query()
       .select('user1.username AS Emisor', 
@@ -71,7 +70,7 @@ class ConversationController {
         .where('conversation_id', params.id)
         .with('user')
         .fetch()
-
+        user = auth.current.user 
         if(user.id == conversation.Emisorid || conversation.Receptorid){
         return response.json({
           status: 'success',
