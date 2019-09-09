@@ -50,6 +50,7 @@ const Route = use('Route')
       Route.post('/newsend', 'ConversationController.newmensaje')
       Route.get('/conversations', 'ConversationController.getconversation')
       Route.get(':id', 'ConversationController.getconversationbyid')
+      Route.get('/notisenders','ConversationController.notisender')
     })
     .prefix('mensajeria')
     .middleware(['auth']);

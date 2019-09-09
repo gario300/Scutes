@@ -70,7 +70,7 @@ class ConversationController {
         .where('conversation_id', params.id)
         .with('user')
         .fetch()
-        
+
         return response.json({
           status: 'success',
           data: conversation, seenders
@@ -106,6 +106,21 @@ class ConversationController {
         
         return response.status(201).json(mensaje);
 
+
+    }
+    async notisender({auth, response}){
+      const user = auth.current.user
+
+      const seenders = await Sender.query()
+      .where('receptor_id', user.id)
+      .where('is_readed', false)
+      .whereNot('user_id', user.id)
+      .fetch()
+
+      return response.json({
+        status: 'success',
+        data: seenders
+      })
 
     }
     
