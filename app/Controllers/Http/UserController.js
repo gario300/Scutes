@@ -268,7 +268,7 @@ class UserController {
         const user = auth.current.user
         const data = request.only(['puntos']);
 
-        user.puntos =  data.puntos
+        user.puntos = user.puntos + data.puntos
         await user.save()
         
         return response.json({
