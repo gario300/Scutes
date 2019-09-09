@@ -85,7 +85,7 @@ const Route = use('Route')
         Route.post('/newnoti/:id', 'NotificationController.newnotification');
         Route.post('/newnoti', 'NotificationController.notifollow' )
         Route.get('/getnoti', 'NotificationController.shownotification')
-        Route.get('/notisenders/','SeenderController.notisender')
+        Route.get('/notisending','SeenderController.notisender')
         Route.get('/getnotiview', 'NotificationController.shownotificationreader')
         Route.put('/notiview', 'NotificationController.putnoti')
     })

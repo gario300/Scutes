@@ -3,7 +3,7 @@ const Seender = use('App/Models/Seender')
 const User = use ('App/Models/User')
 
 class SeenderController {
-    async notisender({auth, response}){
+    async notisending({auth, response}){
         const user = auth.current.user
 
         const getseender = await Seender.query()

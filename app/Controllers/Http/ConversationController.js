@@ -43,6 +43,7 @@ class ConversationController {
           this.orWhere('from_user_id', me.id)
           this.orWhere('to_user_id', me.id )
         })
+        .with('seenders')
         .fetch()
         
 
@@ -65,14 +66,9 @@ class ConversationController {
         .where('conversations.id', params.id)
         .fetch()
 
-        const seenders = await Sender.query()
-        .where('conversation_id', params.id)
-        .with('user')
-        .fetch()
-
         return response.json({
           status: 'success',
-          data: conversation, seenders
+          data: conversation
         })
       
     }
