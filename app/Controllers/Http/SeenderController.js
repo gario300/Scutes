@@ -7,8 +7,7 @@ class SeenderController {
         const user = auth.current.user
 
         const getseender = await Seender.query()
-        .where('receptor_id', user.id)
-        .where('is_readed',false)
+        .where('conversation_id', 1)
         .fetch()
   
         return response.json({
