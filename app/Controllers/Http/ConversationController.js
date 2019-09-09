@@ -45,6 +45,7 @@ class ConversationController {
         })
         .with('seenders', builder => {
           builder.where('is_readed', false)
+          builder.where('receptor_id', me.id)
         })
         .fetch()
         
