@@ -48,7 +48,7 @@ class SeenderController {
   
       }
 
-      async show({auth,params}){
+      async show({auth,params, response}){
 
         const seenders = await Seender.query()
         .where('conversation_id', params.id)
