@@ -22,7 +22,7 @@ class SeenderController {
         const  user = auth.current.user
         const data = request.only(['conversation_id','mensaje','regalo','receptor_id']);
   
-        const mensaje = new Sender();
+        const mensaje = new Seender();
           mensaje.user_id = user.id;
           mensaje.conversation_id = data.conversation_id;
           mensaje.receptor_id = data.receptor_id
@@ -50,7 +50,7 @@ class SeenderController {
 
       async show({auth,params}){
 
-        const seenders = await Sender.query()
+        const seenders = await Seender.query()
         .where('conversation_id', params.id)
         .with('user')
         .fetch()
