@@ -70,13 +70,12 @@ class ConversationController {
         .where('conversation_id', params.id)
         .with('user')
         .fetch()
-        user = auth.current.user 
-        if(user.id == conversation.Emisorid || conversation.Receptorid){
+        
         return response.json({
           status: 'success',
           data: conversation, seenders
         })
-      }
+      
     }
 
     async newmensaje({request, auth, response}){
