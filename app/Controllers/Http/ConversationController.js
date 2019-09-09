@@ -54,7 +54,7 @@ class ConversationController {
     }
     async getconversationbyid({params, response, auth}){
       user = auth.current.user 
-      
+
       const conversation  = await Conversation.query()
       .select('user1.username AS Emisor', 
         'user2.username AS Receptor',
@@ -72,7 +72,7 @@ class ConversationController {
         .with('user')
         .fetch()
 
-        if(user.id == conversation.Emisorid || conversation.receptor_id){
+        if(user.id == conversation.Emisorid || conversation.Receptorid){
         return response.json({
           status: 'success',
           data: conversation, seenders
