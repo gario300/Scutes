@@ -111,6 +111,8 @@ class ConversationController {
     async notisender({auth, response}){
       const user = auth.current.user
 
+
+    try{
       const seenders = await Sender.query()
       .where('receptor_id', user.id)
       .where('is_readed', false)
@@ -121,6 +123,9 @@ class ConversationController {
         status: 'success',
         data: seenders
       })
+    }catch (error) {
+      return console.log(error)
+    }
 
     }
     
