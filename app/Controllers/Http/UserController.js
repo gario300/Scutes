@@ -3,8 +3,6 @@ const User = use('App/Models/User')
 const Hash = use('Hash')
 const Post = use('App/Models/Post')
 const Cloudinary = use('Cloudinary')
-const Database = use('Database')
-const Event = use ('Event')
 
 class UserController {
 
@@ -316,21 +314,18 @@ class UserController {
     })
 }
  }
-
-
  async royale ({auth, response}){
- const user = auth.current.user
-
-    const positions = await User.query()
-    .where('id', user)
-
-    return response.json({
-        status: 'success',
-        data: positions
-    })
-}
-
-    
+    const user = auth.current.user
+   
+       const positions = await User.query()
+       .where('id', user)
+       .fetch()
+   
+       return response.json({
+           status: 'success',
+           data: positions
+       })
+   }
 
 
 }
