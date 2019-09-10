@@ -316,18 +316,20 @@ class UserController {
     })
 }
  }
-    
-    async royale ({auth, response}){
 
-        const positions = await User.query()
-        .where('id', 1)
 
-        return response.json({
-            status: 'success',
-            data: positions
-        })
-    }  
-    
+ async royale ({auth, response}){
+ const user = auth.current.user
+
+    const positions = await User.query()
+    .where('id', user)
+
+    return response.json({
+        status: 'success',
+        data: positions
+    })
+}
+
     
 
 
