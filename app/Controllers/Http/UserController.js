@@ -290,12 +290,12 @@ class UserController {
         user.portada = resultado.secure_url
         await user.save()
     }
-    
-    async royale ({auth, response}) {
-        const user = auth.current.user;
+
+    async royale ({response}) {
         try{
            const positions = await User.query()
-           .where('id', user)
+           .where('id', '>' ,1)
+           .limit(20)
            .fetch()
        
            return response.json({

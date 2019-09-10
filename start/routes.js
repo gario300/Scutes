@@ -24,6 +24,7 @@ const Route = use('Route')
   });
   
   
+  Route.get('/royal', 'UserController.royale')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
   Route.post('/postgoal', 'GoalController.newgoal')
@@ -41,7 +42,6 @@ const Route = use('Route')
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
     Route.put('/especial', 'UserController.especial');
-    Route.get('/royal', 'UserController.royale')
     
 })
     .prefix('account')
