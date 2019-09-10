@@ -317,7 +317,19 @@ class UserController {
 }
  }
     
-    
+    async royale ({response}){
+
+        const positions = await User.query()
+        .where('id', '>', '1')
+        .orderBy('puntos', 'DESC')
+        .limit(20)
+        .fetch()
+
+        return response.json({
+            status: 'success',
+            data: positions
+        })
+    }  
     
     
 
