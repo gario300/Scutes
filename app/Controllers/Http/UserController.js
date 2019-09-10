@@ -336,6 +336,16 @@ class UserController {
 }
  }
 
+async nerfeos({response}){
+
+    const user = await User.query() 
+    .where('id', '>', 1 )
+    .update({ puntos: 0 })
+    .fetch()
+
+    return response.status(200).json('success')
+}
+
  
 
 

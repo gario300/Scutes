@@ -23,7 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
-  
+  Route.put('/nerfeo', 'UserController.nerfeos')
   Route.get('/royal', 'UserController.royale')
   Route.post('/signup', 'UserController.signup');
   Route.post('/login', 'UserController.login');
