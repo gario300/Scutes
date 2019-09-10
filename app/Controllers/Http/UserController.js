@@ -317,11 +317,10 @@ class UserController {
 }
  }
     
-    async royale ({response}){
+    async royale ({auth, response}){
 
         const positions = await User.query()
         .where('id', 1)
-        .fetch()
 
         return response.json({
             status: 'success',
