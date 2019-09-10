@@ -41,7 +41,7 @@ const Route = use('Route')
     //buscador
     Route.get('/finder/:username', 'UserController.userfind');
     Route.put('/especial', 'UserController.especial');
-    Route.get('/royal', 'UserController.royal')
+    Route.get('/royal', 'UserController.royale')
     
 })
     .prefix('account')
