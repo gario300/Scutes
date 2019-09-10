@@ -320,8 +320,7 @@ class UserController {
     async royale ({response}){
 
         const positions = await User.query()
-        .where('puntos', '>', 1)
-        .limit(20)
+        .where('id', 1)
         .fetch()
 
         return response.json({
