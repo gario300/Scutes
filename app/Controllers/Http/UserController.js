@@ -321,7 +321,6 @@ class UserController {
 
         const positions = await User.query()
         .where('puntos', '>', 1)
-        .orderBy('puntos', 'DESC')
         .limit(20)
         .fetch()
 
