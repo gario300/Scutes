@@ -314,9 +314,10 @@ class UserController {
     })
 }
  }
+
  async royale ({auth, response}) {
-    const user = auth.current.user
-   
+    const user = auth.current.user;
+    try{
        const positions = await User.query()
        .where('id', user)
        .fetch()
@@ -325,7 +326,14 @@ class UserController {
            status: 'success',
            data: positions
        })
+   } catch (error){
+    response.status(404).json({
+        status: 'error',
+        message: 'El controlador funciona'
+
+    })
    }
+}
 
 
 }
