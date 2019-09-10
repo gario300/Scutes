@@ -265,8 +265,10 @@ class UserController {
     async especial({auth, request, response}){
         const user = auth.current.user
         const data = request.only(['puntos']);
+        
+        const prueba = parseInt(data.puntos , 10);
 
-        user.puntos = user.puntos + data.puntos
+        user.puntos = user.puntos + prueba
         await user.save()
         
         return response.json({
