@@ -314,7 +314,7 @@ class UserController {
     })
 }
  }
- async royale ({auth, response}){
+ async royale ({auth, response}) {
     const user = auth.current.user
    
        const positions = await User.query()
