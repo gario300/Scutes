@@ -32,13 +32,16 @@ class SeenderController {
           await mensaje.save();
   
           if(data.regalo !== 0 && user.puntos >= data.regalo){
+            
+            const puntos = parseInt(data.regalo , 10);
+
             const emisor = await User.findBy('id', user.id)
-            emisor.puntos = emisor.puntos - data.regalo
+            emisor.puntos = emisor.puntos - puntos
             await emisor.save()
   
             const receptor = await User.findBy('id', data.receptor_id)
             
-            receptor.puntos = receptor.puntos + data.regalo
+            receptor.puntos = receptor.puntos + puntos
             await receptor.save()
   
           }
