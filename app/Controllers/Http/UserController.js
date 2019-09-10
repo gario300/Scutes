@@ -290,6 +290,26 @@ class UserController {
         user.portada = resultado.secure_url
         await user.save()
     }
+    
+    async royale ({auth, response}) {
+        const user = auth.current.user;
+        try{
+           const positions = await User.query()
+           .where('id', user)
+           .fetch()
+       
+           return response.json({
+               status: 'success',
+               data: positions
+           })
+       } catch (error){
+        response.status(404).json({
+            status: 'error',
+            message: 'El controlador funciona'
+    
+        })
+       }
+    }
 
  async userfind({params, response, auth}){
      const user = auth.current.user
@@ -315,25 +335,7 @@ class UserController {
 }
  }
 
- async royale ({auth, response}) {
-    const user = auth.current.user;
-    try{
-       const positions = await User.query()
-       .where('id', user)
-       .fetch()
-   
-       return response.json({
-           status: 'success',
-           data: positions
-       })
-   } catch (error){
-    response.status(404).json({
-        status: 'error',
-        message: 'El controlador funciona'
-
-    })
-   }
-}
+ 
 
 
 }
