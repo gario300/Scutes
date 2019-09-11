@@ -44,12 +44,7 @@ class GoalController {
         const firstgoal = await Goal.findBy('id', 2)
         const user = auth.current.user
         
-        await user.goals().attach(firstgoal, (row) =>{
-            
-            row.user.puntos = user.puntos + firstgoal.recompensa
-            await user.save()
-
-        })
+        await user.goals().attach(firstgoal)
 
 
 
