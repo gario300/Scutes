@@ -41,12 +41,18 @@ class GoalController {
 
     async allgoals ({auth}){
         
+        const firstgoal = await Goal.findBy('id', 2)
         const user = auth.current.user
-       if (await user.goals().attach(2)){
+        
+        await user.goals().attach(firstgoal, (row) =>{
+            
+            row.user.puntos = user.puntos + firstgoal.recompensa
+            await user.save()
 
-        user.puntos = user.puntos +  300
-        await user.save()
-    }
+        })
+
+
+
 
     }
 
