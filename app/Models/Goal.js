@@ -7,6 +7,10 @@ class Goal extends Model {
         users () {
             return this.belongsToMany('App/Models/Goal')
         }
+         
+        intergoal () {
+            return this.belongsTo('App/Models/Intergoal')
+        }
         
 
         
