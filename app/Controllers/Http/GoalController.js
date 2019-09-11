@@ -1,6 +1,7 @@
 'use strict'
 const Goal = use('App/Models/Goal')
 const User = use ('App/Models/User')
+const intergoal = use ('App/Models/Intergoal')
 
 class GoalController {
 
@@ -41,6 +42,23 @@ class GoalController {
         const user = auth.current.user
         await user.goals().attach(1)
 
+        return response.status(201).json(user);
+
+    }
+
+    async getgoals ({auth,response}){
+
+        const user = auth.current.user
+
+        const goal = await intergoal.query()
+        .where('user_id', user.id)
+        .where('is_readed', false)
+        .fetch()
+
+        return response.json({
+            status: 'success',
+            data: goal
+          })
 
     }
 }

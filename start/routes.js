@@ -36,7 +36,8 @@ const Route = use('Route')
     Route.put('/change_password', 'UserController.changePassword');
     Route.put('/updateProfilePic', 'UserController.updateProfilePic');
     Route.put('/updateportada', 'UserController.updateportada');
-    Route.post('/primerlogro', 'UserController.asignarlogro')
+    Route.post('/goals', 'GoalController.allgoals')
+    Route.get('/getgoal', 'GoalController.getgoals')
     //Usuario
     Route.get(':username', 'UserController.showProfile');
     //buscador
