@@ -41,10 +41,9 @@ class GoalController {
 
     async allgoals ({auth}){
         
-        const firstgoal = await Goal.findBy('id', 2)
         const user = auth.current.user
         
-        await user.goals().attach(firstgoal)
+        await user.goals().attach(2)
 
 
 
