@@ -7,13 +7,15 @@ class GoalController {
 
     async newgoal({ request, response }){
         
-        const goaldata = request.only(['title','placa','description']);
+        const goaldata = request.only(['title','placa','description', 'recompensa']);
         
+        const recompensa = parseInt(goaldata.recompensa, 10)
 
         const goal = new Goal();
         goal.title = goaldata.title;
         goal.placa = goaldata.placa;
         goal.description = goaldata.description;
+        goal.recompensa = goaldata.recompensa
         await goal.save();
         
         return response.status(201).json(goal);
@@ -40,7 +42,11 @@ class GoalController {
     async allgoals ({auth}){
         
         const user = auth.current.user
-        await user.goals().attach(1)
+       if (await user.goals().attach(1)){
+           
+        user.puntos = user.puntos +  300
+        await user.save()
+    }
 
     }
 
