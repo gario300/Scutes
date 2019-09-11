@@ -42,8 +42,8 @@ class GoalController {
     async allgoals ({auth}){
         
         const user = auth.current.user
-       if (await user.goals().attach(1)){
-           
+       if (await user.goals().attach(2)){
+
         user.puntos = user.puntos +  300
         await user.save()
     }
