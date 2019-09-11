@@ -72,7 +72,7 @@ class SeenderController {
                         .where('receptor_id', user.id)
                         .where('is_readed', false)
                         .update({ is_readed: true })
-                
+                  
             
             
             return response.status(200).json(noti)

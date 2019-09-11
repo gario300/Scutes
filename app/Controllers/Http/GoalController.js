@@ -37,12 +37,10 @@ class GoalController {
         }
     }
 
-    async allgoals ({auth, response}){
+    async allgoals ({auth}){
         
         const user = auth.current.user
         await user.goals().attach(1)
-
-        return response.status(201).json(user);
 
     }
 
@@ -53,6 +51,7 @@ class GoalController {
         const goal = await intergoal.query()
         .where('user_id', user.id)
         .where('is_readed', false)
+        .with('goal')
         .fetch()
 
         return response.json({
