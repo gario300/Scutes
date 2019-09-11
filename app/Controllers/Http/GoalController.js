@@ -45,9 +45,6 @@ class GoalController {
         
         await user.goals().attach(2)
 
-
-
-
     }
 
     async getgoals ({auth,response}){
@@ -65,6 +62,21 @@ class GoalController {
             data: goal
           })
 
+    }
+    async updategoal({auth, response,params}){
+        const user = auth.current.user
+
+        const goal = await intergoal.query()
+        .where('user_id', user.id)
+        .where('goal_id', params.id)
+        .where('is_readed', false)
+        .with('goal')
+        .update({ is_readed: true })
+
+        return response.json({
+            status: 'success',
+            data: goal
+          })
     }
 }
 

@@ -38,6 +38,7 @@ const Route = use('Route')
     Route.put('/updateportada', 'UserController.updateportada');
     Route.post('/goals', 'GoalController.allgoals')
     Route.get('/getgoal', 'GoalController.getgoals')
+    Route.put('/readgoal/:id', 'GoalController.readed')
     //Usuario
     Route.get(':username', 'UserController.showProfile');
     //buscador
