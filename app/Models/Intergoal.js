@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Intergoal extends Model {
-    Goal () {
+    goal () {
         return this.belongsTo('App/Models/Goal')
     }
 }
