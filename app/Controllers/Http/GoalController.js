@@ -35,6 +35,14 @@ class GoalController {
             console.log(error)
         }
     }
+
+    async allgoals ({auth, response}){
+        
+        const user = auth.current.user
+        await user.goals().attach(1)
+
+
+    }
 }
 
 module.exports = GoalController
