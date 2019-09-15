@@ -74,7 +74,7 @@ const Route = use('Route')
       Route.get('/posts/:id', 'PostController.show').middleware(['auth']);
       Route.post('/posts/reply/:id', 'PostController.reply').middleware(['auth']);
       Route.get('/destacado', 'PostController.favorites').middleware(['auth']);
-      Route.get('/usertimeline', 'PostController.usertimeline').middleware(['auth'] )
+      Route.get('/usertimeline/:page', 'PostController.usertimeline').middleware(['auth'] )
 
 
       //favoritos

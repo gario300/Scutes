@@ -155,7 +155,7 @@ class PostController {
           })
     }
 
-    async usertimeline ({ auth, response }) {
+    async usertimeline ({ auth, response, params }) {
         const user = await User.find(auth.current.user.id)
     
         // get an array of IDs of the user's followers
@@ -170,7 +170,7 @@ class PostController {
             .with('favorites')
             .with('replies')
             .orderBy('created_at', 'DESC')
-            .fetch()
+            .paginate(params.page, 8)
     
         return response.json({
             status: 'success',
