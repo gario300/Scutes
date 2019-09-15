@@ -198,15 +198,7 @@ class UserController {
             data: null
         })
     }
-    async timeline ({ auth, response }) {
-        const user = await User.find(auth.current.user.id)
-    
-        // obteniendo en un array seguidores
-        const followersIds = await user.following().ids()
-        
-    
-        // añadir id de usuarios a array
-        followersIds.push(user.id)
+    async timeline ({ response }) {
     
         const posts = await Post.query()
           .with('user')
