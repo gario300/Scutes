@@ -23,6 +23,7 @@ const Route = use('Route')
 	  return x;
   });
   
+  Route.get('/timeline', 'UserController.timeline')
   Route.put('/nerfeo', 'UserController.nerfeos')
   Route.get('/royal', 'UserController.royale')
   Route.post('/signup', 'UserController.signup');
@@ -64,7 +65,6 @@ const Route = use('Route')
       Route.get('/users_to_follow', 'UserController.usersToFollow');
       Route.post ( '/follow' , 'UserController.follow' );
       Route.delete('/unfollow/:id', 'UserController.unFollow');
-      Route.get('/timeline', 'UserController.timeline')
   })
       .prefix('users')
       .middleware(['auth']);
