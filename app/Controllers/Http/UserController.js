@@ -213,6 +213,7 @@ class UserController {
           .with('favorites')
           .with('replies')
           .orderBy('created_at', 'DESC')
+          .paginate(8)
           .fetch()
     
         return response.json({
