@@ -206,7 +206,6 @@ class UserController {
           .with('replies')
           .orderBy('created_at', 'DESC')
           .paginate(params.page, 8)
-          .fetch()
     
         return response.json({
           status: 'success',
