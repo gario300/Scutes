@@ -60,7 +60,7 @@ const Route = use('Route')
     .prefix('mensajeria')
     .middleware(['auth']);
 
-    Route.get('/timeline', 'UserController.timeline')
+    Route.get('/timeline/:page', 'UserController.timeline')
     Route.group(() => {
       Route.get('/users_to_follow', 'UserController.usersToFollow');
       Route.post ( '/follow' , 'UserController.follow' );

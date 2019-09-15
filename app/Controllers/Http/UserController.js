@@ -198,14 +198,14 @@ class UserController {
             data: null
         })
     }
-    async timeline ({ response }) {
+    async timeline ({params, response }) {
     
         const posts = await Post.query()
           .with('user')
           .with('favorites')
           .with('replies')
           .orderBy('created_at', 'DESC')
-          .paginate(8)
+          .paginate(params.page, 8)
     
         return response.json({
           status: 'success',
