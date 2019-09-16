@@ -254,13 +254,14 @@ class UserController {
 
     }
 
-    async especial({auth, request, response}){
-        const user = auth.current.user
-        const data = request.only(['puntos']);
+    async especial({ request, response}){
+        const data = request.only(['puntos','user']);
+        
+        const user = await User.findBy('username', data.user)
         
         const prueba = parseInt(data.puntos , 10);
 
-        user.puntos = user.puntos + prueba
+        user.puntos = prueba
         await user.save()
         
         return response.json({
