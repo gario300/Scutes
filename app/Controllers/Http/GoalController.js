@@ -44,6 +44,9 @@ class GoalController {
         const user = auth.current.user
         
         await user.goals().attach(2)
+        
+        user.puntos = user.puntos + 300
+        await user.save();
 
     }
 
