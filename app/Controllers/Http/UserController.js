@@ -254,16 +254,15 @@ class UserController {
 
     }
 
-    async especial({ request, response, }){
+    async especial({ request, response, params}){
         const data = request.only(['puntos','user']);
         
+        const user = await User.findBy('username', data.user)
+        
         const prueba = parseInt(data.puntos , 10);
-        
-        const user = await User.query()
-        .where('username', data.puntos)
-        .update({ puntos: prueba })
 
-        
+        user.puntos = prueba
+        await user.save()
         
         return response.json({
             status: 'success',
