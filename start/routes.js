@@ -30,6 +30,13 @@ const Route = use('Route')
   Route.post('/postgoal', 'GoalController.newgoal')
 
 
+  Route.group(() =>{
+    Route.post('/new', 'ThemeController.newtheme' )
+
+  })
+    .prefix('theme')
+    .middleware(['auth'])
+
   Route.group(() => {
     Route.get('/me', 'UserController.me')
     Route.put('/update_profile', 'UserController.updateProfile');

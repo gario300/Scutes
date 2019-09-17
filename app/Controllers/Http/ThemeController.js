@@ -10,7 +10,49 @@ class ThemeController {
 
         let background = data['background'];//request.file('avatar', { types: ['image'], size: '2mb' })
         console.log("Uploading pic");
-        const fondo =  await Cloudinary.v2.uploader.upload(background);
+
+        let userbox = data['userbox'];//request.file('avatar', { types: ['image'], size: '2mb' })
+        console.log("Uploading pic");
+
+        let postbox = data['postbox'];//request.file('avatar', { types: ['image'], size: '2mb' })
+        console.log("Uploading pic");
+
+        const fondo =  await Cloudinary.v2.uploader.upload(background,
+            {folder: "themes",  moderation : ' webpurify ' });
+
+        const textbox =  await Cloudinary.v2.uploader.upload(userbox,
+            { folder: "themes", moderation : ' webpurify ' });
+
+        const cajapost =  await Cloudinary.v2.uploader.upload(postbox,
+            { folder: "themes", moderation : ' webpurify ' } );
+
+        const precio =parseInt(data.precio , 10);
+            
+        const theme = new Theme()
+        theme.creador = user.username
+        theme.nombretema = data.nombretema
+        theme.estilonavbar = data.estilonavbar
+        theme.estiloiconos = data.estiloiconos
+        theme.estilopagina = data.estilopagina
+        theme.background = fondo.secure_url
+        theme.userbox = textbox.secure_url
+        theme.postbox = cajapost.secure_url
+        theme.colortexto = data.colortexto
+        theme.moneda = data.moneda
+        theme.precio = precio
+        theme.secure1 = fondo.public_id
+        theme.secure2 = textbox.public_id
+        theme.secure3 = cajapost.public_id
+        await theme.save();
+
+        await user.themes().attach([theme.id])
+
+        user.puntos = user.puntos - 100
+        await user.save();
+    
+        return response.status(201).json(theme);
+
+
     }
 }
 

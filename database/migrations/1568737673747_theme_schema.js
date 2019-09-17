@@ -8,7 +8,7 @@ class ThemeSchema extends Schema {
     this.create('themes', (table) => {
       table.increments()
       table.string('creador').notNullable()
-      table.string('nombretema').notNullable()
+      table.string('nombretema').notNullable().unique()
       table.string('estilonavbar').notNullable()
       table.string('estiloiconos').notNullable()
       table.string('estilopagina').notNullable()
@@ -22,6 +22,7 @@ class ThemeSchema extends Schema {
       table.string('secure1',300).nullable()
       table.string('secure2',300).nullable()
       table.string('secure3',300).notNullable()
+      table.boolean('is_aprobated').defaultTo(false)
       table.timestamps()
     })
   }
