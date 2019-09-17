@@ -54,6 +54,19 @@ class ThemeController {
 
 
     }
+    async mistemas({auth, response}){
+        const user = auth.current.user
+        const temas = await User.query()
+        .where('id', user.id)
+        .with('temas')
+        .firstOrFail()
+
+        return response.json({
+            status: 'success',
+            data: temas
+        })
+        
+    }
 }
 
 module.exports = ThemeController

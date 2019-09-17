@@ -65,14 +65,6 @@ class UserController {
     async me ({ auth, response }) {
         const user = await User.query()
             .where('id', auth.current.user.id)
-            .with('posts', builder => {
-                builder.with('user')
-                builder.with('favorites')
-                builder.with('replies')
-            })
-            .with('goals')
-            .with('following')
-            .with('followers')
             .with('favorites')
             .with('favorites.post', builder => {
                 builder.with('user')
