@@ -18,19 +18,19 @@ class ThemeController {
         console.log("Uploading pic");
 
         const fondo =  await Cloudinary.v2.uploader.upload(background,
-            {folder: "themes",  moderation : ' webpurify ' });
+            {folder: "themes"});
 
         const textbox =  await Cloudinary.v2.uploader.upload(userbox,
-            { folder: "themes", moderation : ' webpurify ' });
+            { folder: "themes"});
 
         const cajapost =  await Cloudinary.v2.uploader.upload(postbox,
-            { folder: "themes", moderation : ' webpurify ' } );
+            { folder: "themes"} );
 
-        const precio =parseInt(data.precio , 10);
+        const precio = parseInt(data.precio , 10);
             
         const theme = new Theme()
         theme.creador = user.username
-        theme.nombretema = data.nombretema
+        theme.nombretema = data.nombretema.replace(/ /g, "_")
         theme.estilonavbar = data.estilonavbar
         theme.estiloiconos = data.estiloiconos
         theme.estilopagina = data.estilopagina
