@@ -55,7 +55,14 @@ class User extends Model {
     }
     seenders(){
       return this.hasMany('App/Models/User')
-  }   
+    } 
+    items(){
+      return this.hasMany('App/Models/Item')
+    }  
+    themes () {
+      return this.belongsToMany('App/Models/Theme', 'user_id', 'theme_id')
+      .pivotTable('interthemes')
+    }
 
 }
 

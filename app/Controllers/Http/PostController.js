@@ -13,10 +13,8 @@ class PostController {
         //console.log(userData);
         
         if (postData.image !== null && postData.post !== null ){
-            let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
+        let postPic = postData['image'];//request.file('avatar', { types: ['image'], size: '2mb' })
         console.log("Uploading pic");
-            
-        
         const resultado =  await Cloudinary.v2.uploader.upload(postPic);
         
         
