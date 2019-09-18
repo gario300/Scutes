@@ -83,7 +83,7 @@ class ThemeController {
 
         const theme = await Theme.findBy('id', data.temaid)
     
-        if(user.currentheme == null && theme.moneda == puntos){
+        if(user.currentheme == null && theme.moneda == 'puntos'){
            let currentheme = new Currentheme()
             currentheme.user_id = current.id
             currentheme.estilonavbar = theme.estilonavbar
