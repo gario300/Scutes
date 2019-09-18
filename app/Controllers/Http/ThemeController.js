@@ -78,21 +78,13 @@ class ThemeController {
 
         const user = await User.query()
         .where('id', current.id)
-        .with('themes', (builder) => {
-            builder.where('id', data.id)
-        })
         .with('currentheme')
         .fetch()
 
-        const themefind = user.themes
-
-        const theme = []
-        themefind.forEach(tema => {
-            theme.push(tema)
-        });
-
-        if(user.currentheme == [] && theme.id == data.temaid){
-
+    
+        if(user.currentheme == []){
+           const theme = await Theme.findBy('id', data.temaid)
+           
            let currentheme = new Currentheme()
             currentheme.user_id = user.id
             currentheme.estilonavbar = theme.estilonavbar
