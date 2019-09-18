@@ -58,7 +58,7 @@ class ThemeController {
         const user = auth.current.user
         const temas = await User.query()
         .where('id', user.id)
-        .with('temas')
+        .with('themes')
         .paginate(params.page, 8)
 
         return response.json({
