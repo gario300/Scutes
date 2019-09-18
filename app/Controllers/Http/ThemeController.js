@@ -78,14 +78,14 @@ class ThemeController {
 
         const user = await User.query()
         .where('id', current.id)
+        .with('currentheme')
         .fetch()
 
         const theme = await Theme.findBy('id', data.temaid)
     
-        if(theme.moneda == 'puntos'){
-
+        if(user.currentheme == null && theme.moneda == puntos){
            let currentheme = new Currentheme()
-            currentheme.user_id = user.id
+            currentheme.user_id = current.id
             currentheme.estilonavbar = theme.estilonavbar
             currentheme.estiloiconos = theme.estiloiconos
             currentheme.estilopagina = theme.estilopagina
