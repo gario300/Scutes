@@ -76,7 +76,6 @@ class ThemeController {
         const data = request.only(['temaid'])
         const theme = await Theme.findBy('id', data.temaid)
     
-        if(theme.moneda == 'puntos'){
            let currentheme = new Currentheme()
             currentheme.user_id = auth.current.user.id
             currentheme.estilonavbar = theme.estilonavbar
@@ -93,7 +92,6 @@ class ThemeController {
                 data: currentheme
               })
 
-           }
 
 
         }
