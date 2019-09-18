@@ -76,7 +76,7 @@ class ThemeController {
         const data = request.only(['temaid'])
         const current = auth.current.user
 
-        const user = await User.query
+        const user = await User.query()
         .where('id', current.id)
         .with('themes', (builder) => {
             builder.where('id', data.id)
