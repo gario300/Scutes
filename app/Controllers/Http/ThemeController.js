@@ -74,14 +74,11 @@ class ThemeController {
     async definirtema({auth,response,request}){
         
         const data = request.only(['temaid'])
-
-        const user = await auth.user.currentheme().fetch()
-
         const theme = await Theme.findBy('id', data.temaid)
     
-        if(user.currentheme == null && theme.moneda == 'puntos'){
+        if(theme.moneda == 'puntos'){
            let currentheme = new Currentheme()
-            currentheme.user_id = current.id
+            currentheme.user_id = auth.current.user.id
             currentheme.estilonavbar = theme.estilonavbar
             currentheme.estiloiconos = theme.estiloiconos
             currentheme.estilopagina = theme.estilopagina
