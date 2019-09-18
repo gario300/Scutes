@@ -7,6 +7,9 @@ class Theme extends Model {
     users () {
     return this.belongsToMany('App/Models/Goal')
     }
+    intertheme () {
+        return this.belongsTo('App/Models/Intertheme')
+    }
 
 }
 

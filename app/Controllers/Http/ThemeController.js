@@ -2,6 +2,7 @@
 const Cloudinary = use('Cloudinary')
 const Theme = use('App/Models/Theme')
 const User = use('App/Models/User')
+const Intertheme = use('App/Models/Intertheme')
 
 class ThemeController {
     async newtheme({auth, request, response}){
@@ -57,15 +58,17 @@ class ThemeController {
     }
     async mistemas({auth, response, params}){
         const user = auth.current.user
-        const mistemas = await User.query()
-        .where('id', user.id)
-        .with('themes')
+
+        const theme = await Intertheme.query()
+        .where('user_id', user.id)
+        .with('theme')
+        .fetch()
         .paginate(params.page, 8)
 
         return response.json({
             status: 'success',
-            data: mistemas.themes
-        })
+            data: theme
+          })
         
     }
 }
