@@ -62,7 +62,6 @@ class ThemeController {
         const theme = await Intertheme.query()
         .where('user_id', user.id)
         .with('theme')
-        .fetch()
         .paginate(params.page, 8)
 
         return response.json({
