@@ -117,6 +117,6 @@ class ThemeController {
 
 
     }
-}
+
 
 module.exports = ThemeController
