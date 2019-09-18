@@ -16,12 +16,6 @@ class CurrenthemeSchema extends Schema {
       table.string('userbox').notNullable()
       table.string('postbox').notNullable()
       table.string('colortexto').notNullable()
-      table.string('moneda').notNullable()
-      table.integer('precio').notNullable().unsigned().defaultTo(0)
-      table.integer('contadorcompras').notNullable().unsigned().defaultTo(0)
-      table.string('secure1',300).nullable()
-      table.string('secure2',300).nullable()
-      table.string('secure3',300).notNullable()
       table.timestamps()
     })
   }

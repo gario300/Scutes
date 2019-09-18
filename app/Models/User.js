@@ -63,6 +63,9 @@ class User extends Model {
       return this.belongsToMany('App/Models/Theme', 'user_id', 'theme_id')
       .pivotTable('interthemes')
     }
+    currentheme () {
+      return this.hasOne('App/Models/Currentheme')
+    }
 
 }
 

@@ -3,6 +3,7 @@ const Cloudinary = use('Cloudinary')
 const Theme = use('App/Models/Theme')
 const User = use('App/Models/User')
 const Intertheme = use('App/Models/Intertheme')
+const Currentheme = use('App/Models/Currentheme')
 
 class ThemeController {
     async newtheme({auth, request, response}){
@@ -69,6 +70,52 @@ class ThemeController {
             data: theme
           })
         
+    }
+    async definirtema({auth,response,request}){
+        
+        const data = request.only(['temaid'])
+        const current = auth.current.user
+
+        const user = await User.query
+        .where('id', current.id)
+        .with('themes', (builder) => {
+            builder.where('id', data.id)
+        })
+        .with('currentheme')
+        .fetch()
+
+        const themefind = user.themes
+
+        const theme = []
+        themefind.forEach(tema => {
+            theme.push(tema)
+        });
+
+        if(user.currentheme == [] && theme.id == data.temaid){
+
+           let currentheme = new Currentheme()
+            currentheme.user_id = user.id
+            currentheme.estilonavbar = theme.estilonavbar
+            currentheme.estiloiconos = theme.estiloiconos
+            currentheme.estilopagina = theme.estilopagina
+            currentheme.background = theme.background
+            currentheme.userbox = theme.userbox
+            currentheme.postbox = theme.postbox
+            currentheme.colortexto = theme.colortexto
+            await currentheme.save()
+
+            return response.json({
+                status: 'success',
+                data: currentheme
+              })
+
+           }
+
+
+        }
+
+
+
     }
 }
 
