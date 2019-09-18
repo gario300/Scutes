@@ -54,12 +54,12 @@ class ThemeController {
 
 
     }
-    async mistemas({auth, response}){
+    async mistemas({auth, response, params}){
         const user = auth.current.user
         const temas = await User.query()
         .where('id', user.id)
         .with('temas')
-        .firstOrFail()
+        .paginate(params.page, 8)
 
         return response.json({
             status: 'success',

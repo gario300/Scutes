@@ -32,7 +32,7 @@ const Route = use('Route')
 
   Route.group(() =>{
     Route.post('/new', 'ThemeController.newtheme' )
-    Route.get('/get', 'ThemeController.mistemas')
+    Route.get('/get/:page', 'ThemeController.mistemas')
 
   })
     .prefix('theme')
