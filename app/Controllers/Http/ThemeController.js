@@ -74,12 +74,8 @@ class ThemeController {
     async definirtema({auth,response,request}){
         
         const data = request.only(['temaid'])
-        const current = auth.current.user
 
-        const user = await User.query()
-        .where('id', current.id)
-        .with('currentheme')
-        .fetch()
+        const user = await auth.currentUser.load('currentheme')
 
         const theme = await Theme.findBy('id', data.temaid)
     
