@@ -1,6 +1,7 @@
 'use strict'
 const Cloudinary = use('Cloudinary')
 const Theme = use('App/Models/Theme')
+const User = use('App/Models/User')
 
 class ThemeController {
     async newtheme({auth, request, response}){
