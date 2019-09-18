@@ -75,7 +75,7 @@ class ThemeController {
         
         const data = request.only(['temaid'])
 
-        const user = await auth.currentUser.load('currentheme')
+        const user = await auth.user.currentheme().fetch()
 
         const theme = await Theme.findBy('id', data.temaid)
     
