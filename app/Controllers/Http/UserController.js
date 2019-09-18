@@ -76,6 +76,7 @@ class UserController {
                 builder.with('favorites')
                 builder.with('replies')
             })
+            .with('currentheme')
             .firstOrFail()
 
             
