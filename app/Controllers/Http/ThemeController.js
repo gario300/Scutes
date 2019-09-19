@@ -99,9 +99,7 @@ class ThemeController {
         temaactual({auth,response}){
             let user = auth.current.user
 
-            let theme = await Currentheme.query()
-            .where('user_id', user.id)
-            .fetch()
+            await User.findBy('user_id', user.id)
 
             return response.json({
                 status: 'success',
