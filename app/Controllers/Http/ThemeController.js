@@ -96,7 +96,7 @@ class ThemeController {
 
         }
 
-        temaactual({auth,response}){
+        current({auth,response}){
             const user = auth.current.user
 
             const theme = await Currentheme.findBy('user_id', user.id)
