@@ -175,20 +175,24 @@ class PostController {
             data: tweets
         })
     }
-    async showprofilepossts({params, response}){
+    async showprofileposts({params, response}){
 
         const post = Post.query()
             .where('user_id', params.id)
             .with('user')
             .with('favorites')
             .with('replies')
-            .fetch()
-        }
+            .paginate(params.page, 8)
+    
+            return response.json({
+                status: 'success',
+                data: post
+        })
 
     }
 
-    
-
 }
+
+
 
 module.exports = PostController

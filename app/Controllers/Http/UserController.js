@@ -76,6 +76,7 @@ class UserController {
                 builder.with('favorites')
                 builder.with('replies')
             })
+            .with('currentheme')
             .firstOrFail()
 
             
@@ -118,6 +119,12 @@ class UserController {
         try {
             const user = await User.query()
                 .where('username', params.username)
+                .with('posts', builder => {
+                    builder.with('user')
+                    builder.with('favorites')
+                    builder.with('replies')
+                })
+                .with('goals')
                 .with('following', builder => {
                     builder.with('followers')
                     builder.with('following')
