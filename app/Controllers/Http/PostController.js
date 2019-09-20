@@ -175,9 +175,9 @@ class PostController {
             data: tweets
         })
     }
-    async showprofileposts({params, response}){
+    async showprofileposts({params,request, response}){
 
-        const post = Post.query()
+        const post = await Post.query()
             .where('user_id', params.id)
             .with('user')
             .with('favorites')
