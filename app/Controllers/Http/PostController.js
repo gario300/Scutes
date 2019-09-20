@@ -168,7 +168,7 @@ class PostController {
             .with('favorites')
             .with('replies')
             .orderBy('created_at', 'DESC')
-            .paginate(params.page, 8)
+            .paginate(params.page, 3)
     
         return response.json({
             status: 'success',
@@ -183,7 +183,7 @@ class PostController {
             .with('user')
             .with('favorites')
             .with('replies')
-            .paginate(page,8)
+            .paginate(page,3)
     
             return response.json({
                 status: 'success',

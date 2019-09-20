@@ -199,7 +199,7 @@ class UserController {
           .with('favorites')
           .with('replies')
           .orderBy('created_at', 'DESC')
-          .paginate(params.page, 8)
+          .paginate(params.page, 3)
     
         return response.json({
           status: 'success',
