@@ -67,7 +67,6 @@ async shownotificationreader ({auth , response}){
             .where('receptor_id', user.id)
             .whereNot('user_id', user.id)
             .where('is_readed', false)
-            .fetch()
             .count()
 
         return response.json({
