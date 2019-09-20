@@ -10,11 +10,13 @@ class SeenderController {
         .where('receptor_id', user.id)
         .whereNot('user_id', user.id)
         .where('is_readed',false)
-        .fetch()
+        .count('* as total')
+
+         const total = getseender[0].total   
   
         return response.json({
             status: 'success',
-            data: getseender
+            data: total
         })
   
       }
