@@ -182,7 +182,7 @@ class PostController {
             .with('user')
             .with('favorites')
             .with('replies')
-            .paginate(request.input('page'), 8)
+            .paginate(request.input('page', 1), request.input('perPage', 10))
     
             return response.json({
                 status: 'success',
