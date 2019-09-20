@@ -179,7 +179,7 @@ class PostController {
         
         const page = request.query.foo
         const post = await Post.query()
-            .where('user_name', params.username)
+            .where('user_id', params.id)
             .with('user')
             .with('favorites')
             .with('replies')
