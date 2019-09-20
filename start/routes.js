@@ -75,7 +75,7 @@ const Route = use('Route')
       Route.post ( '/follow' , 'UserController.follow' );
       Route.delete('/unfollow/:id', 'UserController.unFollow');
       Route.get('/timeline/:page', 'UserController.timeline')
-      Route.get('/postusers/:id?foo=', 'PostController')
+      Route.get('/postusers/:id?foo=', 'PostController.showprofileposts')
   })
       .prefix('users')
       .middleware(['auth']);
