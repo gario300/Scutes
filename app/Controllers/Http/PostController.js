@@ -183,6 +183,7 @@ class PostController {
             .with('user')
             .with('favorites')
             .with('replies')
+            .orderBy('created_at', 'DESC')
             .paginate(page,3)
     
             return response.json({
