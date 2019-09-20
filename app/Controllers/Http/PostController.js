@@ -175,14 +175,15 @@ class PostController {
             data: tweets
         })
     }
-    async showprofileposts({params,request, response}){
-
+    async showprofileposts({params, request, response}){
+        
+        const page = request.get
         const post = await Post.query()
             .where('user_id', params.id)
             .with('user')
             .with('favorites')
             .with('replies')
-            .paginate(request.input('page', 1), request.input('perPage', 10))
+            .paginate(page,8)
     
             return response.json({
                 status: 'success',
