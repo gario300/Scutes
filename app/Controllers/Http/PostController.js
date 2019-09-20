@@ -177,7 +177,7 @@ class PostController {
     }
     async showprofileposts({params, request, response}){
         
-        const page = request.query.foo
+        const page = request.only(['foo']);
         const post = await Post.query()
             .where('user_id', params.id)
             .with('user')
