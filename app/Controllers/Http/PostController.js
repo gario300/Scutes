@@ -175,6 +175,17 @@ class PostController {
             data: tweets
         })
     }
+    async showprofilepossts({params, response}){
+
+        const post = Post.query()
+            .where('user_id', params.id)
+            .with('user')
+            .with('favorites')
+            .with('replies')
+            .fetch()
+        }
+
+    }
 
     
 
