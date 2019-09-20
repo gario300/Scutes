@@ -119,7 +119,7 @@ class UserController {
         try {
             const user = await User.query()
                 .where('username', params.username)
-                .with('posts').count()
+                .with('posts')
                 .with('goals')
                 .with('following', builder => {
                     builder.with('followers')
