@@ -127,6 +127,34 @@ class ThemeController {
                 data: null
             })
         }
+        async actualizartheme({auth, request, response}){
+            const data = request.only(['temaid'])
+
+            const user = auth.current.user
+
+            const currentheme = await Currentheme.findBy('user_id', user.id)
+            const theme = await Theme.findBy('id', data.temaid) 
+            
+            currentheme.user_id = user.id
+            currentheme.nombretema= theme.nombretema
+            currentheme.estilonavbar = theme.estilonavbar
+            currentheme.estiloiconos = theme.estiloiconos
+            currentheme.estilopagina = theme.estilopagina
+            currentheme.background = theme.background
+            currentheme.userbox = theme.userbox
+            currentheme.postbox = theme.postbox
+            currentheme.colortexto = theme.colortexto
+            await currentheme.save()
+
+            return response.json({
+                status: 'success',
+                data: currentheme
+              })
+
+            
+
+
+        }
 
 
 

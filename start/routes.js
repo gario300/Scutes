@@ -36,6 +36,7 @@ const Route = use('Route')
     Route.post('/change', 'ThemeController.definirtema' )
     Route.get('/currentheme', 'ThemeController.current')
     Route.delete('/quitar/:id', 'ThemeController.quitarcurrentheme')
+    Route.put('/cambiartema','ThemeController.actualizartheme')
 
   })
     .prefix('theme')
