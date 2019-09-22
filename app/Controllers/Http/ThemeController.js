@@ -112,7 +112,7 @@ class ThemeController {
 
         async quitarcurrentheme({auth, params, response}){
             
-            const user = auth.current
+            const user = auth.current.user
 
             const current = await Currentheme.query()
             .where('user_id', user.id)
