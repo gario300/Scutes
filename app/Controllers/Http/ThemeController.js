@@ -78,6 +78,7 @@ class ThemeController {
     
            let currentheme = new Currentheme()
             currentheme.user_id = auth.current.user.id
+            currentheme.nombretema= theme.nombretema
             currentheme.estilonavbar = theme.estilonavbar
             currentheme.estiloiconos = theme.estiloiconos
             currentheme.estilopagina = theme.estilopagina
@@ -107,6 +108,24 @@ class ThemeController {
                 data: theme
               })
 
+        }
+
+        async quitarcurrentheme({auth, params, response}){
+            
+            const user = auth.current
+
+            const current = await Currentheme.query()
+            .where('user_id', user.id)
+            .where('id', params.id)
+            .firstOrFail()
+            
+            await current.delete()
+
+            return response.json({
+                status: 'success',
+                message: 'Tema quitado',
+                data: null
+            })
         }
 
 

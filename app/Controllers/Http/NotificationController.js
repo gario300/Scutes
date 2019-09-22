@@ -38,7 +38,8 @@ class NotificationController {
     }
 
     async shownotification ({auth , response}){
-        
+        const page = request.only(['foo']);
+
         const user = auth.current.user
         try {
             const noti = await Notification.query()
@@ -47,7 +48,7 @@ class NotificationController {
                 .with('user')
                 .with('post')
                 .orderBy('created_at', 'DESC')
-                .fetch()
+                .paginate(page, 8)
     
             return response.json({
                 status: 'success',
