@@ -151,10 +151,59 @@ class ThemeController {
                 data: currentheme
               })
 
-            
+        }
+
+        async tienda({params , response}){
+          const store = await Theme.query()
+          
+          .with('user')
+          .orderBy('created_at', 'DESC')
+          .paginate(params.page, 3)
+
+          return response.json({
+            status: 'success',
+            data: store
+          
+          })
+   
+        }
+
+        async comprarpuntos ({request, auth}){
+            const data = request.only(['temaid','userid'])
+
+            const user1 = auth.current.user
+            const user2 = await User.findBy('id', data.userid)
+
+            const tema = await Theme.findBy('id', data.temaid)
+
+            if (user1.puntos >= tema.precio){
+                
+                user2.puntos = user2.puntos + tema.precio
+                await user2.save()
+
+                user1.puntos = user1.puntos - tema.precio
+                await user1.save()
+
+                user1.themes().attach([tema.id])
+
+                return response.json({
+                    status: 'Comprado!',
+                    data: null
+                  
+                  })
+
+            } else {
+
+                return response.json({
+                    status: 'No tienes puntos suficiente',
+                    data: null
+                  
+                  })
+            }
 
 
         }
+        
 
 
 

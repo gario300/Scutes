@@ -113,3 +113,11 @@ const Route = use('Route')
         //Eliminar Post
       
         Route.delete('/posts/destroy/:id', 'PostController.destroy').middleware(['auth'])
+
+        //tienda 
+      Route.group(() => {
+      Route.get('/tienda/:page', 'ThemeController.tienda')
+      Route.post('/comprar', 'ThemeController.comprarpuntos')
+      })
+        .prefix('notif')
+        .middleware(['auth']);
