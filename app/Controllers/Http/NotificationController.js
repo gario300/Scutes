@@ -37,7 +37,7 @@ class NotificationController {
 
     }
 
-    async shownotification ({auth , response}){
+    async shownotification ({auth , response, request}){
         const page = request.only(['foo']);
 
         const user = auth.current.user
