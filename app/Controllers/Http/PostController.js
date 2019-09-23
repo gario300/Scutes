@@ -177,7 +177,10 @@ class PostController {
     }
     async showprofileposts({params, request, response}){
         
-        const page = request.only(['foo']);
+        const data = request.only(['foo']);
+        
+        const page = parseInt(data.foo , 10);
+
         const post = await Post.query()
             .where('user_id', params.id)
             .whereNot('user_id',null)
@@ -185,7 +188,7 @@ class PostController {
             .with('favorites')
             .with('replies')
             .orderBy('created_at', 'DESC')
-            .paginate(page,3)
+            .paginate(page , 3)
     
             return response.json({
                 status: 'success',

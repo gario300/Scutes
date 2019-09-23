@@ -38,7 +38,8 @@ class NotificationController {
     }
 
     async shownotification ({auth , response, request}){
-        const page = request.only(['foo']);
+        const data = request.only(['foo']);
+        const page = parseInt(data.foo , 10);
 
         const user = auth.current.user
         try {
