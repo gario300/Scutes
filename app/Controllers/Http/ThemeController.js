@@ -203,7 +203,7 @@ class ThemeController {
             const data = request.only(['temaid','nombrecreador'])
 
             const user1 = auth.current.user
-            const user2 = await User.findBy('usermane', data.nombrecreador)
+            const user2 = await User.findBy('username', data.nombrecreador)
 
             const theme = store = await Theme.query()
             .select('users.id AS tenertema',
