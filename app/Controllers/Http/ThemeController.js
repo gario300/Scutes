@@ -164,7 +164,7 @@ class ThemeController {
             let store = null
             try {
                 store = await Theme.query()
-                    .select('user.id AS tenertema',
+                    .select('users.id AS tenertema',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
                     'theme.creador AS creador',
@@ -178,8 +178,9 @@ class ThemeController {
                     'theme.moneda AS pay',
                     'theme.precio AS price'
                     )
-                    .join('users as user', 'interthemes.user_id', '=', 'user.id')
-                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
+                    .from('users')
+                    .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
+                    .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .paginate(params.page, response)
             } catch (err) {
                 console.log(err)

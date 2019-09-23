@@ -21,7 +21,7 @@ const Route = use('Route')
 	  const Database = use('Database');
 	  const x= await Database.select('*').from('users');
 	  return x;
-  });
+  })
   
   Route.put('/nerfeo', 'UserController.nerfeos')
   Route.get('/royal', 'UserController.royale')
