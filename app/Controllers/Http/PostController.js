@@ -178,7 +178,7 @@ class PostController {
     async showprofileposts({params, request, response}){
         
         const data = request.only(['foo']);
-        const page = parseInt(data , 10);
+        const page = parseInt(data.foo , 10);
 
         const post = await Post.query()
             .where('user_id', params.id)
