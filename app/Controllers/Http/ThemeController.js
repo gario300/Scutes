@@ -176,15 +176,17 @@ class ThemeController {
                     'theme.postbox AS pbox',
                     'theme.colortexto AS texto',
                     'theme.moneda AS pay',
-                    'theme.precio AS price'
+                    'theme.precio AS price',
+                    'teme.created_at AS created'
                     )
                     .from('users')
                     .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
                     .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .whereNot('theme_id', null)
-                    .orderBy('created_at', 'DESC')
+                    .whereNot('user_id', null)
+                    .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
-
+                    
             } catch (err) {
                 console.log(err)
             }
