@@ -181,7 +181,6 @@ class ThemeController {
                     .from('users')
                     .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
                     .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
-                    .whereNot('user_id', '=', null)
                     .whereNot('theme_id', '=', null)
                     .paginate(params.page, response)
             } catch (err) {
