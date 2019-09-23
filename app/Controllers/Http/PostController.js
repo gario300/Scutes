@@ -180,6 +180,7 @@ class PostController {
         const page = request.only(['foo']);
         const post = await Post.query()
             .where('user_id', params.id)
+            .whereNot('user_id',null)
             .with('user')
             .with('favorites')
             .with('replies')

@@ -45,6 +45,7 @@ class NotificationController {
             const noti = await Notification.query()
                 .where('receptor_id', user.id) 
                 .whereNot('user_id', user.id)
+                .whereNot('receptor_id', null)
                 .with('user')
                 .with('post')
                 .orderBy('created_at', 'DESC')
