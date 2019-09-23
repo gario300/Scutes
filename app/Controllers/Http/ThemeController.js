@@ -177,7 +177,7 @@ class ThemeController {
                     'theme.colortexto AS texto',
                     'theme.moneda AS pay',
                     'theme.precio AS price',
-                    'teme.created_at AS created'
+                    'theme.created_at AS created'
                     )
                     .from('users')
                     .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
