@@ -160,31 +160,35 @@ class ThemeController {
 
         }
 
-        async tienda({params , response}){
-            
-            const store = await Theme.query()
-            .select('user.id AS tenertema',
-            'theme.id AS id', 
-            'theme.nombretema AS nombretema',
-            'theme.creador AS creador',
-            'theme.estilonavbar AS navbar',
-            'theme.estiloiconos AS iconos',
-            'theme.estilopagina AS pagina',
-            'theme.background AS Fondo',
-            'theme.userbox AS ubox',
-            'theme.postbox AS pbox',
-            'theme.colortexto AS texto',
-            'theme.moneda AS pay',
-            'theme.precio AS price'
-            )
-            .join('users as user', 'interthemes.user_id', '=', 'user.id')
-            .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
-            .paginate(params.page, response)
+        async tienda({params , response}) {
+            let store = null
+            try {
+                store = await Theme.query()
+                    .select('user.id AS tenertema',
+                    'theme.id AS id', 
+                    'theme.nombretema AS nombretema',
+                    'theme.creador AS creador',
+                    'theme.estilonavbar AS navbar',
+                    'theme.estiloiconos AS iconos',
+                    'theme.estilopagina AS pagina',
+                    'theme.background AS Fondo',
+                    'theme.userbox AS ubox',
+                    'theme.postbox AS pbox',
+                    'theme.colortexto AS texto',
+                    'theme.moneda AS pay',
+                    'theme.precio AS price'
+                    )
+                    .join('users as user', 'interthemes.user_id', '=', 'user.id')
+                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
+                    .paginate(params.page, response)
+            } catch (err) {
+                console.log(err)
+            }
 
           return response.json({
             status: 'success',
             data: store
-          
+        
           })
    
         }
