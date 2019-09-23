@@ -182,9 +182,9 @@ class ThemeController {
                     .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
                     .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .whereNot('theme_id', null)
-                    .whereNot('user_id', null)
                     .orderBy('created_at', 'DESC')
                     .paginate(params.page, 3)
+
             } catch (err) {
                 console.log(err)
             }
