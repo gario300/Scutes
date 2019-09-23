@@ -226,7 +226,7 @@ class ThemeController {
             .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
             .whereNot('theme_id', null)
             .whereNot('user_id', null)
-            .where('id', data.temaid)
+            .where('theme_id', data.temaid)
             .orderBy('created', 'DESC')
             .firstOrFail()
 
