@@ -179,9 +179,27 @@ class ThemeController {
             const user1 = auth.current.user
             const user2 = await User.findBy('id', data.userid)
 
-            const tema = await Theme.findBy('id', data.temaid)
+            const tema = await Theme.query()
+                .select('user.id AS tenertema',
+                'theme.id AS id', 
+                'theme.nombretema AS nombretema',
+                'theme.creador AS creador',
+                'theme.estilonavbar AS navbar',
+                'theme.estiloiconos AS iconos',
+                'theme.estilopagina AS pagina',
+                'theme.background AS Fondo',
+                'theme.userbox AS ubox',
+                'theme.postbox AS pbox',
+                'theme.colortexto AS texto',
+                'theme.moneda AS pay',
+                'theme.precio AS price'
+                )
+                .join('user as user', 'interthemes.user_id', '=', 'user.id')
+                .join('theme as theme', 'theme_id', '=', 'theme.id')
+                .fetch()
 
-            if (user1.puntos >= tema.precio){
+
+            if (user1.puntos >= tema.price){
                 
                 user2.puntos = user2.puntos + tema.precio
                 await user2.save()
