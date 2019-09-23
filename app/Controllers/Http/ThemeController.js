@@ -178,7 +178,7 @@ class ThemeController {
             'theme.precio AS price'
             )
             .join('users as user', 'interthemes.user_id', '=', 'user.id')
-            .join('themes as theme', 'theme_id', '=', 'theme.id')
+            .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
             .paginate(params.page, response)
 
           return response.json({
