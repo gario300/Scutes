@@ -177,7 +177,7 @@ class ThemeController {
             'theme.moneda AS pay',
             'theme.precio AS price'
             )
-            .join('user as user', 'interthemes.user_id', '=', 'user.id')
+            .join('users as user', 'interthemes.user_id', '=', 'user.id')
             .join('theme as theme', 'theme_id', '=', 'theme.id')
             .paginate(params.page, response)
 
