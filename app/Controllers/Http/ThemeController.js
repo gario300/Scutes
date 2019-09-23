@@ -11,6 +11,7 @@ class ThemeController {
         const data = request.only(['nombretema','estilonavbar','estiloiconos',
         'estilopagina','background','userbox','postbox','colortexto','moneda','precio']);
 
+        if (user.puntos >= 100) {
         let background = data['background'];//request.file('avatar', { types: ['image'], size: '2mb' })
         console.log("Uploading pic");
 
@@ -54,7 +55,13 @@ class ThemeController {
         await user.save();
     
         return response.status(201).json(theme);
+    } else {
+        return response.json({
+            status: 'no tienes suficientes puntos',
+            data: null
+          })
 
+    }
 
     }
     async mistemas({auth, response, params}){
