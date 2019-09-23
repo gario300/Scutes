@@ -200,15 +200,38 @@ class ThemeController {
         }
 
         async comprarpuntos ({request, auth}){
-            const data = request.only(['temaid','userid'])
+            const data = request.only(['temaid','nombrecreador'])
 
             const user1 = auth.current.user
-            const user2 = await User.findBy('id', data.userid)
+            const user2 = await User.findBy('usermane', data.nombrecreador)
 
-            const theme = await Theme.findBy('id', temaid)
+            const theme = store = await Theme.query()
+            .select('users.id AS tenertema',
+            'theme.id AS id', 
+            'theme.nombretema AS nombretema',
+            'theme.creador AS creador',
+            'theme.estilonavbar AS navbar',
+            'theme.estiloiconos AS iconos',
+            'theme.estilopagina AS pagina',
+            'theme.background AS Fondo',
+            'theme.userbox AS ubox',
+            'theme.postbox AS pbox',
+            'theme.colortexto AS texto',
+            'theme.moneda AS pay',
+            'theme.precio AS price',
+            'theme.created_at AS created'
+            )
+            .from('users')
+            .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
+            .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
+            .whereNot('theme_id', null)
+            .whereNot('user_id', null)
+            .where('id', temaid)
+            .orderBy('created', 'DESC')
+            .firstOrFail()
 
 
-            if (user1.puntos >= tema.price){
+            if (user1.puntos >= tema.price && user1 !== tema.tenertema){
                 
                 user2.puntos = user2.puntos + tema.precio
                 await user2.save()
