@@ -183,7 +183,7 @@ class ThemeController {
         async tienda({params , response}) {
             let store = null
             try {
-                store = await Theme.query()
+                store = await Intheme.query()
                     .select('users.id AS tenertema',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
@@ -204,7 +204,6 @@ class ThemeController {
                     .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .whereNot('theme_id', null)
                     .whereNot('user_id', null)
-                    .where('creador', store.creador)
                     .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
                     
