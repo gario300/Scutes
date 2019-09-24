@@ -184,6 +184,7 @@ class ThemeController {
 
                 const store = await Theme.query()
                     .select('users.id AS tenertema',
+                    'users.name AS name',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
                     'theme.creador AS creador',
@@ -203,6 +204,7 @@ class ThemeController {
                     .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .whereNot('theme_id', null)
                     .whereNot('user_id', null)
+                    .whereNot('creador', 'name')
                     .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
                     
