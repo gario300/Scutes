@@ -67,10 +67,30 @@ class ThemeController {
     async mistemas({auth, response, params}){
         const user = auth.current.user
 
-        const theme = await Intertheme.query()
-        .where('user_id', user.id)
-        .with('theme')
-        .paginate(params.page, 8)
+        const theme = await Theme.query()
+        .select('users.id AS tenertema',
+        'theme.id AS id', 
+        'theme.nombretema AS nombretema',
+        'theme.creador AS creador',
+        'theme.estilonavbar AS navbar',
+        'theme.estiloiconos AS iconos',
+        'theme.estilopagina AS pagina',
+        'theme.background AS Fondo',
+        'theme.userbox AS ubox',
+        'theme.postbox AS pbox',
+        'theme.colortexto AS texto',
+        'theme.moneda AS pay',
+        'theme.precio AS price',
+        'theme.created_at AS created'
+        )
+        .from('users')
+        .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
+        .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
+        .whereNot('theme_id', null)
+        .whereNot('user_id', null)
+        .where('tenertema', user.id)
+        .orderBy('created', 'DESC')
+        .paginate(params.page, 3)
 
         return response.json({
             status: 'success',
