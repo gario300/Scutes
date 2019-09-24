@@ -183,7 +183,7 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                    .select('interthemes.user_id AS tenertema',
+                    .select(
                     'name AS name',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
