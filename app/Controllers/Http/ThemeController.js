@@ -199,7 +199,6 @@ class ThemeController {
                     'theme.precio AS price',
                     'theme.created_at AS created'
                     )
-                    .select('users.name AS Emisor', 'talk', 'user2.name AS Receptor')
                     .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
                     .join('users as user', 'interthemes.user_id', '=', 'user.id')
                     .whereNot('theme_id', null)
