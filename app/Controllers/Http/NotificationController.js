@@ -61,10 +61,8 @@ class NotificationController {
         const user = auth.current.user
         try {
             const noti = await Notification.query()
-                .where(function () {
-                    this.orWhere('receptor_id', user.id)
-                    this.orWhere('creador_name', user.username )
-                  })
+                .where('receptor_id', user.id)
+                .orWhere('creador_name',user.username)
                 .whereNot('user_id', user.id)
                 .whereNot('receptor_id', null)
                 .with('user')
@@ -89,6 +87,7 @@ async shownotificationreader ({auth , response}){
     try {
         const noti = await Notification.query()
             .where('receptor_id', user.id)
+            .orWhere('creador_name',user.username)
             .whereNot('user_id', user.id)
             .where('is_readed', false)
             .count('* as total')
