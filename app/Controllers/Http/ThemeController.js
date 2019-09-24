@@ -199,10 +199,8 @@ class ThemeController {
                     'theme.precio AS price',
                     'theme.created_at AS created'
                     )
-                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
                     .join('users as user', 'interthemes.user_id', '=', 'user.id')
-                    .whereNot('theme_id', null)
-                    .whereNot('user_id', null)
+                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
                     .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
                     
