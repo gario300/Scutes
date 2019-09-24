@@ -25,13 +25,13 @@ class NotificationController {
         await noti.loadMany(['user','post'])
         } else{
             const theme = await Theme.query()
-            .where('id', data.themeidid)
+            .where('id', data.themeid)
             .with('user')
             .firstOrFail(); 
 
             const noti = new Notification();
             noti.user_id = user.id; 
-            noti.creador = data.creador
+            noti.receptor_name= data.creadorname
             noti.theme_id = theme.id;
             noti.notification_type = data.notification_type;
             await noti.save();
