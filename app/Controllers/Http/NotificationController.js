@@ -25,7 +25,7 @@ class NotificationController {
         await noti.loadMany(['user','post'])
         } else{
             const theme = await Theme.query()
-            .where('id', data.themeidid)
+            .where('id', data.themeid)
             .with('user')
             .firstOrFail(); 
 
