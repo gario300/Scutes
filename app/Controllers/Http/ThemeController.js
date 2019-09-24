@@ -183,7 +183,7 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                .orderBy('created', 'DESC')
+                .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
                     
 
