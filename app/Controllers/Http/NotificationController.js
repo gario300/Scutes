@@ -89,7 +89,8 @@ async shownotificationreader ({auth , response}){
             .where('receptor_id', user.id)
             .orWhere('receptor_name',user.username)
             .whereNot('user_id', user.id)
-            .whereNot('is_readed', false)
+            .whereNot('is_readed', true)
+            .where('is_readed', true)
             .count('* as total')
 
          const total = noti[0].total   
