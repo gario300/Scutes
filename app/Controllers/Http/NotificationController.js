@@ -87,7 +87,7 @@ async shownotificationreader ({auth , response}){
     try {
         const noti = await Notification.query()
             .where('receptor_id', user.id)
-            .orWhere('creador_name',user.username)
+            .orWhere('creador',user.username)
             .whereNot('user_id', user.id)
             .where('is_readed', false)
             .count('* as total')
