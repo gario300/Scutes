@@ -199,8 +199,9 @@ class ThemeController {
                     'theme.precio AS price',
                     'theme.created_at AS created'
                     )
-                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
-                    .join('users as user', 'interthemes.user_id', '=', 'user.id')
+                    .from('users')
+                    .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
+                    .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
                     .whereNot('theme_id', null)
                     .whereNot('user_id', null)
                     .orderBy('created', 'DESC')
