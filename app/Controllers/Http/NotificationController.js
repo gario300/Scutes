@@ -2,15 +2,17 @@
 const Notification = use('App/Models/Notification')
 const Post = use('App/Models/Post')
 const User = use ('App/Models/User')
+const Theme = use ('App/Models/Theme')
 
 class NotificationController {
-    async newnotification ({ request, auth, params}) {
-        const data = request.only(['notification_type']);
+    async newnotification ({ request, auth}) {
+        const data = request.only(['notification_type',  'themeid','postid']);
 
         const user = auth.current.user;
         
+        if (data.themeid == null){
         const post = await Post.query()
-                    .where('id', params.id)
+                    .where('id', data.postid)
                     .with('user')
                     .firstOrFail(); 
         
@@ -21,6 +23,21 @@ class NotificationController {
         noti.notification_type = data.notification_type;
         await noti.save();
         await noti.loadMany(['user','post'])
+        } else{
+            const theme = await Theme.query()
+            .where('id', data.themeidid)
+            .with('user')
+            .firstOrFail(); 
+
+            const noti = new Notification();
+            noti.user_id = user.id; 
+            noti.receptor_id = post.user_id
+            noti.theme_id = theme.id;
+            noti.notification_type = data.notification_type;
+            await noti.save();
+            await noti.loadMany(['user','theme'])
+
+        } 
 
     }
     async notifollow({ request, auth}) {
@@ -49,6 +66,7 @@ class NotificationController {
                 .whereNot('receptor_id', null)
                 .with('user')
                 .with('post')
+                .with('theme')
                 .orderBy('created_at', 'DESC')
                 .paginate(page, 8)
     

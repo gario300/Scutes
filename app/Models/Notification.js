@@ -10,6 +10,12 @@ class Notification extends Model {
     post(){
         return this.belongsTo('App/Models/Post')
     }
+    theme(){
+        return this.belongsTo('App/Models/Theme')
+    }
+    notifications(){
+        return this.hasMany('App/Models/Notification')
+    }
       
 }
 
