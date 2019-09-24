@@ -6,7 +6,7 @@ const Theme = use ('App/Models/Theme')
 
 class NotificationController {
     async newnotification ({ request, auth}) {
-        const data = request.only(['notification_type', 'themeid','postid','creadorname', 'user_id']);
+        const data = request.only(['notification_type', 'themeid','postid','creadorname']);
 
         const user = auth.current.user;
         
@@ -18,20 +18,20 @@ class NotificationController {
         
         const noti = new Notification();
         noti.user_id = user.id; 
-        noti.receptor_id = data.user_id
+        noti.receptor_id = post.user_id
         noti.post_id = post.id;
         noti.notification_type = data.notification_type;
         await noti.save();
         await noti.loadMany(['user','post'])
         } else{
             const theme = await Theme.query()
-            .where('id', data.themeid)
+            .where('id', data.themeidid)
             .with('user')
             .firstOrFail(); 
 
             const noti = new Notification();
             noti.user_id = user.id; 
-            noti.creador_name = data.creador
+            noti.creador = data.creador
             noti.theme_id = theme.id;
             noti.notification_type = data.notification_type;
             await noti.save();
