@@ -183,8 +183,6 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                .whereNot('theme_id', null)
-                .whereNot('user_id', null)
                 .orderBy('created', 'DESC')
                 .paginate(params.page, 3)
                     
