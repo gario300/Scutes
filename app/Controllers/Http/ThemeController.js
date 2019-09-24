@@ -199,7 +199,7 @@ class ThemeController {
    
         }
 
-        async comprarpuntos ({request, auth}){
+        async comprarpuntos ({request, auth, response}){
             const data = request.only(['nombretema','nombrecreador'])
 
             const user1 = auth.current.user
