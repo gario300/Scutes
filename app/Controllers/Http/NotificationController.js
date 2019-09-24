@@ -6,7 +6,7 @@ const Theme = use ('App/Models/Theme')
 
 class NotificationController {
     async newnotification ({ request, auth}) {
-        const data = request.only(['notification_type', 'themeid','postid','creadorname']);
+        const data = request.only(['notification_type', 'themeid','postid','creadorname', 'user_id']);
 
         const user = auth.current.user;
         
@@ -18,7 +18,7 @@ class NotificationController {
         
         const noti = new Notification();
         noti.user_id = user.id; 
-        noti.receptor_id = post.user_id
+        noti.receptor_id = data.user_id
         noti.post_id = post.id;
         noti.notification_type = data.notification_type;
         await noti.save();
