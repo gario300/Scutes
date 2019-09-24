@@ -6,7 +6,7 @@ const Theme = use ('App/Models/Theme')
 
 class NotificationController {
     async newnotification ({ request, auth}) {
-        const data = request.only(['notification_type',  'themeid','postid']);
+        const data = request.only(['notification_type', 'themeid','postid','creadorname']);
 
         const user = auth.current.user;
         
@@ -31,7 +31,7 @@ class NotificationController {
 
             const noti = new Notification();
             noti.user_id = user.id; 
-            noti.receptor_id = post.user_id
+            noti.creador_name = data.creador
             noti.theme_id = theme.id;
             noti.notification_type = data.notification_type;
             await noti.save();
@@ -61,7 +61,10 @@ class NotificationController {
         const user = auth.current.user
         try {
             const noti = await Notification.query()
-                .where('receptor_id', user.id) 
+                .where(function () {
+                    this.orWhere('receptor_id', user.id)
+                    this.orWhere('creador_name', user.username )
+                  })
                 .whereNot('user_id', user.id)
                 .whereNot('receptor_id', null)
                 .with('user')

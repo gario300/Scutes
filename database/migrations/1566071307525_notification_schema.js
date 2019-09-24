@@ -9,6 +9,7 @@ class NotificationSchema extends Schema {
       table.increments()
       table.integer('user_id').nullable().unsigned().references('id').inTable('users')
       .onDelete('CASCADE')
+      table.string('creador_name')
       table.integer('receptor_id').nullable().unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.integer('post_id').nullable().unsigned().references('id').inTable('posts').onDelete('CASCADE')
       table.string('notification_type')
