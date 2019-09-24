@@ -101,7 +101,7 @@ const Route = use('Route')
       //Notificaciones
       Route.group(() => {
         Route.post('/newnoti', 'NotificationController.newnotification');
-        Route.post('/newnoti', 'NotificationController.notifollow' )
+        Route.post('/newnotifollow', 'NotificationController.notifollow' )
         Route.get('/getnoti', 'NotificationController.shownotification')
         Route.get('/notisending','SeenderController.notisender')
         Route.get('/getnotiview', 'NotificationController.shownotificationreader')
