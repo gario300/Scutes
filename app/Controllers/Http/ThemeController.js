@@ -205,7 +205,7 @@ class ThemeController {
             const user1 = auth.current.user
             const user2 = await User.findBy('username', data.nombrecreador)
 
-            const theme = store = await Theme.query()
+            const tema = await Theme.query()
             .select('users.id AS tenertema',
             'theme.id AS id', 
             'theme.nombretema AS nombretema',
@@ -226,7 +226,7 @@ class ThemeController {
             .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
             .whereNot('theme_id', null)
             .whereNot('user_id', null)
-            .where('theme_id', data.temaid)
+            .where('', data.temaid)
             .orderBy('created', 'DESC')
             .firstOrFail()
 
