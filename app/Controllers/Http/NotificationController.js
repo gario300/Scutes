@@ -84,10 +84,11 @@ class NotificationController {
 async shownotificationreader ({auth , response}){
         
     const user = auth.current.user
+    const name = user.username
     try {
         const noti = await Notification.query()
             .where('receptor_id', user.id)
-            .orWhere('receptor_name',user.username)
+            .orWhere('receptor_name', name)
             .whereNot('user_id', user.id)
             .whereNot('is_readed', true)
             .where('is_readed', false)
