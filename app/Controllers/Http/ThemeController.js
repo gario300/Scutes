@@ -200,7 +200,7 @@ class ThemeController {
         }
 
         async comprarpuntos ({request, auth}){
-            const data = request.only(['temaid','nombrecreador'])
+            const data = request.only(['nombretema','nombrecreador'])
 
             const user1 = auth.current.user
             const user2 = await User.findBy('username', data.nombrecreador)
@@ -226,8 +226,7 @@ class ThemeController {
             .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
             .whereNot('theme_id', null)
             .whereNot('user_id', null)
-            .where('id', data.temaid)
-            .orderBy('created', 'DESC')
+            .where('nombretema', data.nombretema)
             .firstOrFail()
 
 
