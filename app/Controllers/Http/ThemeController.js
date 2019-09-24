@@ -232,10 +232,10 @@ class ThemeController {
 
             if (user1.puntos >= tema.price && user1 !== tema.tenertema){
                 
-                user2.puntos = user2.puntos + tema.precio
+                user2.puntos = user2.puntos + tema.price
                 await user2.save()
 
-                user1.puntos = user1.puntos - tema.precio
+                user1.puntos = user1.puntos - tema.price
                 await user1.save()
 
                 user1.themes().attach([tema.id])
