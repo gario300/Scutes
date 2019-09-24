@@ -88,7 +88,7 @@ class ThemeController {
         .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
         .whereNot('theme_id', null)
         .whereNot('user_id', null)
-        .where('tenertema', user.id)
+        .where('user_id',user.id)
         .orderBy('created', 'DESC')
         .paginate(params.page, 3)
 
