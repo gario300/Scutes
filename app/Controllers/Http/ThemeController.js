@@ -183,8 +183,8 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                    .select('users.id AS tenertema',
-                    'users.name AS name',
+                    .select('user.id AS tenertema',
+                    'user.name AS name',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
                     'theme.creador AS creador',
@@ -199,12 +199,11 @@ class ThemeController {
                     'theme.precio AS price',
                     'theme.created_at AS created'
                     )
-                    .from('users')
-                    .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
-                    .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
+                    .select('users.name AS Emisor', 'talk', 'user2.name AS Receptor')
+                    .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
+                    .join('users as user', 'interthemes.user_id', '=', 'user.id')
                     .whereNot('theme_id', null)
                     .whereNot('user_id', null)
-                    .whereNotIn('creador', 'name')
                     .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
                     
