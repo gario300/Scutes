@@ -183,8 +183,8 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                    .select('users.id AS tenertema',
-                    'users.name AS name',
+                    .select('interthemes.user_id AS tenertema',
+                    'name AS name',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
                     'theme.creador AS creador',
@@ -205,16 +205,6 @@ class ThemeController {
                     .whereNot('theme_id', null)
                     .whereNot('user_id', null)
                     .orderBy('created', 'DESC')
-                    .on('query-response', (response, obj, builder) => {
-                        const rows = []
-                        response.forEach((row, index) => {
-                          if (rows.indexOf(row.id) < 1) {
-                            response.splice(index, 1)
-                          } else {
-                            rows.push(row.id)
-                          }
-                        })
-                      })
                     .paginate(params.page, 3)
                     
 
