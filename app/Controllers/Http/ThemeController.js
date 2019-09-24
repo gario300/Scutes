@@ -181,9 +181,8 @@ class ThemeController {
         }
 
         async tienda({params , response}) {
-            let store = null
-            try {
-                store = await Intheme.query()
+
+                const store = await Theme.query()
                     .select('users.id AS tenertema',
                     'theme.id AS id', 
                     'theme.nombretema AS nombretema',
@@ -207,9 +206,6 @@ class ThemeController {
                     .orderBy('created', 'DESC')
                     .paginate(params.page, 3)
                     
-            } catch (err) {
-                console.log(err)
-            }
 
           return response.json({
             status: 'success',
