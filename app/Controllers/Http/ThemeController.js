@@ -183,29 +183,10 @@ class ThemeController {
         async tienda({params , response}) {
 
                 const store = await Theme.query()
-                    .select(
-                    'name AS name',
-                    'theme.id AS id', 
-                    'theme.nombretema AS nombretema',
-                    'theme.creador AS creador',
-                    'theme.estilonavbar AS navbar',
-                    'theme.estiloiconos AS iconos',
-                    'theme.estilopagina AS pagina',
-                    'theme.background AS Fondo',
-                    'theme.userbox AS ubox',
-                    'theme.postbox AS pbox',
-                    'theme.colortexto AS texto',
-                    'theme.moneda AS pay',
-                    'theme.precio AS price',
-                    'theme.created_at AS created'
-                    )
-                    .from('users')
-                    .leftJoin('interthemes as IT', 'IT.user_id', '=', 'users.id')
-                    .leftJoin('themes as theme', 'IT.theme_id', '=', 'theme.id')
-                    .whereNot('theme_id', null)
-                    .whereNot('user_id', null)
-                    .orderBy('created', 'DESC')
-                    .paginate(params.page, 3)
+                .whereNot('theme_id', null)
+                .whereNot('user_id', null)
+                .orderBy('created', 'DESC')
+                .paginate(params.page, 3)
                     
 
           return response.json({
