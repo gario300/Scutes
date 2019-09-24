@@ -208,7 +208,7 @@ class ThemeController {
                     .on('query-response', (response, obj, builder) => {
                         const rows = []
                         response.forEach((row, index) => {
-                          if (rows.indexOf(row.id) > -1) {
+                          if (rows.indexOf(row.id) > 1) {
                             response.splice(index, 1)
                           } else {
                             rows.push(row.id)
