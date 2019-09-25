@@ -196,11 +196,11 @@ class ThemeController {
         }
         async temasusuario({auth,response}){
             
-            await User.query()
+            const user = await User.query()
             .where('id', auth.current.user.id)
             .with('themes')
             .firstOrFail()
-            
+
             return response.json({
                 status: 'success',
                 data: user
