@@ -203,6 +203,7 @@ class ThemeController {
         )
         .join('users as us', 'interthemes.user_id', '=', 'us.id')
         .join('themes as theme', 'interthemes.theme_id', '=', 'theme.id')
+        .whereNot('user_id',user.id)
         .orderBy('created', 'DESC')
         .paginate(params.page, 3)
 
