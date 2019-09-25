@@ -4,8 +4,8 @@
 const Model = use('Model')
 
 class Theme extends Model {
-    user () {
-    return this.belongsToMany('App/Models/Goal')
+    users () {
+    return this.belongsToMany('App/Models/User')
     }
     intertheme () {
         return this.belongsTo('App/Models/Intertheme')
