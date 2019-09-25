@@ -190,6 +190,12 @@ class ThemeController {
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
 
+                function getFilteredByKey(array, key, value) {
+                    return themes.filter(function(e) {
+                      return e[key] !== user.id;
+                    });
+                  }
+
                     
 
           return response.json({
