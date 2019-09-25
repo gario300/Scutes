@@ -117,7 +117,9 @@ const Route = use('Route')
         //tienda 
       Route.group(() => {
       Route.get('/temas/:page', 'ThemeController.tienda')
+      Route.get('/temasusuario/', 'ThemeController.temasusuario')
       Route.post('/comprartemapuntos', 'ThemeController.comprarpuntos')
+
       })
         .prefix('tienda')
         .middleware(['auth']);

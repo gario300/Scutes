@@ -194,6 +194,18 @@ class ThemeController {
           })
    
         }
+        async temasusuario({auth,response}){
+            
+            await User.query()
+            .where('id', auth.current.user.id)
+            .with('themes')
+            .firstOrFail()
+            
+            return response.json({
+                status: 'success',
+                data: user
+            })
+        }
 
         async comprarpuntos ({request, auth, response}){
             const data = request.only(['nombretema','nombrecreador'])
