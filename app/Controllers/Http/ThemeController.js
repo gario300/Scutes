@@ -186,9 +186,8 @@ class ThemeController {
 
 
                 const themes = await Theme.query()
-                .whereNotExists(function () {
-                this.from('interthemes').where('user_id', user.id)
-                  })
+                .with('users.ids')
+                .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
 
                     
