@@ -186,7 +186,7 @@ class ThemeController {
 
 
         const theme = await Intertheme.query()
-        .select('users.id AS tenertema',
+        .select(
         'theme.id AS id', 
         'theme.nombretema AS nombretema',
         'theme.creador AS creador',
@@ -201,7 +201,7 @@ class ThemeController {
         'theme.precio AS price',
         'theme.created_at AS created'
         )
-        .join('users as user', 'user.user_id', '=', 'user.id')
+        .join('users as us', 'us.user_id', '=', 'user.id')
         .join('themes as theme', 'theme.theme_id', '=', 'theme.id')
         .whereNot('theme_id', null)
         .whereNot('user_id', null)
