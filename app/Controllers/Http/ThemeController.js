@@ -181,14 +181,15 @@ class ThemeController {
         }
 
         async tienda({params , response, auth}) {
+            
+        const user = auth.current.user
 
-                const user = auth.current.user
 
-                const store = await Theme.query()
-                .with('users')
-                .where('users', user.id)
+                const themes = await Theme.query()
+                .wherePivot('user_id', user.id )
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
+
                     
 
           return response.json({
