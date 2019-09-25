@@ -186,7 +186,7 @@ class ThemeController {
 
                 const store = await Theme.query()
                 .with('users')
-                .whereNot('users.user_id', user.id)
+                .where('users', user.id)
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
                     
