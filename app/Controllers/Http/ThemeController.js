@@ -186,15 +186,16 @@ class ThemeController {
 
 
                 const themes = await Theme.query()
-                .wherePivot('user_id', user.id )
-                .orderBy('created_at', 'DESC')
+                .whereNotExists(function () {
+                this.from('intethemes').where('users.id', user.id)
+                  })
                 .paginate(params.page, 3)
 
                     
 
           return response.json({
             status: 'success',
-            data: store
+            data: themes
         
           })
    
