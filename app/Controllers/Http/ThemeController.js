@@ -201,7 +201,7 @@ class ThemeController {
         'theme.precio AS price',
         'theme.created_at AS created'
         )
-        .join('users as user', 'user.user_id', '=', 'users.id')
+        .join('users as user', 'user.user_id', '=', 'user.id')
         .join('themes as theme', 'theme.theme_id', '=', 'theme.id')
         .whereNot('theme_id', null)
         .whereNot('user_id', null)
