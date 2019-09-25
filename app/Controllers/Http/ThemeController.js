@@ -185,16 +185,35 @@ class ThemeController {
         const user = auth.current.user
 
 
-                const themes = await Theme.query()
-                .with('users')
-                .orderBy('created_at', 'DESC')
-                .paginate(params.page, 3)
+        const theme = await Interthemes.query()
+        .select('users.id AS tenertema',
+        'theme.id AS id', 
+        'theme.nombretema AS nombretema',
+        'theme.creador AS creador',
+        'theme.estilonavbar AS navbar',
+        'theme.estiloiconos AS iconos',
+        'theme.estilopagina AS pagina',
+        'theme.background AS Fondo',
+        'theme.userbox AS ubox',
+        'theme.postbox AS pbox',
+        'theme.colortexto AS texto',
+        'theme.moneda AS pay',
+        'theme.precio AS price',
+        'theme.created_at AS created'
+        )
+        .join('users as user', 'user.user_id', '=', 'users.id')
+        .join('themes as theme', 'theme.theme_id', '=', 'theme.id')
+        .whereNot('theme_id', null)
+        .whereNot('user_id', null)
+        .where('user_id', user.id)
+        .orderBy('created', 'DESC')
+        .paginate(params.page, 3)
 
                     
 
           return response.json({
             status: 'success',
-            data: themes
+            data: theme
         
           })
    
