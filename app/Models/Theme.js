@@ -5,8 +5,8 @@ const Model = use('Model')
 
 class Theme extends Model {
     users () {
-    return this.belongsToMany('App/Models/User', 'theme_id', 'user_id'
-    .pivotTable('interthemes'))
+    return this.belongsToMany('App/Models/User', 'theme_id', 'user_id')
+    .pivotTable('interthemes')
     }
     intertheme () {
         return this.belongsTo('App/Models/Intertheme')
