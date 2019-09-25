@@ -180,10 +180,14 @@ class ThemeController {
 
         }
 
-        async tienda({params , response}) {
+        async tienda({params , response, auth}) {
+
+                const user = auth.current.user
 
                 const store = await Theme.query()
-                .with('users')
+                .with('users', builder => {
+                    builder.whereNot('user_id', user.id)
+                })
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
                     
