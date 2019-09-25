@@ -186,7 +186,7 @@ class ThemeController {
 
 
                 const themes = await Theme.query()
-                .with('users.id')
+                .with('users')
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
 
