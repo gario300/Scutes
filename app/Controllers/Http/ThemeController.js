@@ -185,7 +185,7 @@ class ThemeController {
         const user = auth.current.user
 
 
-        const theme = await Interthemes.query()
+        const theme = await Intertheme.query()
         .select('users.id AS tenertema',
         'theme.id AS id', 
         'theme.nombretema AS nombretema',
