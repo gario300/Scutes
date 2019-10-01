@@ -196,7 +196,7 @@ class ThemeController {
    
         }
 
-        async show({params}){
+        async show({params , response}){
 
             const theme = await Theme.query()
                 .where('nombretema', params.nombre)
