@@ -180,13 +180,10 @@ class ThemeController {
 
         }
 
-        async tienda({params , response, auth}) {
+        async tienda({params , response}) {
             
-        const user = auth.current.user
-
 
                 const themes = await Theme.query()
-                .with('users')
                 .orderBy('created_at', 'DESC')
                 .paginate(params.page, 3)
                     
@@ -198,6 +195,22 @@ class ThemeController {
           })
    
         }
+
+        async show({params}){
+
+            const theme = await Theme.query()
+                .where('nombretema', params.nombre)
+                .with('users')
+                .firstOrFail()
+
+                return response.json({
+                    status: 'success',
+                    data: theme
+                
+                  })
+
+        }
+
         async temasusuario({auth,response}){
             
             const user = await User.query()

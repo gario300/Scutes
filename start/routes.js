@@ -119,6 +119,7 @@ const Route = use('Route')
       Route.get('/temas/:page', 'ThemeController.tienda')
       Route.get('/temasusuario/', 'ThemeController.temasusuario')
       Route.post('/comprartemapuntos', 'ThemeController.comprarpuntos')
+      Route.get('/singletheme/:nombre','ThemeController.show')
 
       })
         .prefix('tienda')
