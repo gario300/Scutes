@@ -8,7 +8,7 @@ class CurrenthemeSchema extends Schema {
     this.create('currenthemes', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
-      table.string('nombretema').notNullable().unique()
+      table.string('nombretema').notNullable()
       table.string('estilonavbar').notNullable()
       table.string('estiloiconos').notNullable()
       table.string('estilopagina').notNullable()
