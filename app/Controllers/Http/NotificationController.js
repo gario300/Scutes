@@ -65,7 +65,6 @@ class NotificationController {
                     this.orWhere('receptor_name',name)
                 })
                 .whereNot('user_id', user.id)
-                .whereNot('receptor_id', null)
                 .with('user')
                 .with('post')
                 .with('theme')
