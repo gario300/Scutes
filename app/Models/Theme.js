@@ -11,6 +11,9 @@ class Theme extends Model {
     intertheme () {
         return this.belongsTo('App/Models/Intertheme')
     }
+    notifications(){
+        return this.hasMany('App/Models/Notification')
+    }
 
 }
 
