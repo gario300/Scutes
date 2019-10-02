@@ -19,10 +19,10 @@ class FavoriteController {
         )
 
         if(user.puntos >= 0 && user.id !== user2.id){
-            user.puntos = user.puntos - 10
+            user.puntos == user.puntos - 10
             await user.save()
 
-            user2.puntos = user2.puntos + 10
+            user2.puntos == user2.puntos + 10
             await user2.save()
         }
         
