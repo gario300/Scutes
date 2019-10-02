@@ -112,6 +112,7 @@ async putnoti ({ auth, response}) {
 
     const user = await auth.current.user;
     const noti = await Notification.query()
+    const name = user.username
                 .where(function () {
                     this.orWhere('receptor_id', user.id)
                     this.orWhere('receptor_name',name)
