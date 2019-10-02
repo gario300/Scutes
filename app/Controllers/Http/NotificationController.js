@@ -26,7 +26,6 @@ class NotificationController {
         } else{
             const theme = await Theme.query()
             .where('id', data.themeid)
-            .with('user')
             .firstOrFail(); 
 
             const noti = new Notification();
