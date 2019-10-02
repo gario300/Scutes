@@ -1,6 +1,7 @@
 'use strict'
 const Favorite = use('App/Models/Favorite')
 const Post = use('App/Models/Post')
+const User = use('App/Models/User')
 
 class FavoriteController {
     
