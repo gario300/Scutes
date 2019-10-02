@@ -35,7 +35,6 @@ class NotificationController {
             noti.theme_id = theme.id;
             noti.notification_type = data.notification_type;
             await noti.save();
-            await noti.loadMany(['user','theme'])
 
         } 
 
