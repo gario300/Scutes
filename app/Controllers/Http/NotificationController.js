@@ -111,8 +111,9 @@ async shownotificationreader ({auth , response}){
 async putnoti ({ auth, response}) {
 
     const user = await auth.current.user;
-    const noti = await Notification.query()
+    
     const name = user.username
+    const noti = await Notification.query()
                 .where(function () {
                     this.orWhere('receptor_id', user.id)
                     this.orWhere('receptor_name',name)
