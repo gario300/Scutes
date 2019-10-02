@@ -112,7 +112,10 @@ async putnoti ({ auth, response}) {
 
     const user = await auth.current.user;
     const noti = await Notification.query()
-                .where('receptor_id', user.id)
+                .where(function () {
+                    this.orWhere('receptor_id', user.id)
+                    this.orWhere('receptor_name',name)
+                })
                 .where('is_readed', false)
                 .update({ is_readed: true })
         
