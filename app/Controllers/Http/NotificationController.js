@@ -59,8 +59,10 @@ class NotificationController {
         const user = auth.current.user
         try {
             const noti = await Notification.query()
-                .where('receptor_id', user.id)
-                .orWhere('receptor_name',user.username)
+                .where(function () {
+                    this.orWhere('receptor_id', user.id)
+                    this.orWhere('receptor_name',user.username)
+                })
                 .whereNot('user_id', user.id)
                 .whereNot('receptor_id', null)
                 .with('user')
