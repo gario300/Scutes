@@ -162,8 +162,9 @@ class ThemeController {
             const currentheme = await Currentheme.findBy('user_id', user.id)
             const theme = await Theme.findBy('id', data.temaid) 
             
+            try{
             currentheme.user_id = user.id
-            currentheme.nombretema= theme.nombretema
+            currentheme.nombretema = theme.nombretema
             currentheme.estilonavbar = theme.estilonavbar
             currentheme.estiloiconos = theme.estiloiconos
             currentheme.estilopagina = theme.estilopagina
@@ -177,6 +178,9 @@ class ThemeController {
                 status: 'success',
                 data: currentheme
               })
+            } catch (error) {
+                console.log(error)
+            }
 
         }
 
