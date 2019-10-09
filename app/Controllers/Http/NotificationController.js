@@ -3,6 +3,7 @@ const Notification = use('App/Models/Notification')
 const Post = use('App/Models/Post')
 const User = use ('App/Models/User')
 const Theme = use ('App/Models/Theme')
+const { broadcast } = require('../../utils/socket.utils');
 
 class NotificationController {
     async newnotification ({ request, auth}) {

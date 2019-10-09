@@ -23,6 +23,14 @@ class UserController {
 			console.log("Creating token");
 			const token = await auth.generate(user)
             console.log("Success");
+
+            const user = await auth.current.user
+            const goal = await Goal.findBy('id', 2)
+            user.goals().attach([goal.id])
+
+            user.puntos = user.puntos + 300
+            await user.save()
+
             
             
 			return response.json({
