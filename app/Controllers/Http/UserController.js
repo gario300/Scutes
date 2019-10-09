@@ -23,7 +23,6 @@ class UserController {
 			console.log("Creating token");
 			const token = await auth.generate(user)
             console.log("Success");
-
             
             
 			return response.json({

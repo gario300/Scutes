@@ -18,7 +18,7 @@ class FavoriteController {
             { user_id: user.id, post_id: PostId }
         )
 
-        if(user.puntos >= 0 && user.id !== user2.id){
+        if(user.puntos > 0 && user.id !== user2.id){
             user.puntos = user.puntos - 10
             await user.save()
 

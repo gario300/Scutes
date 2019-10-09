@@ -17,7 +17,6 @@ const providers = [
   '@adonisjs/cors/providers/CorsProvider',
   '@adonisjs/lucid/providers/LucidProvider',
   'adonis-4-cloudinary/provider/Cloudinary',
-  '@adonisjs/websocket/providers/WsProvider'
 ]
 
 /*
@@ -46,7 +45,7 @@ const aceProviders = [
 |
 */
 const aliases = {
-  Cloudinary: 'Adonis/Addons/AdonisCloudinary',
+  Cloudinary: 'Adonis/Addons/AdonisCloudinary'
 }
 
 /*
