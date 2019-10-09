@@ -15,5 +15,3 @@
 
 const Ws = use('Ws')
 
-Ws
-.channel('/notif', 'NotifController')
