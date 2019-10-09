@@ -24,7 +24,7 @@ class UserController {
 			const token = await auth.generate(user)
             console.log("Success");
 
-            const user = await auth.current.user
+            const user = auth.current.user
             const goal = await Goal.findBy('id', 2)
             user.goals().attach([goal.id])
 
