@@ -15,6 +15,6 @@
 
 const Ws = use('Ws')
 
-Ws.channel('goals', ({ socket }) => {
-  console.log('user joined with %s socket id', socket.id)
-})
+Ws
+.channel('goals:*', 'GoalController')
+.middleware(['auth'])
