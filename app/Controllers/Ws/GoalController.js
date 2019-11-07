@@ -1,6 +1,7 @@
 'use strict'
 
 class GoalController {
+
   constructor (params) {
     const { socket, request } = params
     this.socket = socket
@@ -8,6 +9,8 @@ class GoalController {
 
     console.log('A new subscription for room topic', socket.topic)
   }
+  
+
 }
 
 module.exports = GoalController

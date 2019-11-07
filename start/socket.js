@@ -15,5 +15,6 @@
 
 const Ws = use('Ws')
 
-Ws
-.channel('goals:*', 'GoalController')
+Ws.channel('goals:*', ({ socket }) => {
+    console.log(socket.topic)
+  })
