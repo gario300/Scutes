@@ -7,7 +7,7 @@ class GoalController {
     this.socket = socket
     this.request = request
 
-    console.log('A new subscription for room topic', socket.topic)
+    console.log('A new subscription for room topic', socke.id)
   }
   
 
