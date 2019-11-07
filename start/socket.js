@@ -15,4 +15,4 @@
 
 const Ws = use('Ws')
 
-Ws.channel('goal', 'GoalController')
+Ws.channel('goal:*', 'GoalController')
