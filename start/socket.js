@@ -17,4 +17,3 @@ const Ws = use('Ws')
 
 Ws
 .channel('goals:*', 'GoalController')
-.middleware(['auth'])
