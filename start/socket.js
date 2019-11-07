@@ -15,6 +15,6 @@
 
 const Ws = use('Ws')
 
-Ws.channel('goals:*', ({ socket }) => {
+Ws.channel('goals', ({ socket }) => {
     console.log(socket.id)
   })
