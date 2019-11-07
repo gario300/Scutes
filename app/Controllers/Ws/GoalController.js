@@ -2,12 +2,10 @@
 
 class GoalController {
 
-  constructor (params) {
-    const { socket, request } = params
+  constructor () {
+    const { socket }
     this.socket = socket
-    this.request = request
-
-    console.log('A new subscription for room topic', socke.id)
+    console.log('A new subscription for room topic')
   }
   
 
