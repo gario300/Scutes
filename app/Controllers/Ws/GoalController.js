@@ -6,6 +6,10 @@ class GoalController {
     this.socket = socket
     this.request = request
   }
+
+  onMessage (message) {
+    socket.emit('message', 'Hello world')
+  }
   
 
 }

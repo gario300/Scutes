@@ -2,6 +2,7 @@
 const Goal = use('App/Models/Goal')
 const User = use ('App/Models/User')
 const intergoal = use ('App/Models/Intergoal')
+const Ws = use('Ws')
 
 class GoalController {
 
@@ -80,6 +81,42 @@ class GoalController {
             status: 'success',
             data: goal
           })
+    }
+
+    async goalnotfifications({auth}){
+
+        const channel = Ws.getChannel('goals');
+        const topic = channel.topic(auth.current.user.id);
+
+        
+        const logros = await Goal.query()
+            .select(
+            'goals.is_readed AS visto',
+            'users.id AS userid'
+            )
+            .from('users')
+            .leftJoin('intergoals as IT', 'IT.user_id', '=', 'users.id')
+            .leftJoin('goals as goal', 'IT.goal_id', '=', 'goals.id')
+            .whereNot('goal_id', null)
+            .whereNot('user_id', null)
+            .whereNot('visto', false)
+            .where('user_id', auth.current.user)
+            .where('nombretema', data.nombretema)
+            .count('* as total')
+            const total = logros[0].total 
+        
+            const emisor = false
+
+            if (total >= 1) {
+                emisor = true
+
+            } else {emisor = false}
+
+            if (emisor == true){
+
+                topic.broadcast('message', emisor);
+
+            }
     }
 }
 
