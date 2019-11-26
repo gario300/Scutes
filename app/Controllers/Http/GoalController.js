@@ -13,9 +13,9 @@ class GoalController {
         const recompensa = parseInt(goaldata.recompensa, 10)
 
         const goal = new Goal();
-        goal.title = goaldata.title;
-        goal.placa = goaldata.placa;
-        goal.description = goaldata.description;
+        goal.nombregoal = goaldata.title;
+        goal.description = goaldata.placa;
+        goal.imagengoal = goaldata.description;
         goal.recompensa = goaldata.recompensa
         await goal.save();
         

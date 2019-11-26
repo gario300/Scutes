@@ -9,8 +9,8 @@ class GoalSchema extends Schema {
       table.increments()
       table.string('nombregoal',300).notNullable()
       table.string('description',300).notNullable()
+      table.string('imagengoal',300).notNullable()
       table.integer('recompensa').unsigned().notNullable()
-      table.boolean('is_readed').defaultTo(false)
       table.timestamps()
     })
   }
